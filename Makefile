@@ -1,18 +1,22 @@
 NAME = minishell
 
 SRCS = $(addprefix srcs/, )
+SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
 MAIN = $(addprefix srcs/, main.c)
 
 OBJ =  $(SRCS:.c=.o)
+OBJ_GC = $(SRCS_GC:.c=.o)
 OBJ_MAIN		=	$(MAIN:.c=.o)
 
 ALL_OBJS		+=	$(OBJ)
+ALL_OBJS		+=	$(OBJ_GC)
 ALL_OBJS		+=	$(OBJ_MAIN)
 
 ALL_SRCS +=	$(SRCS)
+ALL_SRCS +=	$(SRCS_GC)
 ALL_SRCS +=	$(MAIN)
 
-INCS = $(addprefix includes/, minishell.h struct.h)
+INCS = $(addprefix includes/, minishell.h struct.h garbage_collector.h)
 INCS_LIBFT = $(addprefix Libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)
@@ -27,18 +31,44 @@ INCLUDES_OPT = -Iincludes -I$(LIBFT_PATH)/includes
 
 LIBFT_PATH = ./libft
 
-# Colors
-RED	= "\033[0;31m"
-GREEN = "\033[0;32m"
-GRAS = "\033[1m"
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
+# High Intensity
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+
 NO_COLOR = "\033[0m"
 
 # Rules
 all: $(LIBFT_PATH)/libft.a $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_MAIN)
+$(NAME): $(ALL_OBJS)
 	@cc $(CFLAGS) $^ $(LIBFT_PATH)/libft.a -o $(NAME)
-	@echo $(GREEN)$(GRAS)"making minishell .o files" $(NO_COLOR)
+	@echo $(BBlue)$(GRAS)"making minishell 🆗" $(NO_COLOR)
 
 $(LIBFT_PATH)/libft.a:
 	@make $(MAKE_FLAGS) $(LIBFT_PATH)
@@ -55,10 +85,9 @@ bonus: $(LIBFT_PATH)/libft.a $(BONUS_NAME)
 clean:
 	@rm -rf $(ALL_OBJS)
 	@make $(MAKE_FLAGS) $(LIBFT_PATH) fclean
-	@echo $(RED)$(GRAS)"deleting minishell .o files"$(NO_COLOR)
+	@echo $(BBlue)$(GRAS)"deleting minishell 🚮"$(NO_COLOR)
 
 fclean: clean
 	@rm -f $(NAME) $(BONUS_NAME)
-	@echo $(RED)$(GRAS)"deleting minishell"$(NO_COLOR)
 		
 re: fclean all
