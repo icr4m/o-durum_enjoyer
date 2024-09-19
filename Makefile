@@ -17,12 +17,12 @@ ALL_SRCS +=	$(SRCS_GC)
 ALL_SRCS +=	$(MAIN)
 
 INCS = $(addprefix includes/, minishell.h struct.h garbage_collector.h)
-INCS_LIBFT = $(addprefix Libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
+INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)
 ALL_INCS += $(INCS_LIBFT)
 
-CCFLAGS = -Wall -Wextra -Werror -g3
+CCFLAGS = -Wall -Wextra -Werror
 
 MAKE_FLAGS		+=	--no-print-directory
 MAKE_FLAGS		+=	-C
@@ -77,10 +77,11 @@ $(LIBFT_PATH)/libft.a:
 	@cc $(CCFLAGS) $(INCLUDES_OPT) -c $< -o ${<:.c=.o}
 
 norm:
+	@norminette -R CheckDefine $(INCS)
 	@norminette -R CheckForbiddenSourceHeader $(ALL_SRCS)
-	@norminette -R CheckDefine $(ALL_INCS)
 
-bonus: $(LIBFT_PATH)/libft.a $(BONUS_NAME)
+val: all
+	valgrind --leak-check=full --show-below-main=no --show-leak-kinds=all --track-fds=yes --trace-children=yes --suppressions=.supp.supp ./minishell
 
 clean:
 	@rm -rf $(ALL_OBJS)
@@ -88,6 +89,6 @@ clean:
 	@echo $(BBlue)$(GRAS)"deleting minishell 🚮"$(NO_COLOR)
 
 fclean: clean
-	@rm -f $(NAME) $(BONUS_NAME)
+	@rm -f $(NAME)
 		
 re: fclean all

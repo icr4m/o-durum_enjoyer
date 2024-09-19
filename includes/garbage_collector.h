@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:02:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/19 22:48:55 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/19 23:28:42 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # define DESTROY_PTR ((void *)-1)
 # define DESTROY_TOKEN -1
 
+/**
+ * struct s_to_destroy
+	- Structure représentant un objet à détruire par le garbage collector.
+ * @ptr_destroy: Un pointeur vers l'objet à détruire.
+ * @next: Un pointeur vers le prochain objet à détruire dans la liste.
+ * @before: Un pointeur vers l'objet précédent dans la liste.
+ *
+
+	* Cette structure est utilisée pour créer une liste chaînée d'objets gérés par le garbage collector.
+ */
 typedef struct s_to_destroy
 {
 	void				*ptr_destroy;
@@ -25,6 +35,15 @@ typedef struct s_to_destroy
 	struct s_to_destroy	*before;
 }						t_to_destroy;
 
+/**
+ * struct s_garbage - Structure représentant le garbage collector.
+ * @first: Un pointeur vers le premier objet à détruire dans la liste.
+ * @total_alloc: Le nombre total d'objets alloués.
+ * @total_free: Le nombre total d'objets libérés.
+ *
+
+	* Cette structure est utilisée pour gérer la mémoire allouée dynamiquement et assurer sa libération.
+ */
 typedef struct s_garbage
 {
 	t_to_destroy		*first;
