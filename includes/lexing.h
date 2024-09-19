@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 01:23:48 by ijaber           ###   ########.fr       */
+/*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
+/*   Updated: 2024/09/20 00:00:23 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef LEXING_H
+# define LEXING_H
 
-int	main(int ac, char **av, char **envp)
-{
-	(void)ac;
-	(void)av;
-	(void)envp;
-	return (0);
-}
+# include "minishell.h"
+
+void	read_line_prompt(void);
+
+#endif

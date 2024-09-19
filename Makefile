@@ -2,18 +2,22 @@ NAME = minishell
 
 SRCS = $(addprefix srcs/, )
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
+SRCS_LEX = $(addprefix srcs/lexing/, read_line.c)
 MAIN = $(addprefix srcs/, main.c)
 
 OBJ =  $(SRCS:.c=.o)
 OBJ_GC = $(SRCS_GC:.c=.o)
+OBJ_LEX = $(SRCS_LEX:.c=.o)
 OBJ_MAIN		=	$(MAIN:.c=.o)
 
 ALL_OBJS		+=	$(OBJ)
 ALL_OBJS		+=	$(OBJ_GC)
+ALL_OBJS		+=	$(OBJ_LEX)
 ALL_OBJS		+=	$(OBJ_MAIN)
 
 ALL_SRCS +=	$(SRCS)
 ALL_SRCS +=	$(SRCS_GC)
+ALL_SRCS +=	$(SRCS_LEX)
 ALL_SRCS +=	$(MAIN)
 
 INCS = $(addprefix includes/, minishell.h struct.h garbage_collector.h)
@@ -22,7 +26,7 @@ INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libf
 ALL_INCS += $(INCS)
 ALL_INCS += $(INCS_LIBFT)
 
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror 
 
 MAKE_FLAGS		+=	--no-print-directory
 MAKE_FLAGS		+=	-C
@@ -67,7 +71,7 @@ NO_COLOR = "\033[0m"
 all: $(LIBFT_PATH)/libft.a $(NAME)
 
 $(NAME): $(ALL_OBJS)
-	@cc $(CFLAGS) $^ $(LIBFT_PATH)/libft.a -o $(NAME)
+	@cc $(CFLAGS) $^ $(LIBFT_PATH)/libft.a -lreadline -o $(NAME)
 	@echo $(BBlue)$(GRAS)"making minishell 🆗" $(NO_COLOR)
 
 $(LIBFT_PATH)/libft.a:
