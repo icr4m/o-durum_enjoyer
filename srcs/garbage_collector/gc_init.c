@@ -6,12 +6,22 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:26:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/19 22:51:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/19 23:09:59 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "garbage_collector.h"
 
+/**
+ * init_garbage - Initialise une nouvelle structure de garbage collector.
+ *
+
+	* Alloue de la mémoire pour une nouvelle structure t_garbage et initialise
+		ses membres.
+ *
+ * Retourne un pointeur vers la nouvelle structure t_garbage,
+	ou NULL en cas d'échec d'allocation.
+ */
 t_garbage	*init_garbage(void)
 {
 	t_garbage	*new;

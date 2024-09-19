@@ -6,12 +6,22 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:19:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/19 22:51:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/19 23:09:58 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "garbage_collector.h"
 
+/**
+ * gc_malloc
+	- Alloue de la mémoire et l'ajoute à la liste des objets gérés par le
+	garbage collector.
+ * @size: La taille de la mémoire à allouer. Si size est égal à DESTROY_TOKEN,
+	le garbage collector est réinitialisé.
+ *
+ * Retourne un pointeur vers la mémoire allouée,
+	ou NULL en cas d'échec ou si size est DESTROY_TOKEN.
+ */
 void	*gc_malloc(long int size)
 {
 	static t_garbage	*garbage;
@@ -34,6 +44,16 @@ void	*gc_malloc(long int size)
 	return (ptr);
 }
 
+/**
+ * gc_free - Libère la mémoire gérée par le garbage collector.
+ * @ptr: Un pointeur vers la mémoire à libérer. Si ptr est égal à DESTROY_PTR,
+	tous les objets gérés sont libérés.
+ *
+ * Si ptr est égal à DESTROY_PTR,
+	tous les objets gérés par le garbage collector sont libérés et
+	le garbage collector est réinitialisé.
+ * Si ptr est NULL, la fonction ne fait rien.
+ */
 void	gc_free(void *ptr)
 {
 	static int			i = DESTROY_TOKEN;
