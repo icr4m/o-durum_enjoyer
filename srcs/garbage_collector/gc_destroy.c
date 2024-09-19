@@ -6,11 +6,21 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:26:02 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/19 22:35:07 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/19 23:08:08 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "garbage_collector.h"
+
+/**
+ * destroy - Libère un objet spécifique géré par le garbage collector.
+ * @garbage: Un pointeur vers la structure du garbage collector.
+ * @content: Un pointeur vers l'objet à libérer.
+ *
+ * Si l'objet n'est pas trouvé dans la liste des objets gérés,
+	il est simplement libéré.
+ * Sinon, il est retiré de la liste et libéré.
+ */
 
 void	destroy(t_garbage *garbage, void *content)
 {
@@ -34,6 +44,14 @@ void	destroy(t_garbage *garbage, void *content)
 		current->next->before = current->before;
 	(free(current->ptr_destroy), free(current));
 }
+
+/**
+ * destroy_all - Libère tous les objets gérés par le garbage collector.
+ * @garbage: Un pointeur vers la structure du garbage collector.
+ *
+ * Parcourt la liste des objets gérés et les libère tous,
+	ainsi que la structure du garbage collector elle-même.
+ */
 
 void	destroy_all(t_garbage *garbage)
 {
