@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRCS = $(addprefix srcs/, get_user.c)
+SRCS = $(addprefix srcs/, get_pwd.c get_user.c)
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
 SRCS_LEX = $(addprefix srcs/lexing/, read_line.c)
 MAIN = $(addprefix srcs/, main.c)
