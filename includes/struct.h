@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 03:15:22 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/20 15:36:39 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,11 @@ typedef struct s_data
 	// t_garbage			*gc;
 	char				**envp;
 }						t_data;
+
+typedef struct s_token
+{
+	t_token_type		type;
+	char				*value;
+}						Token;
 
 #endif
