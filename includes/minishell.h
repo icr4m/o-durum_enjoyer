@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 00:30:05 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/20 03:10:34 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+// Get user
+char	*get_user(t_data *data);
 
 #endif
