@@ -6,19 +6,19 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 03:43:24 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/20 04:49:50 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../includes/garbage_collector.h"
+# include "../includes/lexing.h"
+# include "../includes/struct.h"
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line_bonus.h"
 # include "../libft/includes/libft.h"
-# include "garbage_collector.h"
-# include "lexing.h"
-# include "struct.h"
 //
 # include <limits.h>
 # include <readline/history.h>

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 00:00:23 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/20 04:50:39 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LEXING_H
 
 # include "minishell.h"
+# include "struct.h"
 
-void	read_line_prompt(void);
+void	exec_readline(t_data *data);
 
 #endif
