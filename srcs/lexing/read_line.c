@@ -6,13 +6,13 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 04:43:05 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/22 21:55:50 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*get_prompt(t_data *data)
+char	*get_prompt(t_data *data)
 {
 	char	*pwd_read;
 	size_t	index;
@@ -30,12 +30,14 @@ static char	*get_prompt(t_data *data)
 
 void	exec_readline(t_data *data)
 {
-	char	*prompt;
 	char	*command_readed;
+	char	*prompt;
 
 	while (1)
 	{
-		prompt = ft_strjoin(get_user(data), "@madeprout:");
+		prompt = ft_strjoin(get_user(data), "@");
+		prompt = ft_strjoin(prompt, get_station(data));
+		prompt = ft_strjoin(prompt, ":");
 		prompt = ft_strjoin(prompt, get_prompt(data));
 		prompt = ft_strjoin(prompt, ":~$");
 		command_readed = readline((prompt));
