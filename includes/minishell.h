@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 09:17:17 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 18:41:00 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ extern volatile sig_atomic_t	g_signal_received;
 
 // read line
 void							exec_readline(t_data *data);
-
+char							*read_input(void);
+t_token							*parse_input(char *input);
 // exit
 void							free_and_exit(t_data *data);
 
