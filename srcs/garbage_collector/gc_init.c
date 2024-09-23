@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gc_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:26:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 14:18:20 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:45:52 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
+#include "minishell.h"
 
 /**
  * @brief  Initialise une nouvelle structure de garbage collector.

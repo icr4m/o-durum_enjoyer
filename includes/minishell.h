@@ -6,12 +6,20 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/22 19:18:27 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 04:22:33 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+# define White "\033[0;37m"
+# define Green "\033[0;32m"
+# define Red "\033[0;31m"
+# define Purple "\033[0;35m"
+# define BBlue "\033[1;34m"
+# define IRed "\033[0;91m"
+# define BRed "\033[1;31m"
 
 # include "../includes/garbage_collector.h"
 # include "../includes/lexing.h"
@@ -30,7 +38,7 @@
 # include <unistd.h>
 
 // Get var
-char	*get_user(t_data *data);
+void	get_user(t_data *data);
 char	*get_station(t_data *data);
 
 // get pwd

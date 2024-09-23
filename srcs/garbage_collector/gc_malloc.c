@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   gc_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:19:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 14:21:08 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:56:31 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
+#include "minishell.h"
 
 /**
  * @brief
 	- Alloue de la mémoire et l'ajoute à la liste des objets gérés par le
 	garbage collector.
- * @param size: La taille de la mémoire à allouer. 
+ * @param size: La taille de la mémoire à allouer.
 	Si size est égal à DESTROY_TOKEN,
 	le garbage collector est réinitialisé.
  *
@@ -49,8 +49,6 @@ void	*gc_malloc(long int size)
  * @brief - Libère la mémoire gérée par le garbage collector.
 
 	* @param ptr: Un pointeur vers la mémoire à libérer.
-	Si ptr est égal à DESTROY_PTR,
-	tous les objets gérés sont libérés.
  *
  * Si ptr est égal à DESTROY_PTR,
 	tous les objets gérés par le garbage collector sont libérés et

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/22 21:55:28 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 02:11:41 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,19 @@ typedef struct s_ast_node
 	struct s_ast_node	*right;
 }						t_ast_node;
 
-typedef struct s_data
-{
-	t_ast_node			*b_tree;
-	// t_garbage			*gc;
-	char				**envp;
-}						t_data;
-
 typedef struct s_token
 {
 	int					lenght;
 	t_node_type			type;
 	char				*value;
 }						Token;
+
+typedef struct s_data
+{
+	t_ast_node			*b_tree;
+	t_garbage			*gc;
+	char				**envp;
+	char				*user;
+}						t_data;
 
 #endif

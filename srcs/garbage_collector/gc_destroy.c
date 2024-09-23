@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gc_destroy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:26:02 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 14:17:53 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/23 03:43:12 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
+#include "minishell.h"
 
 /**
  * @brief - Libère un objet spécifique géré par le garbage collector.

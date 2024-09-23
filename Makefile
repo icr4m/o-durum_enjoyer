@@ -1,8 +1,8 @@
 NAME = minishell
 
-SRCS = $(addprefix srcs/, get_var.c)
+SRCS = $(addprefix srcs/, get_var.c read_line.c)
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
-SRCS_LEX = $(addprefix srcs/lexing/, read_line.c)
+SRCS_LEX = $(addprefix srcs/lexing/,)
 MAIN = $(addprefix srcs/, main.c)
 
 OBJ =  $(SRCS:.c=.o)
@@ -20,7 +20,7 @@ ALL_SRCS +=	$(SRCS_GC)
 ALL_SRCS +=	$(SRCS_LEX)
 ALL_SRCS +=	$(MAIN)
 
-INCS = $(addprefix includes/, minishell.h struct.h garbage_collector.h lexing.h)
+INCS = $(addprefix includes/, garbage_collector.h lexing.h minishell.h struct.h)
 INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)

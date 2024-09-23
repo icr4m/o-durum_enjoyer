@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gc_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:25:13 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 14:19:59 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:47:36 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
+#include "minishell.h"
 
 /**
  * @brief
