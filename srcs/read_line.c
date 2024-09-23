@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 04:35:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 06:32:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	exec_readline(t_data *data)
 	while (1)
 	{
 		prompt = getcwd(NULL, 0);
-		printf(BBlue "→ %s " White, prompt);
-		command_readed = readline(BRed "minishell> " White);
+		printf(BBLUE "→ %s " WHITE, prompt);
+		command_readed = readline(BRED "minishell> " WHITE);
 		free(prompt);
 		if (command_readed == NULL)
 			break ;

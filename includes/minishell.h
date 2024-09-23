@@ -6,20 +6,20 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 04:33:28 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 06:32:35 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define White "\033[0;37m"
-# define Green "\033[0;32m"
-# define Red "\033[0;31m"
-# define Purple "\033[0;35m"
-# define BBlue "\033[1;34m"
-# define IRed "\033[0;91m"
-# define BRed "\033[1;31m"
+# define WHITE "\033[0;37m"
+# define GREEN "\033[0;32m"
+# define RED "\033[0;31m"
+# define PURPLE "\033[0;35m"
+# define BBLUE "\033[1;34m"
+# define IRED "\033[0;91m"
+# define BRED "\033[1;31m"
 
 # include "../includes/garbage_collector.h"
 # include "../includes/lexing.h"

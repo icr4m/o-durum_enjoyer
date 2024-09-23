@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:02:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/19 23:28:42 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 06:14:28 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
  * @before: Un pointeur vers l'objet précédent dans la liste.
  *
 
-	* Cette structure est utilisée pour créer une liste chaînée d'objets gérés par le garbage collector.
+	* Cette structure est utilisée pour créer une liste chaînée d'objets gérés 
+	par le garbage collector.
  */
 typedef struct s_to_destroy
 {
@@ -42,7 +43,8 @@ typedef struct s_to_destroy
  * @total_free: Le nombre total d'objets libérés.
  *
 
-	* Cette structure est utilisée pour gérer la mémoire allouée dynamiquement et assurer sa libération.
+	* Cette structure est utilisée pour gérer la mémoire allouée dynamiquement 
+	et assurer sa libération.
  */
 typedef struct s_garbage
 {

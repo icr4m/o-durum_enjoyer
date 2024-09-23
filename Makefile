@@ -81,8 +81,8 @@ $(LIBFT_PATH)/libft.a:
 	@cc $(CCFLAGS) $(INCLUDES_OPT) -c $< -o ${<:.c=.o}
 
 norm:
-	@norminette -R CheckDefine $(INCS)
-	@norminette -R CheckForbiddenSourceHeader $(ALL_SRCS)
+	-@norminette -R CheckForbiddenSourceHeader $(ALL_SRCS)
+	-@norminette -R CheckDefine $(INCS)
 
 val: all
 	valgrind --leak-check=full --show-below-main=no --show-leak-kinds=all --track-fds=yes --trace-children=yes --suppressions=.supp.supp ./minishell

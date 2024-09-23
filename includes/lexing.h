@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/20 15:33:21 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/23 06:15:00 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ typedef enum token
 	TOKEN_PAREN_CLOSE,
 	TOKEN_BRACKET_OPEN,
 	TOKEN_BRACKET_CLOSE
-}		t_token_type;
-
-
-
-void	exec_readline(t_data *data);
+}	t_token_type;
 
 #endif

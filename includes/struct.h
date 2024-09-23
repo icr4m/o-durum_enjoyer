@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 04:32:47 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 06:33:04 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_token
 	int					lenght;
 	t_node_type			type;
 	char				*value;
-}						Token;
+}						t_token;
 
 typedef struct s_data
 {
