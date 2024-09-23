@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 11:39:53 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 18:38:16 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_token
 	int					lenght;
 	t_node_type			type;
 	char				*value;
+	struct s_token		*next;
 }						t_token;
 
 typedef struct s_data

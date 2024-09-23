@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 06:15:00 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 18:41:05 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,6 @@
  * @param token_redir_append >>
  * @param token_heredoc <<
  * @param token_pipe |
- * @param token_space Espace ou tabulation
- * @param token_newline \n
- * @param token_quote_single '
- * @param token_quote_double "
- * @param token_variable $VAR
- * @param token_escape Escape character
- * @param token_and &&
- * @param token_or ||
- * @param token_semicolon ;
- * @param token_paren_open (
- * @param token_paren_close )
- * @param token_bracket_open [
- * @param token_bracket_close ]
  */
 typedef enum token
 {
@@ -47,19 +34,10 @@ typedef enum token
 	TOKEN_REDIR_APPEND,
 	TOKEN_HEREDOC,
 	TOKEN_PIPE,
-	TOKEN_SPACE,
-	TOKEN_NEWLINE,
-	TOKEN_QUOTE_SINGLE,
-	TOKEN_QUOTE_DOUBLE,
-	TOKEN_VARIABLE,
-	TOKEN_ESCAPE,
-	TOKEN_AND,
-	TOKEN_OR,
-	TOKEN_SEMICOLON,
-	TOKEN_PAREN_OPEN,
-	TOKEN_PAREN_CLOSE,
-	TOKEN_BRACKET_OPEN,
-	TOKEN_BRACKET_CLOSE
-}	t_token_type;
+}		t_token_type;
+
+// tokenization function
+t_token	*create_token(char *value, t_token_type type);
+t_token	add_token_to_list(t_token **head, t_token *new_token);
 
 #endif
