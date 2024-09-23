@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_signal.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 11:40:15 by ijaber           ###   ########.fr       */
+/*   Created: 2024/09/23 09:04:37 by ijaber            #+#    #+#             */
+/*   Updated: 2024/09/23 11:04:59 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef FT_SIGNAL_H
+# define FT_SIGNAL_H
 
-int	main(int ac, char **av, char **envp)
-{
-	t_data	data;
+# include "minishell.h"
 
-	(void)ac;
-	(void)av;
-	data.envp = gc_malloc(sizeof(char **));
-	data.envp = envp;
-	exec_readline(&data);
-	free_and_exit(&data);
-}
+// signal handler
+void	sigint_handler(int signum);
+void	sigquit_handler(int signum);
+void	setup_sig_handler(void);
+void	setup_sig_parent(void);
+
+#endif

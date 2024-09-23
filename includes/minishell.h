@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 06:32:35 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 09:17:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # define IRED "\033[0;91m"
 # define BRED "\033[1;31m"
 
+# define _XOPEN_SOURCE 700
+/*
+une directive qui permet d'accéder à un ensemble plus large et plus moderne
+ de fonctionnalités POSIX. (pour sigaction).
+*/
+
+# include "../includes/ft_signal.h"
 # include "../includes/garbage_collector.h"
 # include "../includes/lexing.h"
 # include "../includes/struct.h"
@@ -31,16 +38,20 @@
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
+// VARIABLE GLOBALE
+extern volatile sig_atomic_t	g_signal_received;
+
 // read line
-void	exec_readline(t_data *data);
+void							exec_readline(t_data *data);
 
 // exit
-void	free_and_exit(t_data *data);
+void							free_and_exit(t_data *data);
 
 #endif
