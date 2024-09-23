@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 02:11:41 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 04:32:47 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_data
 	t_garbage			*gc;
 	char				**envp;
 	char				*user;
+	int					status_code;
 }						t_data;
 
 #endif

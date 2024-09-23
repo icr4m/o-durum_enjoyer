@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_line.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 04:35:31 by ijaber           ###   ########.fr       */
+/*   Created: 2024/09/23 04:31:24 by ijaber            #+#    #+#             */
+/*   Updated: 2024/09/23 04:55:09 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_readline(t_data *data)
+void	free_and_exit(t_data *data)
 {
-	char	*command_readed;
-	char	*prompt;
-
 	(void)data;
-	while (1)
-	{
-		prompt = getcwd(NULL, 0);
-		printf(BBlue "→ %s " White, prompt);
-		command_readed = readline(BRed "minishell> " White);
-		free(prompt);
-		if (command_readed == NULL)
-			break ;
-		if (ft_strlen(command_readed) > 0)
-			add_history(command_readed);
-		free(command_readed);
-	}
+	gc_free(DESTROY_PTR);
+	rl_clear_history();
+	exit(EXIT_FAILURE);
 }

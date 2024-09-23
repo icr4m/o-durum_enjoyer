@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 04:22:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/23 04:33:28 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// Get var
-void	get_user(t_data *data);
-char	*get_station(t_data *data);
-
-// get pwd
+// read line
 void	exec_readline(t_data *data);
+
+// exit
+void	free_and_exit(t_data *data);
 
 #endif
