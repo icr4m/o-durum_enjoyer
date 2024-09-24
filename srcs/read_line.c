@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 12:36:55 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:22:12 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	exec_readline(t_data *data)
 		if (g_signal_received != 0)
 		{
 			g_signal_received = 0;
-			break ;
+			continue ;
 		}
 		prompt = getcwd(NULL, 0);
 		full_prompt = ft_strjoin3(BBLUE "→ ", prompt,

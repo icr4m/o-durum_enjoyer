@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 06:45:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 13:16:30 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:22:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sigint_handler(int signum)
 {
 	(void)signum;
 	g_signal_received = 1;
-	write(STDERR_FILENO, "\n", 1);
+	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();

@@ -47,7 +47,7 @@ $(NAME) : $(LIB_OBJS)
 	@$(call progress_bar)
 
 .c.o: 
-	@cc $(CCFLAGS) $(INCLUDES) -c $< -o ${<:.c=.o}
+	@cc $(CFLAGS) $(INCLUDES) -c $< -o ${<:.c=.o}
 
 clean:
 	@rm -rf ${LIB_OBJS}

@@ -6,13 +6,14 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 09:33:28 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 12:08:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:04:45 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "../../includes/minishell.h"
 # include <bsd/string.h>
 # include <stdbool.h>
 # include <stddef.h>
