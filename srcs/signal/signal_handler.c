@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 06:45:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 12:33:01 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:16:30 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sigquit_handler(int signum)
 	(void)signum;
 }
 
-void	setup_sig_handler(void)
+void	setup_sig_children(void)
 {
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
