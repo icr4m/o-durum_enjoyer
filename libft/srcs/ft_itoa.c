@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 22:55:14 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/17 12:10:29 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:24:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ char	*ft_itoa(int n)
 		return (ft_strdup("0"));
 	is_neg = (n < 0);
 	len = nb_len(n);
-	new = (char *)malloc((len + is_neg) * sizeof(char) + 1);
+	new = (char *)gc_malloc((len + is_neg) * sizeof(char) + 1);
 	if (!new)
-		return (0);
+		return (NULL);
 	if (is_neg)
 		new[0] = '-';
 	fill_number(new + is_neg, n, len);

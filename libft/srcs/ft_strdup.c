@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 17:05:27 by ijaber            #+#    #+#             */
-/*   Updated: 2024/03/25 21:25:04 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:25:19 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *s1)
 	char	*str;
 	size_t	i;
 
-	str = (char *)malloc(ft_strlen(s1) * sizeof(char) + 1);
+	str = gc_malloc(ft_strlen(s1) * sizeof(char) + 1);
 	if (!str)
 		return (NULL);
 	i = 0;

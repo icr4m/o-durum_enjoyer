@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 00:53:17 by ijaber            #+#    #+#             */
-/*   Updated: 2024/04/30 02:28:11 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:02:08 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*result;
 
-	result = malloc((ft_strlen(s) + 1) * sizeof(char));
+	result = gc_malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;

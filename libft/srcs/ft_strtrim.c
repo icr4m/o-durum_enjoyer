@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:07:57 by ijaber            #+#    #+#             */
-/*   Updated: 2024/03/29 17:20:20 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:02:24 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		else
 			break ;
 	}
-	result = (char *)malloc(sizeof(char) * (size_result + 1));
+	result = gc_malloc(sizeof(char) * (size_result + 1));
 	if (!result)
 		return (0);
 	ft_strlcpy(result, (char *)s1, size_result + 1);

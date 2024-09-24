@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 22:23:57 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/17 15:22:14 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:02:38 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		substr = NULL;
 	else
 	{
-		substr = (char *)malloc(sizeof(char) * (len + 1));
+		substr = gc_malloc(sizeof(char) * (len + 1));
 		if (!substr)
 			return (NULL);
 		ft_strlcpy(substr, (char *)s + start, len + 1);

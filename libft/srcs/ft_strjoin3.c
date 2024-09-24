@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 14:04:11 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 14:04:25 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:01:59 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin3(char *s1, char *s2, char *s3)
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	len3 = ft_strlen(s3);
-	result = (char *)malloc(sizeof(char) * (len1 + len2 + len3 + 1));
+	result = gc_malloc(sizeof(char) * (len1 + len2 + len3 + 1));
 	if (!result)
 		return (NULL);
 	ft_strlcpy(result, s1, len1 + 1);

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:26:43 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/17 16:34:12 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:24:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	tmp = NULL;
 	if (total_size == 0 || count <= SIZE_MAX / size)
-		tmp = malloc(total_size);
+		tmp = gc_malloc(total_size);
 	if (tmp != NULL)
 		ft_bzero(tmp, total_size);
 	return (tmp);

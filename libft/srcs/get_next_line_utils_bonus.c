@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 04:31:45 by ijaber            #+#    #+#             */
-/*   Updated: 2024/06/24 13:25:54 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:03:33 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ char	*strnjoin(char *s1, const char *s2, const size_t n)
 	len2 = ft_strlen(s2);
 	if (len2 > n)
 		len2 = n;
-	new = (char *)malloc((len1 + len2 + 1) + sizeof(char));
+	new = gc_malloc((len1 + len2 + 1) + sizeof(char));
 	if (new != NULL)
 	{
 		if (s1 != NULL)
 			ft_strncpy(new, (char *)s1, len1);
 		ft_strncpy(new + len1, (char *)s2, len2);
 	}
-	free(s1);
+	gc_free(s1);
 	return (new);
 }
 

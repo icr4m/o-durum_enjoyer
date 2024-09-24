@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 01:40:55 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/21 09:56:26 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:25:05 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ static char	**free_array(char **array, int i)
 	while (i < 0)
 	{
 		i--;
-		free(array[i]);
+		gc_free(array[i]);
 	}
-	free(array);
+	array = NULL;
+	gc_free(array);
 	return (array);
 }
 
@@ -77,7 +78,7 @@ char	**ft_spliting_words(char const *s, char c, char **result, int nb_word)
 			i++;
 			word_len++;
 		}
-		result[word] = (char *)malloc(sizeof(char) * (word_len + 1));
+		result[word] = gc_malloc(sizeof(char) * (word_len + 1));
 		if (!result)
 			return (free_array(result, word));
 		fill_word(result[word], s, i, word_len);
@@ -94,9 +95,9 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	num_words = ft_count_words(s, c);
-	result = (char **)malloc(sizeof(char *) * (num_words + 1));
+	result = gc_malloc(sizeof(char *) * (num_words + 1));
 	if (!result)
-		return (0);
+		return (NULL);
 	result = ft_spliting_words(s, c, result, num_words);
 	result[num_words] = NULL;
 	return (result);
