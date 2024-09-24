@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 15:03:58 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:25:47 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	exec_readline(t_data *data)
 	char	*prompt;
 	char	*full_prompt;
 
-	(void)data;
 	while (1)
 	{
 		setup_sig_parent();
@@ -32,6 +31,7 @@ void	exec_readline(t_data *data)
 				BRED " minishell> " WHITE);
 		gc_free(prompt);
 		command_readed = readline(full_prompt);
+		command_readed = parsing(data);
 		gc_free(full_prompt);
 		if (command_readed == NULL)
 			break ;
