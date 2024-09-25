@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.c                                            :+:      :+:    :+:   */
+/*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 17:42:36 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/09/24 15:19:55 by erwfonta         ###   ########.fr       */
+/*   Created: 2024/09/25 17:34:44 by erwfonta          #+#    #+#             */
+/*   Updated: 2024/09/25 17:57:58 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,57 +39,4 @@ t_token	add_token_to_list(t_token **head, t_token *new_token)
 	while (current->next)
 		current = current->next;
 	current->next = new_token;
-}
-
-t_token	*parse_input(char *input)
-{
-	t_token	*head;
-	char	*current;
-	char	*start;
-	int		len;
-	char	*word;
-	int		i;
-
-	head = NULL;
-	current = input;
-	i = 0;
-	while (*current)
-	{
-		while (current == ' ')
-			current++;
-		if (current == '|')
-		{
-			add_token_to_list(&head, TOKEN_PIPE);
-			current++;
-		}
-		else if (*current == '<')
-		{
-			add_token(&head, create_token("<", TOKEN_REDIR_APPEND));
-			current++;
-		}
-		else if (*current == '>')
-		{
-			add_token(&head, create_token(">", TOKEN_REDIR_OUT));
-			current++;
-		}
-		else
-		{
-			start = current;
-			while (*current && *current != ' ' && *current != '|'
-				&& *current != '<' && *current != '>')
-				current++;
-			len = current - start;
-			word = malloc(len + 1);
-			if (!word)
-				return (NULL);
-			while (i < len)
-			{
-				word[i] = start[i];
-				i++;
-			}
-			word[len] = '\0';
-			add_token(&head, create_token(word, TOKEN_WORD));
-		}
-	}
-	return (head);
 }
