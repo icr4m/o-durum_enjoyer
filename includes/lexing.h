@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 15:12:41 by rsk              ###   ########.fr       */
+/*   Updated: 2024/10/03 13:48:26 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEXING_H
 
 # include "minishell.h"
+# include "stddef.h"
 
 /**
  * @brief token for each possible case
@@ -38,33 +39,24 @@ typedef enum token
 
 typedef struct s_token
 {
-	int					lenght;
-	t_token_type		type;
-	char				*value;
-	struct s_token		*next;
-}						t_token;
-
-typedef struct s_ast_node
-{
-	t_token_type		type;
-	int					file_type;
-	char				**args;
-	struct s_ast_node	*left;
-	struct s_ast_node	*right;
-}						t_ast_node;
+	int				lenght;
+	t_token_type	type;
+	char			*value;
+	struct s_token	*next;
+}					t_token;
 
 // token List
-t_token					*create_token(char *value, t_token_type type);
-t_token					add_token_to_list(t_token **head, t_token *new_token);
+t_token				*create_token(char *value, t_token_type type);
+t_token				add_token_to_list(t_token **head, t_token *new_token);
 
 // tokenizer
-t_token					tokenization_input(char *input);
+t_token				tokenization_input(char *input);
 
 // token utils
-char					skip_spaces(char *str);
-char					*handle_pipe(t_token *head, char *str);
-char					*handle_redir(t_token *head, char *str);
-char					*handle_env_var(t_token *head, char *str);
-char					*handle_word(t_token *head, char *str);
+char				skip_spaces(char *str);
+char				*handle_pipe(t_token *head, char *str);
+char				*handle_redir(t_token *head, char *str);
+char				*handle_env_var(t_token *head, char *str);
+char				*handle_word(t_token *head, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:44 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/09/25 17:57:58 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:19:18 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_token	*create_token(char *value, t_token_type type)
 	return (new_token);
 }
 
-t_token	add_token_to_list(t_token **head, t_token *new_token)
+void	add_token_to_list(t_token **head, t_token *new_token)
 {
 	t_token	*current;
 
@@ -40,3 +40,5 @@ t_token	add_token_to_list(t_token **head, t_token *new_token)
 		current = current->next;
 	current->next = new_token;
 }
+
+

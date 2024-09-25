@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:08 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/02 14:48:59 by rsk              ###   ########.fr       */
+/*   Updated: 2024/10/03 13:48:20 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	skip_spaces(char *str)
+char	*skip_spaces(char *str)
 {
 	while (*str && (*str == ' ' || *str == '\t'))
 		str++;
 	return (str);
 }
 
-char	*handle_pipe(t_token *head, char *str)
+char	*handle_pipe(t_token **head, char *str)
 {
 	add_token_to_list(head, create_token("|", TOKEN_PIPE));
 	return (str + 1);
 }
 
-char	*handle_redir(t_token *head, char *str)
+char	*handle_redir(t_token **head, char *str)
 {
 	if (*str == '<')
 	{
@@ -39,7 +39,7 @@ char	*handle_redir(t_token *head, char *str)
 	}
 	else if (*str == '>')
 	{
-		if (*(str + 1) == ">")
+		if (*(str + 1) == '>')
 		{
 			add_token_to_list(head, create_token(">>", TOKEN_REDIR_APPEND));
 			return (str + 2);
@@ -50,15 +50,15 @@ char	*handle_redir(t_token *head, char *str)
 	return (str + 1);
 }
 
-char	*handle_env_var(t_token *head, char *str)
+char	*handle_env_var(t_token **head, char *str)
 {
 	char	*start;
 	int		len;
 
 	start = ++str;
-	while (*str || ft_isalnum(*str) != 0 || *str == '_')
+	while (*str && (ft_isalnum(*str) != 0 || *str == '_'))
 		str++;
-	len = start - str;
+	len = str - start;
 	if (len > 0)
 	{
 		add_token_to_list(head, create_token(ft_strndup(start, len),
@@ -67,7 +67,7 @@ char	*handle_env_var(t_token *head, char *str)
 	return (str);
 }
 
-char	*handle_word(t_token *head, char *str)
+char	*handle_word(t_token **head, char *str)
 {
 	char	*start;
 	int		len;
@@ -75,7 +75,7 @@ char	*handle_word(t_token *head, char *str)
 	char	quote_char;
 
 	start = str;
-	while (*str && ft_strchr(" \t<>|$", *str))
+	while (*str && !ft_strchr(" \t<>|$", *str))
 		str++;
 	len = str - start;
 	if (len > 0)
