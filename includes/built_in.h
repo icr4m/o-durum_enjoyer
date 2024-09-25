@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:07:45 by ijaber           ###   ########.fr       */
+/*   Created: 2024/09/25 14:49:56 by ijaber            #+#    #+#             */
+/*   Updated: 2024/09/25 19:01:56 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef BUILT_IN_H
+# define BUILT_IN_H
 
-int	main(int ac, char **av, char **envp)
-{
-	t_data	data;
+# include "minishell.h"
+/*
+ * 1 pour print
+ * 0 pour get
+ */
+char	*ft_pwd(t_data *data, int get_or_print);
+void	ft_export(t_data *data, char *var_name, char *content);
 
-	(void)ac;
-	(void)av;
-	init_env(&data, envp);
-	ft_export(&data, "USER=", "test");
-	// exec_readline(&data);
-	free_and_exit(&data);
-}
+#endif

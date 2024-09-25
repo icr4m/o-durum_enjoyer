@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 18:41:00 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:00:42 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,11 @@
 # define IRED "\033[0;91m"
 # define BRED "\033[1;31m"
 
-# define _XOPEN_SOURCE 700
 /*
 une directive qui permet d'accéder à un ensemble plus large et plus moderne
  de fonctionnalités POSIX. (pour sigaction).
 */
-
-# include "../includes/ft_signal.h"
-# include "../includes/garbage_collector.h"
-# include "../includes/lexing.h"
-# include "../includes/struct.h"
-# include "../libft/includes/ft_printf.h"
-# include "../libft/includes/get_next_line_bonus.h"
-# include "../libft/includes/libft.h"
-//
+# define _XOPEN_SOURCE 700
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -44,6 +35,17 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+//
+# include "../includes/garbage_collector.h"
+# include "../includes/struct.h"
+//
+# include "../includes/built_in.h"
+# include "../includes/expand.h"
+# include "../includes/ft_signal.h"
+# include "../includes/lexing.h"
+# include "../libft/includes/ft_printf.h"
+# include "../libft/includes/get_next_line_bonus.h"
+# include "../libft/includes/libft.h"
 
 // VARIABLE GLOBALE
 extern volatile sig_atomic_t	g_signal_received;

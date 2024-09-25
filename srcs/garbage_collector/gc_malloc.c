@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:19:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 00:56:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/25 19:02:23 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*gc_malloc(long int size)
 	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);
-	push_to_garbage(garbage, ptr);
+	push_to_garbage(garbage, ptr, size);
 	if (!garbage->total_alloc)
 		gc_free(garbage);
 	garbage->total_alloc++;
@@ -77,4 +77,31 @@ void	gc_free(void *ptr)
 	}
 	destroy(garbage, ptr);
 	garbage->total_free++;
+}
+
+/**
+ * @brief
+	- Réalloue de la mémoire pour un objet géré par le garbage collector.
+ * @param ptr: Un pointeur vers l'objet à réallouer.
+ * @param size: La nouvelle taille de la mémoire à allouer.
+ *
+ * Retourne un pointeur vers la nouvelle mémoire allouée,
+	ou NULL en cas d'échec.
+ */
+void	*gc_realloc(void *ptr, size_t new_size)
+{
+	void	*new_ptr;
+	size_t	old_size;
+
+	if (!ptr)
+		return (gc_malloc(new_size));
+	old_size = gc_get_size(ptr);
+	if (new_size <= old_size)
+		return (ptr);
+	new_ptr = gc_malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	ft_memcpy(new_ptr, ptr, old_size);
+	gc_free(ptr);
+	return (new_ptr);
 }

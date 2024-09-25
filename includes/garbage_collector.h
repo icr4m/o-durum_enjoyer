@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:02:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 06:14:28 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/25 19:02:45 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@
  * @before: Un pointeur vers l'objet précédent dans la liste.
  *
 
-	* Cette structure est utilisée pour créer une liste chaînée d'objets gérés 
+	* Cette structure est utilisée pour créer une liste chaînée d'objets gérés
 	par le garbage collector.
  */
 typedef struct s_to_destroy
 {
 	void				*ptr_destroy;
+	long int			size;
 	struct s_to_destroy	*next;
 	struct s_to_destroy	*before;
 }						t_to_destroy;
@@ -43,7 +44,7 @@ typedef struct s_to_destroy
  * @total_free: Le nombre total d'objets libérés.
  *
 
-	* Cette structure est utilisée pour gérer la mémoire allouée dynamiquement 
+	* Cette structure est utilisée pour gérer la mémoire allouée dynamiquement
 	et assurer sa libération.
  */
 typedef struct s_garbage
@@ -63,9 +64,12 @@ t_garbage				*init_garbage(void);
 // GC malloc
 void					*gc_malloc(long int size);
 void					gc_free(void *ptr);
+void					*gc_realloc(void *ptr, size_t new_size);
 
 // GC utils
-t_to_destroy			*push_to_garbage(t_garbage *garbage, void *ptr);
+t_to_destroy			*push_to_garbage(t_garbage *garbage, void *ptr,
+							long int size);
 int						is_in_garbage(t_garbage *garbage, void *content);
+size_t					gc_get_size(void *ptr);
 
 #endif

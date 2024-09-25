@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 06:45:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 14:22:48 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/25 12:52:24 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,5 @@ void	setup_sig_parent(void)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGTSTP, SIG_IGN);
 }
+
+// > >> < << | || && & () *

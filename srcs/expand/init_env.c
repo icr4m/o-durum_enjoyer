@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:07:45 by ijaber           ###   ########.fr       */
+/*   Created: 2024/09/25 15:46:09 by ijaber            #+#    #+#             */
+/*   Updated: 2024/09/25 18:53:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+void	init_env(t_data *data, char **envp)
 {
-	t_data	data;
+	size_t	i;
 
-	(void)ac;
-	(void)av;
-	init_env(&data, envp);
-	ft_export(&data, "USER=", "test");
-	// exec_readline(&data);
-	free_and_exit(&data);
+	i = 0;
+	while (envp[i])
+		i++;
+	data->env = gc_malloc(sizeof(char **) * (i + 1));
+	if (!data->env)
+		gc_free(DESTROY_PTR);
+	i = 0;
+	while (envp[i])
+	{
+		data->env[i] = envp[i];
+		i++;
+	}
+	data->env[i] = NULL;
 }

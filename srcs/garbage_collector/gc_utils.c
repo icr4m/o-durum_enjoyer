@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:25:13 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 00:47:36 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/25 19:02:34 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * Retourne un pointeur vers la nouvelle structure t_to_destroy,
 	ou NULL en cas d'échec d'allocation.
  */
-t_to_destroy	*push_to_garbage(t_garbage *garbage, void *ptr)
+t_to_destroy	*push_to_garbage(t_garbage *garbage, void *ptr, long int size)
 {
 	t_to_destroy	*new;
 	t_to_destroy	*current;
@@ -45,6 +45,7 @@ t_to_destroy	*push_to_garbage(t_garbage *garbage, void *ptr)
 		new->before = current;
 	}
 	new->next = NULL;
+	new->size = size;
 	return (new);
 }
 
@@ -65,6 +66,21 @@ int	is_in_garbage(t_garbage *garbage, void *content)
 	{
 		if (current->ptr_destroy == content)
 			return (1);
+		current = current->next;
+	}
+	return (0);
+}
+
+size_t	gc_get_size(void *ptr)
+{
+	static t_garbage *gc;
+	t_to_destroy *current;
+
+	current = gc->first;
+	while (current)
+	{
+		if (current->ptr_destroy == ptr)
+			return (current->size);
 		current = current->next;
 	}
 	return (0);
