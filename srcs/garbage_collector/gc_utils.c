@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:25:13 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:02:34 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/26 16:31:20 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ t_to_destroy	*push_to_garbage(t_garbage *garbage, void *ptr, long int size)
 	new->ptr_destroy = ptr;
 	new->before = NULL;
 	if (!garbage->first)
+	{
 		garbage->first = new;
+	}
 	else
 	{
 		current = garbage->first;
@@ -66,21 +68,6 @@ int	is_in_garbage(t_garbage *garbage, void *content)
 	{
 		if (current->ptr_destroy == content)
 			return (1);
-		current = current->next;
-	}
-	return (0);
-}
-
-size_t	gc_get_size(void *ptr)
-{
-	static t_garbage *gc;
-	t_to_destroy *current;
-
-	current = gc->first;
-	while (current)
-	{
-		if (current->ptr_destroy == ptr)
-			return (current->size);
 		current = current->next;
 	}
 	return (0);

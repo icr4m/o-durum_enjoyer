@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:59:36 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 16:00:36 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:01:57 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "minishell.h"
 
-void	init_env(t_data *data, char **envp);
+int	init_env(t_data *data, char **envp);
 
 #endif

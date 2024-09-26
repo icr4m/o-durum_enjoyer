@@ -6,11 +6,33 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:19:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:02:23 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/26 17:29:23 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+size_t	gc_get_size(void *ptr)
+{
+	static t_garbage	*garbage;
+	static int			i = DESTROY_TOKEN;
+	t_to_destroy		*current;
+
+	if (i == DESTROY_TOKEN)
+	{
+		garbage = ptr;
+		i++;
+		return (0);
+	}
+	current = garbage->first;
+	while (current)
+	{
+		if (current->ptr_destroy == ptr)
+			return (current->size);
+		current = current->next;
+	}
+	return (0);
+}
 
 /**
  * @brief
@@ -90,12 +112,21 @@ void	gc_free(void *ptr)
  */
 void	*gc_realloc(void *ptr, size_t new_size)
 {
-	void	*new_ptr;
-	size_t	old_size;
+	static t_garbage	*garbage;
+	static int			i = DESTROY_TOKEN;
+	void				*new_ptr;
+	size_t				old_size;
 
+	printf("i:%d\n", i);
+	if (i == DESTROY_TOKEN)
+	{
+		garbage = ptr;
+		i++;
+		return (NULL);
+	}
 	if (!ptr)
 		return (gc_malloc(new_size));
-	old_size = gc_get_size(ptr);
+	old_size = gc_get_size(garbage);
 	if (new_size <= old_size)
 		return (ptr);
 	new_ptr = gc_malloc(new_size);

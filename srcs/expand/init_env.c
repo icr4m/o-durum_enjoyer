@@ -6,13 +6,13 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:46:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 18:53:17 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:01:43 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_env(t_data *data, char **envp)
+int	init_env(t_data *data, char **envp)
 {
 	size_t	i;
 
@@ -25,8 +25,11 @@ void	init_env(t_data *data, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		data->env[i] = envp[i];
+		data->env[i] = ft_strdup(envp[i]);
+		if (!data->env[i])
+			return (0);
 		i++;
 	}
 	data->env[i] = NULL;
+	return (1);
 }
