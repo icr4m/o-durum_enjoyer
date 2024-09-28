@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 17:25:39 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:28:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 # define STRUCT_H
 # include "minishell.h"
 
-typedef enum s_node_type
+typedef struct s_env
 {
-	NODE_COMMAND,
-	NODE_PIPE,
-	NODE_REDIRECT,
-	NODE_AND,
-	NODE_OR
-}						t_node_type;
+	char				*env_var;
+	struct s_env		*next;
+}						t_env;
 
 /**
  * @brief Structure representing a command.
@@ -63,20 +60,10 @@ typedef struct s_ast_node
 	struct s_ast_node	*right;
 }						t_ast_node;
 
-typedef struct s_token
-{
-	int					lenght;
-	t_node_type			type;
-	char				*value;
-	struct s_token		*next;
-}						t_token;
-
 typedef struct s_data
 {
-	t_ast_node			*b_tree;
-	t_garbage			*gc;
-	char				**env;
 	int					status_code;
+	struct s_env		env;
 }						t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/26 17:56:55 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/28 15:35:31 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_export(t_data *data, char *var_name, char *content)
 		i++;
 	}
 	{
-		data->env = realloc(data->env, sizeof(char **) * (i + 2));
+		data->env = gc_realloc(data->env, sizeof(char **) * (i + 2));
 		// if (!data->env)
 		// 	return (NULL);
 		data->env[i] = new_env;

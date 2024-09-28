@@ -6,33 +6,11 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:19:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/26 17:29:23 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:03:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-size_t	gc_get_size(void *ptr)
-{
-	static t_garbage	*garbage;
-	static int			i = DESTROY_TOKEN;
-	t_to_destroy		*current;
-
-	if (i == DESTROY_TOKEN)
-	{
-		garbage = ptr;
-		i++;
-		return (0);
-	}
-	current = garbage->first;
-	while (current)
-	{
-		if (current->ptr_destroy == ptr)
-			return (current->size);
-		current = current->next;
-	}
-	return (0);
-}
 
 /**
  * @brief
@@ -99,40 +77,4 @@ void	gc_free(void *ptr)
 	}
 	destroy(garbage, ptr);
 	garbage->total_free++;
-}
-
-/**
- * @brief
-	- Réalloue de la mémoire pour un objet géré par le garbage collector.
- * @param ptr: Un pointeur vers l'objet à réallouer.
- * @param size: La nouvelle taille de la mémoire à allouer.
- *
- * Retourne un pointeur vers la nouvelle mémoire allouée,
-	ou NULL en cas d'échec.
- */
-void	*gc_realloc(void *ptr, size_t new_size)
-{
-	static t_garbage	*garbage;
-	static int			i = DESTROY_TOKEN;
-	void				*new_ptr;
-	size_t				old_size;
-
-	printf("i:%d\n", i);
-	if (i == DESTROY_TOKEN)
-	{
-		garbage = ptr;
-		i++;
-		return (NULL);
-	}
-	if (!ptr)
-		return (gc_malloc(new_size));
-	old_size = gc_get_size(garbage);
-	if (new_size <= old_size)
-		return (ptr);
-	new_ptr = gc_malloc(new_size);
-	if (!new_ptr)
-		return (NULL);
-	ft_memcpy(new_ptr, ptr, old_size);
-	gc_free(ptr);
-	return (new_ptr);
 }

@@ -6,30 +6,37 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:46:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/26 13:01:43 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:24:30 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	init_env(t_data *data, char **envp)
+t_env	*init_env(char **envp)
 {
-	size_t	i;
+	t_env	*env_list;
+	t_env	*new_node;
+	t_env	*last_node;
+	int		i;
 
-	i = 0;
-	while (envp[i])
-		i++;
-	data->env = gc_malloc(sizeof(char **) * (i + 1));
-	if (!data->env)
-		gc_free(DESTROY_PTR);
+	env_list = NULL;
+	last_node = NULL;
 	i = 0;
 	while (envp[i])
 	{
-		data->env[i] = ft_strdup(envp[i]);
-		if (!data->env[i])
-			return (0);
+		new_node = gc_malloc(sizeof(t_env));
+		if (!new_node)
+			return (NULL);
+		new_node->env_var = ft_strdup(envp[i]);
+		if (!new_node->env_var)
+			return (NULL);
+		new_node->next = NULL;
+		if (!env_list)
+			env_list = new_node;
+		else
+			last_node->next = new_node;
+		last_node = new_node;
 		i++;
 	}
-	data->env[i] = NULL;
-	return (1);
+	return (env_list);
 }
