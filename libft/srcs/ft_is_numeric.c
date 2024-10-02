@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_is_numeric.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 04:31:24 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 17:08:54 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/02 17:12:51 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/02 17:13:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	handle_malloc_error(char *message, t_data *data)
+int	ft_is_numeric(char *str)
 {
-	printf("minishell: Error gc_malloc when allocate for %s\n", message);
-	data->status_code = EXIT_FAILURE;
-	free_and_exit(data->status_code);
-}
+	int	i;
 
-void	free_and_exit(int code)
-{
-	gc_free(DESTROY_PTR);
-	rl_clear_history();
-	ft_fprintf(0, "exit\n");
-	exit(code);
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
