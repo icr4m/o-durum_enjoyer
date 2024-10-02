@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:38:22 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 16:49:19 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 20:04:33 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ size_t	ft_putchar_fd(char c, int fd)
 	return (write(fd, &c, 1));
 }
 
-size_t	ft_putstr_fd(char *str, int fd)
+size_t	ft_putstr_fd_printf(char *str, int fd)
 {
 	size_t	print_len;
 
 	print_len = 0;
 	if (str == NULL)
-		print_len += ft_putstr_fd("(null)", fd);
+		print_len += ft_putstr_fd_printf("(null)", fd);
 	else
 	{
 		while (*str != '\0')

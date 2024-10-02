@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:49:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 17:27:41 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 20:19:27 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int		ft_env(t_data *data, char **args);
 
 // EXPORT
 int		ft_export(t_data *data, char **args);
+
+// ECHO
+int		ft_echo(t_data *data, char **args);
 
 // FT EXIT
 void	ft_exit(t_data *data, char **args);

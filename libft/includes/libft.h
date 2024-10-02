@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 09:33:28 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 17:13:24 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 20:03:44 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				*ft_memset(void *b, int c, size_t len);
 // void				ft_putchar_fd(char c, int fd);
 void				ft_putendl_fd(char *str, int fd);
 // void				ft_putnbr_fd(int n, int fd);
-// void				ft_putstr_fd(char *s, int fd);
+void				ft_putstr_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *s, int c);
 int					ft_strcmp(const char *s1, const char *s2);

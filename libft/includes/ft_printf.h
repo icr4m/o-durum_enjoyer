@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:07:45 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 16:50:41 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 20:00:21 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	ft_p(void *ptr);
 int		ft_fprintf(int fd, char const *str, ...);
 
 size_t	ft_putchar_fd(char c, int fd);
-size_t	ft_putstr_fd(char *str, int fd);
+size_t	ft_putstr_fd_printf(char *str, int fd);
 size_t	ft_print_nb_fd(unsigned int n, int fd);
 size_t	ft_putnbr_fd(long int n, int fd);
 size_t	ft_putnbr_base_fd(unsigned long nbr, char *base, int fd);

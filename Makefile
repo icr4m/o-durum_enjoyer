@@ -1,7 +1,7 @@
 NAME = minishell
 
 SRCS = $(addprefix srcs/, read_line.c exit.c)
-SRCS_BUILT = $(addprefix srcs/built_in/, env.c export.c ft_exit.c init_env.c pwd.c unset.c)
+SRCS_BUILT = $(addprefix srcs/built_in/, env.c ft_echo.c export.c ft_exit.c init_env.c pwd.c unset.c)
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
 SRCS_SIG = $(addprefix srcs/signal/, signal_handler.c)
 SRCS_TOKEN = $(addprefix srcs/parsing/,)
