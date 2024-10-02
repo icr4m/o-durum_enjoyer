@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 10:27:56 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/03 00:15:26 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
  de fonctionnalités POSIX. (pour sigaction).
 */
 # define _XOPEN_SOURCE 700
+# include <errno.h>
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>

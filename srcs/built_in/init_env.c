@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:46:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 13:18:13 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/03 00:35:50 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,39 @@ t_env	*init_env(char **envp)
 	return (env_list);
 }
 
-char	*search_in_env(t_data *data, char *content)
+t_env	*search_in_env(t_data *data, const char *name)
 {
-	size_t			i;
-	t_env			*current;
-	const size_t	len = ft_strlen(content);
+	t_env	*current;
+	size_t	name_len;
 
-	i = 0;
+	if (!data || !name)
+		return (NULL);
+	name_len = ft_strlen(name);
 	current = data->env;
 	while (current)
 	{
-		if (ft_strncmp(current->env_var, content, len) == 0)
-			return (current->env_var + len + 1);
+		if (ft_strncmp(current->env_var, name, name_len) == 0
+			&& current->env_var[name_len] == '=')
+		{
+			return (current);
+		}
 		current = current->next;
 	}
 	return (NULL);
+}
+
+char	*ft_getenv(t_data *data, char *var_name)
+{
+	t_env	*current;
+
+	current = data->env;
+	while (current)
+	{
+		if (ft_strcmp(var_name, current->env_var) == 0)
+			break ;
+		current = current->next;
+	}
+	if (!current)
+		return (NULL);
+	return (current->env_var);
 }
