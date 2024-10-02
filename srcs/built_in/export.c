@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 14:23:41 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 16:55:26 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	ft_export(t_data *data, char **args)
 	{
 		if (!is_a_good_variable(args[i]))
 		{
-			ft_printf("minishell: export: `%s': not a valid identifier\n",
+			ft_fprintf(2, "minishell: export: `%s': not a valid identifier\n",
 				args[i]);
 			data->status_code = 1;
 		}

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:07:45 by ijaber            #+#    #+#             */
-/*   Updated: 2024/06/10 19:10:16 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 16:50:41 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,17 @@ size_t	ft_r_type(char c, va_list arg);
 size_t	ft_putnbr_base(unsigned long nbr, char *base);
 size_t	ft_print_nb(unsigned int n);
 size_t	ft_p(void *ptr);
+
+// FPRINTF
+int		ft_fprintf(int fd, char const *str, ...);
+
+size_t	ft_putchar_fd(char c, int fd);
+size_t	ft_putstr_fd(char *str, int fd);
+size_t	ft_print_nb_fd(unsigned int n, int fd);
+size_t	ft_putnbr_fd(long int n, int fd);
+size_t	ft_putnbr_base_fd(unsigned long nbr, char *base, int fd);
+
+size_t	ft_r_type_fd(char c, va_list arg, int fd);
+size_t	ft_p_fd(void *ptr, int fd);
 
 #endif

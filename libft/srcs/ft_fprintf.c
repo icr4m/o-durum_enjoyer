@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:45:49 by ijaber            #+#    #+#             */
-/*   Updated: 2024/04/30 12:00:21 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/02 16:18:37 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/02 16:43:35 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static void	print_nb(unsigned int n, int fd)
+int	ft_fprintf(int fd, char const *str, ...)
 {
-	if (n > 0)
+	size_t	count;
+	va_list	arg;
+	size_t	i;
+
+	i = 0;
+	count = 0;
+	va_start(arg, str);
+	if (str == NULL)
+		return (-1);
+	while (str[i] != '\0')
 	{
-		print_nb(n / 10, fd);
-		ft_putchar_fd(n % 10 + '0', fd);
+		if (str[i] == '%')
+		{
+			count += ft_r_type_fd(str[i + 1], arg, fd);
+			i += 2;
+		}
+		else
+		{
+			ft_putchar_fd(str[i], fd);
+			i++;
+			count++;
+		}
 	}
+	va_end(arg);
+	return (count);
 }
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	unsigned int	num;
-
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		num = -n;
-	}
-	else
-		num = n;
-	if (n == 0)
-		ft_putchar_fd('0', fd);
-	else
-		print_nb(num, fd);
-}
-
-/*
-int	main(void)
-{
-	ft_putnbr_fd(-2147483648, 1);
-}
-*/

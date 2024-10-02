@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 09:33:28 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 14:04:45 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 16:44:27 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 }					t_list;
 
 int					ft_atoi(const char *string);
+int					ft_atol_safe(long *dest, const char *string);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 int					ft_isalnum(int c);
@@ -53,10 +54,10 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
-void				ft_putchar_fd(char c, int fd);
+// void				ft_putchar_fd(char c, int fd);
 void				ft_putendl_fd(char *str, int fd);
-void				ft_putnbr_fd(int n, int fd);
-void				ft_putstr_fd(char *s, int fd);
+// void				ft_putnbr_fd(int n, int fd);
+// void				ft_putstr_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *s, int c);
 int					ft_strcmp(const char *s1, const char *s2);
