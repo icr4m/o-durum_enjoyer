@@ -6,13 +6,13 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 13:16:02 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 13:41:55 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**split_first_value(char *str, char sep, t_data *data)
+static char	**split_first_value(char *str, char sep, t_data *data)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ char	**split_first_value(char *str, char sep, t_data *data)
 	return (result);
 }
 
-int	is_a_good_variable(char *var)
+static int	is_a_good_variable(char *var)
 {
 	int	i;
 
@@ -81,7 +81,7 @@ static int	update_existing_env(t_data *data, char *var_name, char *new_env)
 	return (0);
 }
 
-t_env	*add_var_to_end(t_data *data, char *content)
+static t_env	*add_var_to_end(t_data *data, char *content)
 {
 	t_env	*new_node;
 	t_env	*current;
@@ -129,7 +129,7 @@ int	ft_export(t_data *data, char **args)
 		}
 		i++;
 	}
-	// if (i == 1)
-	// 	print_env();
+	if (i == 1)
+		print_env(data);
 	return (data->status_code);
 }
