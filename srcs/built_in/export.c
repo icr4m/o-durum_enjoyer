@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 11:32:17 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 13:16:02 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	ft_export(t_data *data, char **args)
 	int		i;
 	char	**split_arg;
 
-	i = 0;
+	i = 1;
 	data->status_code = 0;
 	while (args[i])
 	{

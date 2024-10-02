@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:08:19 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/01 20:32:21 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 13:16:05 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	remove_env_var(t_env **env, t_env *prev, t_env *current)
 	else
 		*env = current->next;
 	gc_free(current->env_var);
-	gc_free(current);	
+	gc_free(current);
 }
 
 int	ft_unset(t_data *data, char **vars)
