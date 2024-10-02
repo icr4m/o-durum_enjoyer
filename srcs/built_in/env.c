@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 15:59:36 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/26 13:01:57 by ijaber           ###   ########.fr       */
+/*   Created: 2024/09/28 17:40:40 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/02 10:59:59 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_H
-# define EXPAND_H
+#include "minishell.h"
 
-# include "minishell.h"
+char	*search_in_env(t_data *data, char *content)
+{
+	size_t			i;
+	t_env			*current;
+	const size_t	len = ft_strlen(content);
 
-int	init_env(t_data *data, char **envp);
-
-#endif
+	i = 0;
+	current = data->env;
+	while (current)
+	{
+		if (ft_strncmp(current->env_var, content, len) == 0)
+			return (current->env_var + len + 1);
+		current = current->next;
+	}
+	return (NULL);
+}

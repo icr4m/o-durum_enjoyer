@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:00:42 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 10:27:56 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include "../includes/struct.h"
 //
 # include "../includes/built_in.h"
-# include "../includes/expand.h"
 # include "../includes/ft_signal.h"
 # include "../includes/lexing.h"
 # include "../libft/includes/ft_printf.h"
@@ -55,6 +54,8 @@ void							exec_readline(t_data *data);
 char							*read_input(void);
 t_token							*parse_input(char *input);
 // exit
-void							free_and_exit(t_data *data);
+void							free_and_exit(int code);
+void							handle_malloc_error(char *message,
+									t_data *data);
 
 #endif

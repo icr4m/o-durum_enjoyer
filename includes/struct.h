@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/28 16:28:48 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/28 20:49:32 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@ typedef struct s_env
 	char				*env_var;
 	struct s_env		*next;
 }						t_env;
+
+typedef enum s_node_type
+{
+	NODE_COMMAND,
+	NODE_PIPE,
+	NODE_REDIRECT,
+	NODE_AND,
+	NODE_OR
+}						t_node_type;
+
+typedef struct s_token
+{
+	int					lenght;
+	t_node_type			type;
+	char				*value;
+	struct s_token		*next;
+}						t_token;
 
 /**
  * @brief Structure representing a command.
@@ -63,7 +80,7 @@ typedef struct s_ast_node
 typedef struct s_data
 {
 	int					status_code;
-	struct s_env		env;
+	struct s_env		*env;
 }						t_data;
 
 #endif
