@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 13:41:55 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 14:23:41 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ int	ft_export(t_data *data, char **args)
 		i++;
 	}
 	if (i == 1)
-		print_env(data);
+		print_env(data, 2);
 	return (data->status_code);
 }

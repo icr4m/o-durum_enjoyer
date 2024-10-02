@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:49:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 13:41:39 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/02 14:23:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 # include "minishell.h"
 
 // ENV
-void	print_env(t_data *data);
+/*
+ * 2 pour export
+ * autre pour rien
+ */
+void	print_env(t_data *data, int cas);
 int		ft_env(t_data *data, char **args);
 
 // EXPORT
