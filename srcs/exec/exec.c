@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:22:14 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 22:24:27 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:35:19 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,24 @@ void	execute_ast(t_ast_node *node)
 		return ;
 	else if (node->type == TOKEN_PIPE)
 		pipe_exec(node);
-	else if (node->type >= TOKEN_REDIR_IN && node->type <= TOKEN_REDIR_HEREDOC)
+	else if (node->type >= TOKEN_REDIR_IN)
 	{
 		handle_redirection_in(node);
 		execute_ast(node->right);
 	}
-	else if (node->type >= TOKEN_REDIR_OUT && node->type <= TOKEN_REDIR_APPEND)
+	else if (node->type <= TOKEN_REDIR_HEREDOC)
+	{
+		handle_redirection_in_heredoc(node);
+		execute_ast(node->right);
+	}
+	else if (node->type >= TOKEN_REDIR_OUT)
 	{
 		handle_redirection_out(node);
+		execute_ast(node->right);
+	}
+	else if (node->type <= TOKEN_REDIR_APPEND)
+	{
+		handle_redirection_out_heredoc(node);
 		execute_ast(node->right);
 	}
 	else if (node->type == TOKEN_ENV_VAR)
