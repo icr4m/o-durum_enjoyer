@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 17:46:49 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:12:41 by rsk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param token_redir_out >
  * @param token_redir_in <
  * @param token_redir_append >>
- * @param token_heredoc <<
+ * @param TOKEN_REDIR_HEREDOC <<
  * @param token_pipe |
  */
 typedef enum token
@@ -32,30 +32,39 @@ typedef enum token
 	TOKEN_REDIR_OUT,
 	TOKEN_REDIR_IN,
 	TOKEN_REDIR_APPEND,
-	TOKEN_HEREDOC,
+	TOKEN_REDIR_HEREDOC,
 	TOKEN_ENV_VAR,
-}					t_token_type;
+}						t_token_type;
 
 typedef struct s_token
 {
-	int				lenght;
-	t_token_type	type;
-	char			*value;
-	struct s_token	*next;
-}					t_token;
+	int					lenght;
+	t_token_type		type;
+	char				*value;
+	struct s_token		*next;
+}						t_token;
+
+typedef struct s_ast_node
+{
+	t_token_type		type;
+	int					file_type;
+	char				**args;
+	struct s_ast_node	*left;
+	struct s_ast_node	*right;
+}						t_ast_node;
 
 // token List
-t_token				*create_token(char *value, t_token_type type);
-t_token				add_token_to_list(t_token **head, t_token *new_token);
+t_token					*create_token(char *value, t_token_type type);
+t_token					add_token_to_list(t_token **head, t_token *new_token);
 
 // tokenizer
-t_token				tokenization_input(char *input);
+t_token					tokenization_input(char *input);
 
 // token utils
-char				skip_spaces(char *str);
-char				*handle_pipe(t_token *head, char *str);
-char				*handle_redir(t_token *head, char *str);
-char				*handle_env_var(t_token *head, char *str);
-char				*handle_word(t_token *head, char *str);
+char					skip_spaces(char *str);
+char					*handle_pipe(t_token *head, char *str);
+char					*handle_redir(t_token *head, char *str);
+char					*handle_env_var(t_token *head, char *str);
+char					*handle_word(t_token *head, char *str);
 
 #endif

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 15:12:05 by rsk              ###   ########.fr       */
+/*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
+/*   Updated: 2024/10/02 16:51:42 by rsk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
-# include "minishell.h"
+#include "minishell.h"
 
-/**
- * @brief Structure representing a command.
- * @details Used to store command information.
- * @param name Name of the command.
- * @param args Arguments of the command.
- */
-typedef struct s_command
+t_ast_node	*parse_command(t_token **token)
 {
-	char				*name;
-	char				**args;
-}						t_command;
+	t_ast_node *cmd_node;
+	int arg_count;
 
+	cmd_node = create_ast_node(TOKEN_WORD);
+    arg_count = count_cmd_args(*token);
+    cmd_node->args = gcmalloc(sizeof(char *) * (arg_count + 1));
+    if (!cmd_node->args)
+        return (NULL);
+    fill_cmd_args(cmd_node, *token, arg_count);
+    return(cmd_node);
+}
 
-
-#endif
+t_ast_node *create_file_node()

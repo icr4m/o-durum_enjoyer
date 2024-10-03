@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:08 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/09/25 17:58:02 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:48:59 by rsk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*handle_env_var(t_token *head, char *str)
 	if (len > 0)
 	{
 		add_token_to_list(head, create_token(ft_strndup(start, len),
-				TOKEN_ENV_VAR));
+					TOKEN_ENV_VAR));
 	}
 	return (str);
 }
@@ -71,15 +71,31 @@ char	*handle_word(t_token *head, char *str)
 {
 	char	*start;
 	int		len;
+	int		in_quote;
+	char	quote_char;
 
 	start = str;
-	while (*str, ft_strchr(" \t<>|$", *str))
+	while (*str && ft_strchr(" \t<>|$", *str))
 		str++;
 	len = str - start;
 	if (len > 0)
 	{
 		add_token_to_list(head, create_token(ft_strndup(start, len),
-				TOKEN_WORD));
+					TOKEN_WORD));
 	}
 	return (str);
+}
+
+void	quote_status(char c, int *in_quote, char *quote_char)
+{
+	if (!in_quote && (c == '\'' || c == '\"'))
+	{
+		*in_quote = 1;
+		*quote_char = c;
+	}
+	else if (in_quote && c == *quote_char)
+	{
+		*in_quote = 0;
+		*quote_char = 0;
+	}
 }
