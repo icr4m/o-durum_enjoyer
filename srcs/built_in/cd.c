@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 13:59:08 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/03 14:31:36 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	go_to_home(t_data *data)
 	data->status_code = 0;
 }
 
-void	go_to_old(t_data *data)
+int	go_to_old(t_data *data)
 {
 	char	*oldpwd;
 
@@ -41,23 +41,23 @@ void	go_to_old(t_data *data)
 	{
 		ft_fprintf(2, "cd: OLDPWD not set\n");
 		data->status_code = 1;
-		return ;
+		return (1);
 	}
 	if (chdir(oldpwd) == -1)
 	{
-		ft_fprintf(2, "cd: %s: %s\n", oldpwd, strerror(errno));
+		ft_fprintf(2, "minishell: cd: %s: %s\n", oldpwd, strerror(errno));
 		data->status_code = 1;
-		return ;
+		return (1);
 	}
 	ft_fprintf(1, "%s\n", oldpwd);
 	data->status_code = 0;
+	return (0);
 }
 
 void	change_old_pwd_in_env(t_data *data, char *old_pwd)
 {
 	t_env	*env;
 
-	printf("test3: %s\n", old_pwd);
 	env = search_in_env(data, "OLDPWD");
 	if (env)
 	{
@@ -74,7 +74,6 @@ void	change_pwd_in_env(t_data *data)
 	t_env	*env;
 
 	old_pwd = ft_strdup(ft_getenv_content(data, "PWD"));
-	printf("test1: %s\n", old_pwd);
 	env = search_in_env(data, "PWD");
 	if (env)
 	{
@@ -87,19 +86,25 @@ void	change_pwd_in_env(t_data *data)
 			gc_free(new_pwd);
 		}
 	}
-	printf("test2: %s\n", old_pwd);
 	change_old_pwd_in_env(data, old_pwd);
 }
 
 int	ft_cd(t_data *data, char **args)
 {
 	if (args[2])
-		ft_fprintf(2, "bash: cd: too many arguments");
-	if (!args[1] || (ft_strcmp(args[1], "~") == 0) || (ft_strcmp(args[1],
+	{
+		printf("test: %s\n", args[2]);
+		ft_fprintf(2, "bash: cd: too many arguments\n");
+		return (data->status_code = 1);
+	}
+	else if (!args[1] || (ft_strcmp(args[1], "~") == 0) || (ft_strcmp(args[1],
 				"--") == 0))
 		go_to_home(data);
 	else if ((ft_strcmp(args[1], "-") == 0) && args[1])
-		go_to_old(data);
+	{
+		if (go_to_old(data))
+			return (data->status_code = 1);
+	}
 	else if (chdir(args[1]) == -1)
 	{
 		ft_fprintf(2, "cd: no such file or directory: %s\n", args[1]);
