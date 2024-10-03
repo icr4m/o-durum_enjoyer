@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:08 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/03 13:48:20 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:49:30 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*handle_redir(t_token **head, char *str)
 	{
 		if (*(str + 1) == '<')
 		{
-			add_token_to_list(head, create_token("<<", TOKEN_HEREDOC));
+			add_token_to_list(head, create_token("<<", TOKEN_REDIR_HEREDOC));
 			return (str + 2);
 		}
 		else
@@ -62,7 +62,7 @@ char	*handle_env_var(t_token **head, char *str)
 	if (len > 0)
 	{
 		add_token_to_list(head, create_token(ft_strndup(start, len),
-					TOKEN_ENV_VAR));
+				TOKEN_ENV_VAR));
 	}
 	return (str);
 }
@@ -81,7 +81,7 @@ char	*handle_word(t_token **head, char *str)
 	if (len > 0)
 	{
 		add_token_to_list(head, create_token(ft_strndup(start, len),
-					TOKEN_WORD));
+				TOKEN_WORD));
 	}
 	return (str);
 }
