@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 14:31:36 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/03 14:36:10 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	ft_cd(t_data *data, char **args)
 {
 	if (args[2])
 	{
-		printf("test: %s\n", args[2]);
 		ft_fprintf(2, "bash: cd: too many arguments\n");
 		return (data->status_code = 1);
 	}

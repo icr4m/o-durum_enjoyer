@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:49:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 12:18:23 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/03 16:59:57 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "minishell.h"
 
 // CD
+
 int		ft_cd(t_data *data, char **args);
 
 // ENV
@@ -26,15 +27,19 @@ void	print_env(t_data *data, int cas);
 int		ft_env(t_data *data, char **args);
 
 // EXPORT
+
 int		ft_export(t_data *data, char **args);
 
 // ECHO
+
 int		ft_echo(t_data *data, char **args);
 
 // FT EXIT
+
 void	ft_exit(t_data *data, char **args);
 
 // INIT ENV
+
 t_env	*search_in_env(t_data *data, const char *name);
 t_env	*init_env(char **envp);
 char	*ft_getenv_content(t_data *data, char *var_name);
@@ -48,6 +53,7 @@ char	*ft_getenv_total(t_data *data, char *var_name);
 char	*ft_pwd(t_data *data, int get_or_print);
 
 // UNSET
+
 int		ft_unset(t_data *data, char **vars);
 
 #endif
