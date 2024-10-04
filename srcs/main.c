@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 16:04:11 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/04 16:58:10 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,28 @@ void	fill_node(t_ast_node *node, char **av)
 }
 int	main(int ac, char **av, char **envp)
 {
-	t_data		data;
-	t_ast_node	node;
+	t_data	data;
 
 	(void)ac;
 	data.env = init_env(envp);
-	fill_node(&node, av);
-	exec
+	if (!ft_strcmp("cd", av[1]))
+	{
+		printf("PWD ENV: %s\n", ft_getenv_total(&data, "PWD"));
+		printf("OLDPWD ENV: %s\n", ft_getenv_total(&data, "OLDPWD"));
+		ft_cd(&data, av + 1);
+		printf("PWD ENV: %s\n", ft_getenv_total(&data, "PWD"));
+		printf("OLDPWD ENV: %s\n", ft_getenv_total(&data, "OLDPWD"));
+	}
+	else if (!ft_strcmp("echo", av[1]))
+		ft_echo(&data, av + 1);
+	else if (!ft_strcmp("env", av[1]))
+		ft_env(&data, av + 1);
+	else if (!ft_strcmp("exit", av[1]))
+		ft_exit(&data, av + 1);
+	else if (!ft_strcmp("export", av[1]))
+		ft_export(&data, av + 1);
+	else if (!ft_strcmp("unset", av[1]))
+		ft_unset(&data, av + 1);
 	// exec_readline(&data);
-	free_and_exit(0);
+	free_and_exit(data.status_code);
 }
