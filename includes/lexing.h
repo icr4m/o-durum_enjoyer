@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 14:44:09 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:38:49 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef enum token
 {
 	TOKEN_WORD,
 	TOKEN_PIPE,
-	TOKEN_REDIR_OUT,
 	TOKEN_REDIR_IN,
+	TOKEN_REDIR_OUT,
 	TOKEN_REDIR_APPEND,
 	TOKEN_REDIR_HEREDOC,
 	TOKEN_ENV_VAR,
@@ -67,5 +67,17 @@ char				*handle_pipe(t_token *head, char *str);
 char				*handle_redir(t_token *head, char *str);
 char				*handle_env_var(t_token *head, char *str);
 char				*handle_word(t_token *head, char *str);
+
+// Parsing
+t_ast_node			*parse_command(t_token **token);
+t_ast_node			*create_file_node(t_token *token);
+t_ast_node			*parse_redirection(t_token **token);
+
+// Parser Utils
+t_ast_node			*create_ast_node(t_token_type type);
+t_ast_node			*create_and_link_redirection(t_token **token, t_token *tmp);
+void				fill_cmd_args(t_token **token, int arg_count,
+						t_ast_node *cmd_node);
+int					count_cmd_args(t_token **token);
 
 #endif
