@@ -2,6 +2,7 @@ NAME = minishell
 
 SRCS = $(addprefix srcs/, read_line.c exit.c)
 SRCS_BUILT = $(addprefix srcs/built_in/, cd.c env.c echo.c export.c exit.c init_env.c pwd.c unset.c)
+SRCS_EXEC = $(addprefix srcs/exec/, exec_utils.c exec.c pipe_exec.c)
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
 SRCS_SIG = $(addprefix srcs/signal/, signal_handler.c)
 SRCS_TOKEN = $(addprefix srcs/parsing/,)
@@ -9,6 +10,7 @@ MAIN = $(addprefix srcs/, main.c)
 
 OBJ =  $(SRCS:.c=.o)
 OBJ_BUILT = $(SRCS_BUILT:.c=.o)
+OBJ_EXEC = $(SRCS_EXEC:.c=.o)
 OBJ_GC = $(SRCS_GC:.c=.o)
 OBJ_SIG = $(SRCS_SIG:.c=.o)
 OBJ_TOKEN = $(SRCS_TOKEN:.c=.o)
@@ -16,6 +18,7 @@ OBJ_MAIN		=	$(MAIN:.c=.o)
 
 ALL_OBJS		+=	$(OBJ)
 ALL_OBJS		+=	$(OBJ_BUILT)
+ALL_OBJS += $(OBJ_EXEC)
 ALL_OBJS		+=	$(OBJ_GC)
 ALL_OBJS		+=	$(OBJ_SIG)
 ALL_OBJS		+=  $(OBJ_TOKEN)
@@ -23,12 +26,13 @@ ALL_OBJS		+=	$(OBJ_MAIN)
 
 ALL_SRCS +=	$(SRCS)
 ALL_SRCS += $(SRCS_BUILT)
+ALL_SRCS += $(SRCS_EXEC)
 ALL_SRCS +=	$(SRCS_GC)
 ALL_SRCS +=	$(SRCS_SIG)
 ALL_SRCS += $(SRCS_TOKEN)
 ALL_SRCS +=	$(MAIN)
 
-INCS = $(addprefix includes/, garbage_collector.h lexing.h built_in.h minishell.h struct.h ft_signal.h)
+INCS = $(addprefix includes/, lexing.h built_in.h exec.h ft_signal.h garbage_collector.h lexing.h minishell.h struct.h )
 INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)

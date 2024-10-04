@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 10:54:04 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/04 16:09:57 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
-# include "minishell.h"
+#ifndef EXEC_H
+# define EXEC_H
 
-typedef struct s_env
-{
-	char				*env_var;
-	struct s_env		*next;
-}						t_env;
+# include "lexing.h"
 
-typedef struct s_data
-{
-	int					status_code;
-	bool				is_child;
-	struct s_env		*env;
-	struct s_ast_node	*ast_node;
-}						t_data;
+// EXEC UTILS
+
+int		ft_open_infile(char *file, int flags, t_data *data);
+int		ft_open_outfile(char *file, int flags, t_data *data);
+
+// EXEC
+
+void	execute_ast(t_ast_node *node, t_data *data);
+
+// PIPEX EXEC
+
+void	pipe_exec(t_ast_node *node, t_data *data);
 
 #endif

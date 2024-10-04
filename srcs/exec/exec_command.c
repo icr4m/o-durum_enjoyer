@@ -1,31 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 10:54:04 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/04 16:22:50 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
-# include "minishell.h"
+#include "minishell.h"
 
-typedef struct s_env
+void	exec_command(t_ast_node *node, t_data *data)
 {
-	char				*env_var;
-	struct s_env		*next;
-}						t_env;
-
-typedef struct s_data
-{
-	int					status_code;
-	bool				is_child;
-	struct s_env		*env;
-	struct s_ast_node	*ast_node;
-}						t_data;
-
-#endif
+}

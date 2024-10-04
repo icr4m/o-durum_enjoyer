@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 00:15:26 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/04 16:10:43 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdarg.h>
+# include <stdbool.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 //
 # include "../includes/garbage_collector.h"
+# include "../includes/lexing.h"
 # include "../includes/struct.h"
 //
 # include "../includes/built_in.h"
+# include "../includes/exec.h"
 # include "../includes/ft_signal.h"
-# include "../includes/lexing.h"
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line_bonus.h"
 # include "../libft/includes/libft.h"

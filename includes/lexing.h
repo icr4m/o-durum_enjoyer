@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 16:58:42 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/04 16:11:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,27 @@ typedef enum token
 	TOKEN_REDIR_APPEND,
 	TOKEN_REDIR_HEREDOC,
 	TOKEN_ENV_VAR,
-}					t_token_type;
+}						t_token_type;
 
 typedef struct s_token
 {
-	int				lenght;
-	t_token_type	type;
-	char			*value;
-	struct s_token	*next;
-}					t_token;
+	int					lenght;
+	t_token_type		type;
+	char				*value;
+	struct s_token		*next;
+}						t_token;
 
 typedef struct s_ast_node
 {
-	t_token_type	type;
-	int				file_type;
-	char			**args;
-	t_ast_node		*left;
-	t_ast_node		*right;
-}					t_ast_node;
+	t_token_type		type;
+	int					file_type;
+	char				**args;
+	struct s_ast_node	*left;
+	struct s_ast_node	*right;
+}						t_ast_node;
 
 // tokenization function
-t_token				*create_token(char *value, t_token_type type);
-t_token				add_token_to_list(t_token **head, t_token *new_token);
+t_token					*create_token(char *value, t_token_type type);
+t_token					add_token_to_list(t_token **head, t_token *new_token);
 
 #endif

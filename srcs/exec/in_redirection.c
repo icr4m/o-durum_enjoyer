@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   in_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 21:51:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 10:54:04 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/04 10:32:09 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/04 14:03:41 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
-# include "minishell.h"
+#include "minishell.h"
 
-typedef struct s_env
+void	handle_redirection_in(t_ast_node *node, t_data *data)
 {
-	char				*env_var;
-	struct s_env		*next;
-}						t_env;
+	int	fd;
 
-typedef struct s_data
-{
-	int					status_code;
-	bool				is_child;
-	struct s_env		*env;
-	struct s_ast_node	*ast_node;
-}						t_data;
-
-#endif
+	fd = ft_open_infile(node->args[0], data);
+	dup2(fd, STDIN_FILENO);
+	close(fd);
+}
