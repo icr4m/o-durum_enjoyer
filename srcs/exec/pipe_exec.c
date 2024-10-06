@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:18:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 16:38:25 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 16:30:23 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void	pipe_exec(t_ast_node *node, t_data *data)
 	pid_t	pid;
 	int		pipefd[2];
 
-	handle_child();
 	if (pipe(pipefd) == -1)
-		handle_pipe_error("exec");
+		handle_pipe_error("exec", data);
 	pid = fork();
 	if (pid == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:02:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/26 16:20:43 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 17:36:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_to_destroy			*push_to_garbage(t_garbage *garbage, void *ptr,
 							long int size);
 int						is_in_garbage(t_garbage *garbage, void *content);
 size_t					gc_get_size(void *ptr);
+void					gc_free_2d(char **split);
 
 #endif

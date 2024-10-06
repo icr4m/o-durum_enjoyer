@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 16:10:43 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 18:29:10 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # define BBLUE "\033[1;34m"
 # define IRED "\033[0;91m"
 # define BRED "\033[1;31m"
+
+# define EXPORT_STR "export"
+# define CD_STR "cd"
+# define ECHO_STR "echo"
+# define EXIT_STR "exit"
+# define ENV_STR "env"
+# define UNSET_STR "unset"
+# define PWD_STR "pwd"
 
 /*
 une directive qui permet d'accéder à un ensemble plus large et plus moderne
@@ -36,6 +44,7 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/stat.h>
 # include <unistd.h>
 //
 # include "../includes/garbage_collector.h"
@@ -52,13 +61,21 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 // VARIABLE GLOBALE
 extern volatile sig_atomic_t	g_signal_received;
 
-// read line
+// READ LINE
+
 void							exec_readline(t_data *data);
 char							*read_input(void);
 t_token							*parse_input(char *input);
-// exit
+
+// EXIT
+
 void							free_and_exit(int code);
+void							handle_pipe_error(char *message, t_data *data);
 void							handle_malloc_error(char *message,
 									t_data *data);
+
+// UTILS
+
+char							**env_list_to_array(t_env *env_list);
 
 #endif

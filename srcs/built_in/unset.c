@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:08:19 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 13:16:05 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 16:24:13 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	remove_env_var(t_env **env, t_env *prev, t_env *current)
 	gc_free(current);
 }
 
-int	ft_unset(t_data *data, char **vars)
+int	ft_unset(t_data *data, char **args)
 {
 	t_env	*current;
 	t_env	*prev;
@@ -30,14 +30,14 @@ int	ft_unset(t_data *data, char **vars)
 	size_t	len;
 
 	i = 1;
-	while (vars[i] != NULL)
+	while (args[i] != NULL)
 	{
 		prev = NULL;
 		current = data->env;
-		len = ft_strlen(vars[i]);
+		len = ft_strlen(args[i]);
 		while (current)
 		{
-			if (ft_strncmp(vars[i], current->env_var, len) == 0
+			if (ft_strncmp(args[i], current->env_var, len) == 0
 				&& (current->env_var[len] == '='))
 			{
 				remove_env_var(&(data->env), prev, current);

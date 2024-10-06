@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:49:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 16:59:57 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 16:23:56 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ char	*ft_pwd(t_data *data, int get_or_print);
 
 // UNSET
 
-int		ft_unset(t_data *data, char **vars);
+int		ft_unset(t_data *data, char **args);
 
 #endif

@@ -6,24 +6,12 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:25:13 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/28 15:35:03 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 17:36:26 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief
-	- Ajoute un nouvel objet à la liste des objets gérés par le garbage collector.
- * @param garbage: Un pointeur vers la structure du garbage collector.
- * @param ptr: Un pointeur vers l'objet à ajouter.
- *
-
-	* Alloue de la mémoire pour une nouvelle structure t_to_destroy et
-	l'ajoute à la fin de la liste des objets gérés.
- * Retourne un pointeur vers la nouvelle structure t_to_destroy,
-	ou NULL en cas d'échec d'allocation.
- */
 t_to_destroy	*push_to_garbage(t_garbage *garbage, void *ptr, long int size)
 {
 	t_to_destroy	*new;
@@ -51,14 +39,6 @@ t_to_destroy	*push_to_garbage(t_garbage *garbage, void *ptr, long int size)
 	return (new);
 }
 
-/**
- * @brief - Vérifie si un objet est géré par le garbage collector.
- * @param garbage: Un pointeur vers la structure du garbage collector.
- * @param content: Un pointeur vers l'objet à vérifier.
- *
- * Parcourt la liste des objets gérés pour vérifier si l'objet est présent.
- * Retourne 1 si l'objet est trouvé, 0 sinon.
- */
 int	is_in_garbage(t_garbage *garbage, void *content)
 {
 	t_to_destroy	*current;
@@ -71,4 +51,15 @@ int	is_in_garbage(t_garbage *garbage, void *content)
 		current = current->next;
 	}
 	return (0);
+}
+
+void	gc_free_2d(char **split)
+{
+	int i;
+
+	i = 0;
+	while (split && split[i])
+		gc_free(split[i++]);
+	gc_free(split);
+	split = NULL;
 }

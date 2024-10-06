@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 16:09:57 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 18:15:53 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 
 # include "lexing.h"
 
+// EXEC COMMAND
+
+void	exec_command(t_ast_node *node, t_data *data);
+void	exec_command_other(t_ast_node *node, t_data *data);
+
 // EXEC UTILS
 
 int		ft_open_infile(char *file, int flags, t_data *data);
 int		ft_open_outfile(char *file, int flags, t_data *data);
+char	*find_path(char *command, t_data *data);
+int		ft_access_stat(char *path);
 
 // EXEC
 
