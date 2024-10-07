@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/04 16:46:42 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:33:35 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@ t_ast_node	*parse_command(t_token **token)
 	int			arg_count;
 
 	cmd_node = create_ast_node(TOKEN_WORD);
+	if (!cmd_node)
+		return (NULL);
 	arg_count = count_cmd_args(*token);
 	cmd_node->args = gcmalloc(sizeof(char *) * (arg_count + 1));
 	if (!cmd_node->args)
+	{
+		free(cmd_node);
 		return (NULL);
+	}
 	fill_cmd_args(cmd_node, token, arg_count);
 	return (cmd_node);
 }
@@ -82,9 +87,9 @@ t_ast_node	*parse_pipe(t_token **token)
 		if ((*token)->next->type == TOKEN_PIPE)
 		{
 			pipe_node = create_ast_node((*token)->next->type);
-			(*token)->next = (*token)->next->next;
+			(*token)->next = NULL;
 			pipe_node->left = parse_redirection(&tmp);
-			pipe_node->right = create_file_node((*token)->next);
+			pipe_node->right = parse_pipe(&((*token)->next->next));
 			return (pipe_node);
 		}
 		(*token) = (*token)->next;
@@ -92,3 +97,9 @@ t_ast_node	*parse_pipe(t_token **token)
 	return (parse_command(&token));
 }
 
+t_ast_node	*parse_tokens(t_token **tokens)
+{
+	if (!tokens || !*tokens)
+		return (NULL);
+	return (parse_pipe(tokens));
+}

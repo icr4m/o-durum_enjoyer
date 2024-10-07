@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/04 16:32:44 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:31:46 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,18 @@ t_ast_node	*create_and_link_redirection(t_token **token, t_token *tmp)
 	t_ast_node	*redirect_node;
 
 	redirect_node = create_ast_node((*token)->type);
-	*token = (*token)->next->next;
+	if (!redirect_node)
+		return (NULL);
+	*token = (*token)->next;
+	redirect_node->right = create_file_node(*token);
+	if (!redirect_node->right)
+	{
+		gc_free(redirect_node);
+		return (NULL);
+	}
+	*token = (*token)->next;
 	redirect_node->left = parse_redirection(token);
+	return (redirect_node);
 }
 
 void	fill_cmd_args(t_token **token, int arg_count, t_ast_node *cmd_node)
@@ -64,4 +74,25 @@ int	count_cmd_args(t_token **token)
 		*token = (*token)->next;
 	}
 	return (arg_count);
+}
+
+void	free_ast(t_ast_node *node)
+{
+	int	i;
+
+	if (!node)
+		return ;
+	if (node->args)
+	{
+		i = 0;
+		while (node->args[i])
+		{
+			gc_free(node->args[i]);
+			i++;
+		}
+		gc_free(node->args);
+	}
+	free_ast(node->left);
+	free_ast(node->right);
+	free(node);
 }

@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:28:52 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:37:15 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,37 @@ void	display_tokens(t_token *tokens)
 	}
 }
 
-void	exec_readline(t_data *data)
+void	display_ast(t_ast_node *node, int depth)
 {
-	char	*command_readed;
-	char	*prompt;
-	char	*full_prompt;
-	t_token	*tokens;
+	if (!node)
+		return ;
+	for (int i = 0; i < depth; i++)
+		printf("  ");
+	printf("%s", get_token_type_name(node->type));
+	if (node->args)
+	{
+		printf(" (");
+		for (int i = 0; node->args[i]; i++)
+		{
+			printf("%s", node->args[i]);
+			if (node->args[i + 1])
+				printf(", ");
+		}
+		printf(")");
+	}
+	printf("\n");
+	display_ast(node->left, depth + 1);
+	display_ast(node->right, depth + 1);
+}
 
-	(void)data;
+void	exec_readline(void)
+{
+	char		*command_readed;
+	char		*prompt;
+	char		*full_prompt;
+	t_token		*tokens;
+	t_ast_node	*ast_root;
+
 	while (1)
 	{
 		setup_sig_parent();
@@ -99,6 +122,17 @@ void	exec_readline(t_data *data)
 			tokens = tokenization_input(command_readed);
 			printf("Tokens:\n");
 			display_tokens(tokens);
+			ast_root = parse_tokens(&tokens);
+			if (ast_root)
+			{
+				printf("\nAbstract Syntax Tree:\n");
+				display_ast(ast_root, 0);
+				free_ast(ast_root);
+			}
+			else
+			{
+				printf("Error: Failed to parse input\n");
+			}
 			printf("\n");
 		}
 		gc_free(command_readed);

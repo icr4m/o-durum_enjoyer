@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 17:10:11 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:45:07 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 extern volatile sig_atomic_t	g_signal_received;
 
 // read line
-void							exec_readline(t_data *data);
+void							exec_readline(void);
 char							*read_input(void);
 t_token							*parse_input(char *input);
 // exit
-void							free_and_exit(t_data *data);
+void							free_and_exit(void);
 
 #endif

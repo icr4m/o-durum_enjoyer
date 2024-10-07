@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:08 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/03 13:49:30 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:53:18 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,16 @@ char	*handle_word(t_token **head, char *str)
 	int		in_quote;
 	char	quote_char;
 
+	in_quote = 0;
+	quote_char = 0;
 	start = str;
-	while (*str && !ft_strchr(" \t<>|$", *str))
+	while (*str)
+	{
+		quote_status(*str, &in_quote, &quote_char);
+		if (!in_quote && ft_strchr(" \t<>|$", *str))
+			break ;
 		str++;
+	}
 	len = str - start;
 	if (len > 0)
 	{
