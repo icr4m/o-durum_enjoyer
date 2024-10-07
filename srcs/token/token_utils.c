@@ -6,11 +6,33 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:08 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/07 13:53:18 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:06:02 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_strndup(const char *s1, size_t n)
+{
+	char	*dup;
+	size_t	len;
+	size_t	i;
+
+	len = 0;
+	while (len < n && s1[len])
+		len++;
+	dup = (char *)gc_malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
 
 char	*skip_spaces(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/07 13:33:35 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:18:44 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_ast_node	*parse_command(t_token **token)
 	cmd_node = create_ast_node(TOKEN_WORD);
 	if (!cmd_node)
 		return (NULL);
-	arg_count = count_cmd_args(*token);
-	cmd_node->args = gcmalloc(sizeof(char *) * (arg_count + 1));
+	arg_count = count_cmd_args(token);
+	cmd_node->args = gc_malloc(sizeof(char *) * (arg_count + 1));
 	if (!cmd_node->args)
 	{
 		free(cmd_node);
@@ -38,7 +38,7 @@ t_ast_node	*create_file_node(t_token *token)
 	node = create_ast_node(token->type);
 	if (!node)
 		return (NULL);
-	node->args = gcmalloc(sizeof(char *) * 2);
+	node->args = gc_malloc(sizeof(char *) * 2);
 	if (!node->args)
 	{
 		free(node);
@@ -57,7 +57,7 @@ t_ast_node	*parse_redirection(t_token **token)
 	tmp = *token;
 	if ((*token)->type >= TOKEN_REDIR_IN
 		&& (*token)->type <= TOKEN_REDIR_HEREDOC)
-		return (create_and_link_redirection(token, tmp));
+		return (create_and_link_redirection(token));
 	while ((*token) && (*token)->next)
 	{
 		if ((*token)->next->type >= TOKEN_REDIR_IN
@@ -71,7 +71,7 @@ t_ast_node	*parse_redirection(t_token **token)
 		}
 		(*token) = (*token)->next;
 	}
-	return (parse_command(&token));
+	return (parse_command(token));
 }
 
 t_ast_node	*parse_pipe(t_token **token)
@@ -81,7 +81,7 @@ t_ast_node	*parse_pipe(t_token **token)
 
 	tmp = *token;
 	if ((*token)->type == TOKEN_PIPE)
-		return (create_and_link_redirection(token, tmp));
+		return (create_and_link_redirection(token));
 	while ((*token) && (*token)->next)
 	{
 		if ((*token)->next->type == TOKEN_PIPE)
@@ -94,7 +94,7 @@ t_ast_node	*parse_pipe(t_token **token)
 		}
 		(*token) = (*token)->next;
 	}
-	return (parse_command(&token));
+	return (parse_command(token));
 }
 
 t_ast_node	*parse_tokens(t_token **tokens)

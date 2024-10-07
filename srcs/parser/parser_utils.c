@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/07 13:31:46 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:17:56 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_ast_node	*create_ast_node(t_token_type type)
 {
 	t_ast_node	*node;
 
-	node = gcmalloc(sizeof(t_ast_node));
+	node = gc_malloc(sizeof(t_ast_node));
 	if (!node)
 		return (NULL);
 	node->type = type;
@@ -26,7 +26,7 @@ t_ast_node	*create_ast_node(t_token_type type)
 	return (node);
 }
 
-t_ast_node	*create_and_link_redirection(t_token **token, t_token *tmp)
+t_ast_node	*create_and_link_redirection(t_token **token)
 {
 	t_ast_node	*redirect_node;
 
@@ -45,7 +45,7 @@ t_ast_node	*create_and_link_redirection(t_token **token, t_token *tmp)
 	return (redirect_node);
 }
 
-void	fill_cmd_args(t_token **token, int arg_count, t_ast_node *cmd_node)
+void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 {
 	int		i;
 	t_token	*tmp;

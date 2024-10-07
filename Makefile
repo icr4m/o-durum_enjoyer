@@ -4,7 +4,7 @@ SRCS = $(addprefix srcs/, read_line.c exit.c)
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
 SRCS_SIG = $(addprefix srcs/signal/, signal_handler.c)
 SRCS_TOKEN = $(addprefix srcs/token/, token.c token_list.c token_utils.c token_utils2.c)
-SRCS_PARSING = $(addprefix srcs/parsing/, parser.c parser_utils.c)
+SRCS_PARSING = $(addprefix srcs/parser/, parser.c parser_utils.c)
 MAIN = $(addprefix srcs/, main.c)
 
 OBJ 			= $(SRCS:.c=.o)
