@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 15:44:55 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 22:53:23 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_temp_filename(t_data *data)
 	return (filename);
 }
 
-int	create_here_doc(char *delimiter, t_data *data)
+int	create_heredoc(char *delimiter, t_data *data)
 {
 	char	*filename;
 	int		fd;
@@ -35,7 +35,7 @@ int	create_here_doc(char *delimiter, t_data *data)
 	filename = get_temp_filename(data);
 	if (!filename)
 		return (-1);
-	fd = ft_open_infile(filename, data, 0600);
+	fd = ft_open_infile(filename, data, O_APPEND);
 	if (fd == -1)
 	{
 		free(filename);
@@ -60,9 +60,9 @@ int	create_here_doc(char *delimiter, t_data *data)
 	return (fd);
 }
 
-void	handle_here_doc(t_ast_node *node, t_data *data)
+void	handle_heredoc(t_ast_node *node, t_data *data)
 {
 	int	here_doc_fd;
 
-	here_doc_fd = create_here_doc(node[1]);
+	here_doc_fd = create_heredoc(node[1], data);
 }

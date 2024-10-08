@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:47:55 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 18:33:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 22:50:56 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_open_infile(char *file, int flags, t_data *data)
 {
 	int	fd;
 
-	fd = open(file, O_RDONLY, flags);
+	fd = open(file, flags);
 	if (fd == -1)
 	{
 		if (data->is_child == 1)
@@ -30,7 +30,7 @@ int	ft_open_outfile(char *file, int flags, t_data *data)
 {
 	int	fd;
 
-	fd = open(file, O_WRONLY | O_CREAT, flags);
+	fd = open(file, O_WRONLY | O_CREAT | flags, 0644);
 	if (fd == -1)
 	{
 		if (data->is_child == 1)

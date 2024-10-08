@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 04:31:24 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 16:50:47 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/07 13:55:13 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ void	free_and_exit(int code)
 {
 	gc_free(DESTROY_PTR);
 	rl_clear_history();
-	ft_fprintf(0, "code d'exit:%d\n", code);
-	ft_fprintf(0, "exit\n");
 	exit(code);
 }

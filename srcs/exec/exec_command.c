@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 18:23:41 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/06 20:17:07 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_command_other(t_ast_node *node, t_data *data)
 	path = find_path(node->args[0], data);
 	if (!path)
 	{
-		ft_fprintf(2, "minishell: command not found:\n", node->args[0]);
+		ft_fprintf(2, "minishell: command not found: %s\n", node->args[0]);
 		free_and_exit(127);
 	}
 	execve(path, node->args, envp);

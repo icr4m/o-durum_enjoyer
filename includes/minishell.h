@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 18:29:10 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 09:55:02 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,17 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 //
 # include "../includes/garbage_collector.h"
 # include "../includes/lexing.h"
 # include "../includes/struct.h"
 //
+# include "../includes/_signal.h"
 # include "../includes/built_in.h"
 # include "../includes/exec.h"
-# include "../includes/ft_signal.h"
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line_bonus.h"
 # include "../libft/includes/libft.h"

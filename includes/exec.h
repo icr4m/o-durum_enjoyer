@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 18:15:53 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/07 21:57:25 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int		ft_access_stat(char *path);
 // EXEC
 
 void	execute_ast(t_ast_node *node, t_data *data);
+
+// FORK
+
+int		ft_fork(t_data *data);
 
 // PIPEX EXEC
 
