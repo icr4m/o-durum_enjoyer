@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 10:12:00 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 10:24:27 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	fill_node(t_ast_node *node, char **av)
 int	main(int ac, char **av, char **envp)
 {
 	t_data		data;
-	// t_ast_node	node;
+	t_ast_node	node;
 
 	(void)ac;
-	(void)av;
+	// (void)av;
 	data.env = init_env(envp);
-	// fill_node(&node, av);
-	// execute_ast(&node, &data);
-	exec_readline(&data);
+	fill_node(&node, av);
+	execute_ast(&node, &data);
+	// exec_readline(&data);
 	free_and_exit(data.status_code);
 }

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:47:55 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 22:50:56 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 10:48:51 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ int	ft_open_outfile(char *file, int flags, t_data *data)
 		return (-1);
 	}
 	return (fd);
+}
+
+void	ft_close(int fd)
+{
+	if (fd != -1)
+	{
+		if (close(fd) == -1)
+		{
+			ft_fprintf(2, "Error close fd number %d\n", fd);
+			free_and_exit(-1);
+		}
+	}
 }
 
 char	*find_path(char *command, t_data *data)
