@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/07 14:18:17 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:11:45 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef enum token
 	TOKEN_REDIR_OUT,
 	TOKEN_REDIR_APPEND,
 	TOKEN_REDIR_HEREDOC,
-	TOKEN_ENV_VAR,
 }						t_token_type;
 
 typedef struct s_token
@@ -68,7 +67,7 @@ char					*handle_redir(t_token **head, char *str);
 char					*handle_env_var(t_token **head, char *str);
 char					*handle_word(t_token **head, char *str);
 void					quote_status(char c, int *in_quote, char *quote_char);
-
+char					*ft_strndup(const char *s1, size_t n);
 // Parsing
 t_ast_node				*parse_command(t_token **token);
 t_ast_node				*create_file_node(t_token *token);

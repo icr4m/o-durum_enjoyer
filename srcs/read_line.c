@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/07 13:37:15 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:25:04 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	exec_readline(void)
 	char		*prompt;
 	char		*full_prompt;
 	t_token		*tokens;
-	t_ast_node	*ast_root;
+	// t_ast_node	*ast_root;
 
 	while (1)
 	{
@@ -122,17 +122,7 @@ void	exec_readline(void)
 			tokens = tokenization_input(command_readed);
 			printf("Tokens:\n");
 			display_tokens(tokens);
-			ast_root = parse_tokens(&tokens);
-			if (ast_root)
-			{
-				printf("\nAbstract Syntax Tree:\n");
-				display_ast(ast_root, 0);
-				free_ast(ast_root);
-			}
-			else
-			{
-				printf("Error: Failed to parse input\n");
-			}
+			// ast_root = parse_tokens(&tokens);
 			printf("\n");
 		}
 		gc_free(command_readed);
