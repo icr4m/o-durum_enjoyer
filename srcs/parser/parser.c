@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/07 14:18:44 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:22:17 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_ast_node	*parse_command(t_token **token)
 	t_ast_node	*cmd_node;
 	int			arg_count;
 
+	printf("nous y etes");
 	cmd_node = create_ast_node(TOKEN_WORD);
 	if (!cmd_node)
 		return (NULL);
@@ -35,6 +36,7 @@ t_ast_node	*create_file_node(t_token *token)
 {
 	t_ast_node	*node;
 
+	printf("nous y etes");
 	node = create_ast_node(token->type);
 	if (!node)
 		return (NULL);
@@ -99,6 +101,8 @@ t_ast_node	*parse_pipe(t_token **token)
 
 t_ast_node	*parse_tokens(t_token **tokens)
 {
+	printf("nous y etes");
+
 	if (!tokens || !*tokens)
 		return (NULL);
 	return (parse_pipe(tokens));

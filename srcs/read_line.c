@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 16:25:04 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:24:39 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	exec_readline(void)
 	char		*prompt;
 	char		*full_prompt;
 	t_token		*tokens;
-	// t_ast_node	*ast_root;
+	t_ast_node	*ast_root;
 
 	while (1)
 	{
@@ -122,7 +122,8 @@ void	exec_readline(void)
 			tokens = tokenization_input(command_readed);
 			printf("Tokens:\n");
 			display_tokens(tokens);
-			// ast_root = parse_tokens(&tokens);
+			printf("nous y etes");
+			ast_root = parse_tokens(&tokens);
 			printf("\n");
 		}
 		gc_free(command_readed);
