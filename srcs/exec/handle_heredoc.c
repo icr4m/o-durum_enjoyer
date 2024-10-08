@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_here_doc.c                                  :+:      :+:    :+:   */
+/*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 22:53:23 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 13:35:04 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_temp_filename(t_data *data)
 	char		*filename;
 	char		*temp_dir;
 
-	temp_dir = search_in_env(data, "TMPDIR");
+	temp_dir = ft_getenv_content(data, "TMPDIR");
 	if (!temp_dir)
 		temp_dir = "/tmp";
 	filename = ft_strjoin3(temp_dir, "/minishell_heredoc_", ft_itoa(count));
@@ -35,7 +35,7 @@ int	create_heredoc(char *delimiter, t_data *data)
 	filename = get_temp_filename(data);
 	if (!filename)
 		return (-1);
-	fd = ft_open_infile(filename, data, O_APPEND);
+	fd = ft_open_outfile(filename, O_APPEND, data);
 	if (fd == -1)
 	{
 		free(filename);
@@ -43,7 +43,7 @@ int	create_heredoc(char *delimiter, t_data *data)
 	}
 	while (1)
 	{
-		line = readline("> ");
+		line = readline("heredoc> ");
 		if (!line || strcmp(line, delimiter) == 0)
 		{
 			free(line);
@@ -60,9 +60,12 @@ int	create_heredoc(char *delimiter, t_data *data)
 	return (fd);
 }
 
-void	handle_heredoc(t_ast_node *node, t_data *data)
+void	handle_heredoc_in(t_ast_node *node, t_data *data)
 {
 	int	here_doc_fd;
 
-	here_doc_fd = create_heredoc(node[1], data);
+	here_doc_fd = create_heredoc(node->right->args[0], data);
+	if (here_doc_fd == -1)
+		free_and_exit(-1);
+	execute_ast(node->left, data);
 }
