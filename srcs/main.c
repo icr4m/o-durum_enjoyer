@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 13:37:19 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 14:29:47 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ void	fill_side(t_ast_node *node, char **av, int start, int end)
 	if (end == -1)
 	{
 		while (av[start + arg_count] && av[start + arg_count][0] != '<'
-			&& ft_strncmp(av[start + arg_count], "<<", 2) != 0)
+			&& av[start + arg_count][0] != '>' && ft_strncmp(av[start
+				+ arg_count], "<<", 2) != 0 && ft_strncmp(av[start + arg_count],
+				">>", 2) != 0)
 			arg_count++;
 	}
 	node->args = gc_malloc((arg_count + 1) * sizeof(char *));
 	i = 0;
-	while (i < arg_count && av[start + i][0] != '<' && ft_strncmp(av[start + i],
-			"<<", 2) != 0)
+	while (i < arg_count && av[start + i][0] != '<' && av[start + i][0] != '>'
+		&& ft_strncmp(av[start + i], "<<", 2) != 0 && ft_strncmp(av[start + i],
+			">>", 2) != 0)
 	{
 		node->args[i] = av[start + i];
 		i++;
@@ -49,12 +52,14 @@ void	fill_node(t_ast_node *node, char **av)
 	arg_count = 0;
 	while (av[i])
 	{
-		if ((av[i][0] == '|' || av[i][0] == '<') && av[i][1] == '\0')
+		if ((av[i][0] == '|' || av[i][0] == '<' || av[i][0] == '>')
+			&& av[i][1] == '\0')
 		{
 			special_index = i;
 			break ;
 		}
-		else if (ft_strncmp(av[i], "<<", 2) == 0 && av[i][2] == '\0')
+		else if ((ft_strncmp(av[i], "<<", 2) == 0 || ft_strncmp(av[i], ">>",
+					2) == 0) && av[i][2] == '\0')
 		{
 			special_index = i;
 			break ;
@@ -68,12 +73,16 @@ void	fill_node(t_ast_node *node, char **av)
 			node->type = TOKEN_PIPE;
 		else if (ft_strncmp(av[special_index], "<<", 2) == 0)
 			node->type = TOKEN_REDIR_HEREDOC;
+		else if (ft_strncmp(av[special_index], ">>", 2) == 0)
+			node->type = TOKEN_REDIR_APPEND;
+		else if (av[special_index][0] == '>')
+			node->type = TOKEN_REDIR_OUT;
 		else
 			node->type = TOKEN_REDIR_IN;
 		node->left = gc_malloc(sizeof(t_ast_node));
 		node->right = gc_malloc(sizeof(t_ast_node));
 		fill_side(node->left, av, 1, special_index - 1);
-		if (node->type == TOKEN_REDIR_IN || node->type == TOKEN_REDIR_HEREDOC)
+		if (node->type != TOKEN_PIPE)
 		{
 			node->right->type = TOKEN_WORD;
 			node->right->args = gc_malloc(2 * sizeof(char *));

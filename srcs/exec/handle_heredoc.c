@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 13:35:04 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 14:27:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ void	handle_heredoc_in(t_ast_node *node, t_data *data)
 	if (here_doc_fd == -1)
 		free_and_exit(-1);
 	execute_ast(node->left, data);
+}
+
+void	handle_heredoc_out(t_ast_node *node, t_data *data)
+{
+	int	here_doc_fd;
+
+	here_doc_fd = create_heredoc(node->left->args[0], data);
+	if (here_doc_fd == -1)
+		free_and_exit(-1);
+	execute_ast(node->right, data);
 }
