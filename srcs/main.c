@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 10:24:27 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 12:25:56 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	fill_side(t_ast_node *node, char **av, int start, int end)
 	arg_count = (end == -1) ? 0 : end - start + 1;
 	if (end == -1)
 	{
-		while (av[start + arg_count])
+		while (av[start + arg_count] && av[start + arg_count][0] != '<')
 			arg_count++;
 	}
 	node->args = gc_malloc((arg_count + 1) * sizeof(char *));
 	i = 0;
-	while (i < arg_count)
+	while (i < arg_count && av[start + i][0] != '<')
 	{
 		node->args[i] = av[start + i];
 		i++;
@@ -39,32 +39,45 @@ void	fill_side(t_ast_node *node, char **av, int start, int end)
 void	fill_node(t_ast_node *node, char **av)
 {
 	int	i;
-	int	pipe_index;
+	int	special_index;
 	int	arg_count;
 
 	i = 1;
-	pipe_index = -1;
+	special_index = -1;
 	arg_count = 0;
 	while (av[i])
 	{
-		if (av[i][0] == '|' && av[i][1] == '\0')
+		if ((av[i][0] == '|' || av[i][0] == '<') && av[i][1] == '\0')
 		{
-			pipe_index = i;
+			special_index = i;
 			break ;
 		}
 		i++;
 		arg_count++;
 	}
-	node->type = (pipe_index != -1) ? TOKEN_PIPE : TOKEN_WORD;
-	if (pipe_index != -1)
+	if (special_index != -1)
 	{
+		node->type = (av[special_index][0] == '|') ? TOKEN_PIPE : TOKEN_REDIR_IN;
 		node->left = gc_malloc(sizeof(t_ast_node));
 		node->right = gc_malloc(sizeof(t_ast_node));
-		fill_side(node->left, av, 1, pipe_index - 1);
-		fill_side(node->right, av, pipe_index + 1, -1);
+		fill_side(node->left, av, 1, special_index - 1);
+		if (node->type == TOKEN_REDIR_IN)
+		{
+			node->right->type = TOKEN_WORD;
+			node->right->args = gc_malloc(2 * sizeof(char *));
+			node->right->args[0] = av[special_index + 1];
+			node->right->args[1] = NULL;
+			node->right->left = NULL;
+			node->right->right = NULL;
+		}
+		else
+		{
+			fill_side(node->right, av, special_index + 1, -1);
+		}
 	}
 	else
 	{
+		node->type = TOKEN_WORD;
 		node->left = NULL;
 		node->right = NULL;
 		node->args = gc_malloc((arg_count + 1) * sizeof(char *));
