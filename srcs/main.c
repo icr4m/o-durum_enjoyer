@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 16:25:58 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/09 19:05:28 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,6 @@ int	main(int ac, char **av, char **envp)
 	data.env = init_env(envp);
 	fill_node(&node, av);
 	execute_ast(&node, &data);
-	// exec_readline(&data);
+	exec_readline(&data);
 	free_and_exit(data.status_code);
 }
