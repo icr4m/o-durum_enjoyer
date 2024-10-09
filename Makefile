@@ -32,7 +32,7 @@ ALL_SRCS +=	$(SRCS_SIG)
 ALL_SRCS += $(SRCS_TOKEN)
 ALL_SRCS +=	$(MAIN)
 
-INCS = $(addprefix includes/, lexing.h built_in.h exec.h _signal.h garbage_collector.h lexing.h minishell.h struct.h )
+INCS = $(addprefix includes/, lexing.h built_in.h exec.h ft_signal.h garbage_collector.h lexing.h minishell.h struct.h )
 INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)

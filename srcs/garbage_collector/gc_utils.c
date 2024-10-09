@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:25:13 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 17:36:26 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 15:42:40 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	is_in_garbage(t_garbage *garbage, void *content)
 
 void	gc_free_2d(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split && split[i])

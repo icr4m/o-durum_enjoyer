@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 14:28:44 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/09 16:46:21 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 // EXEC COMMAND
 
+void	check_directory(t_ast_node *node);
 void	exec_command(t_ast_node *node, t_data *data);
 void	exec_command_other(t_ast_node *node, t_data *data);
 

@@ -6,12 +6,12 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:04:37 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 10:10:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 16:18:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
+#ifndef FT_SIGNAL_H
+# define FT_SIGNAL_H
 
 # include "minishell.h"
 

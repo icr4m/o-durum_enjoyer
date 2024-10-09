@@ -1,0 +1,10 @@
+a
+b
+c
+d
+includes
+libft
+Makefile
+minishell
+srcs
+test

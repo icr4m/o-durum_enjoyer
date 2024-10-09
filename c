@@ -1,0 +1,21 @@
+test 3
+a
+b
+c
+d
+includes
+libft
+Makefile
+minishell
+srcs
+test
+a
+b
+c
+d
+includes
+libft
+Makefile
+minishell
+srcs
+test
