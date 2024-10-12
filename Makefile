@@ -5,7 +5,7 @@ SRCS_BUILT = $(addprefix srcs/built_in/, cd.c env.c echo.c export.c exit.c init_
 SRCS_EXEC = $(addprefix srcs/exec/, exec_command.c exec_utils.c exit_status.c exec.c ft_fork.c pipe_exec.c handle_heredoc.c redirection.c)
 SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.c gc_utils.c)
 SRCS_SIG = $(addprefix srcs/signal/, signal_handler.c signal_utils.c)
-SRCS_TOKEN = $(addprefix srcs/token/, token_list.c token_utils.c token_utils2.c)
+SRCS_TOKEN = $(addprefix srcs/token/, token.c token_list.c token_utils.c token_utils2.c)
 SRCS_PARSING = $(addprefix srcs/parser/, parser.c parser_utils.c)
 MAIN = $(addprefix srcs/, main.c)
 
@@ -36,7 +36,7 @@ ALL_SRCS += $(SRCS_TOKEN)
 ALL_SRC	 += $(SRCS_PARSING)
 ALL_SRCS +=	$(MAIN)
 
-INCS = $(addprefix includes/, lexing.h built_in.h exec.h ft_signal.h garbage_collector.h lexing.h minishell.h struct.h )
+INCS = $(addprefix includes/, lexing.h built_in.h exec.h ft_signal.h garbage_collector.h minishell.h struct.h )
 INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)
