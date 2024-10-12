@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 18:24:39 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:09:55 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ void	exec_readline(void)
 			tokens = tokenization_input(command_readed);
 			printf("Tokens:\n");
 			display_tokens(tokens);
-			printf("nous y etes");
 			ast_root = parse_tokens(&tokens);
 			printf("\n");
 		}

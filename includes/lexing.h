@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 18:11:45 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:33:46 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_token
 typedef struct s_ast_node
 {
 	t_token_type		type;
-	int					file_type;
 	char				**args;
 	struct s_ast_node	*left;
 	struct s_ast_node	*right;
@@ -68,6 +67,7 @@ char					*handle_env_var(t_token **head, char *str);
 char					*handle_word(t_token **head, char *str);
 void					quote_status(char c, int *in_quote, char *quote_char);
 char					*ft_strndup(const char *s1, size_t n);
+
 // Parsing
 t_ast_node				*parse_command(t_token **token);
 t_ast_node				*create_file_node(t_token *token);
@@ -77,10 +77,11 @@ t_ast_node				*parse_tokens(t_token **tokens);
 
 // Parser Utils
 t_ast_node				*create_ast_node(t_token_type type);
-t_ast_node				*create_and_link_redirection(t_token **token);
+t_ast_node				*create_and_link_redirection(t_token **tokens,
+							t_token *tmp);
 void					fill_cmd_args(t_ast_node *cmd_node, t_token **token,
 							int arg_count);
-int						count_cmd_args(t_token **token);
+int						count_cmd_args(t_token *token);
 void					free_ast(t_ast_node *node);
 
 #endif
