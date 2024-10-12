@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 06:15:00 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 13:36:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,43 +23,39 @@
  * @param token_redir_out >
  * @param token_redir_in <
  * @param token_redir_append >>
- * @param token_heredoc <<
+ * @param TOKEN_REDIR_HEREDOC <<
  * @param token_pipe |
- * @param token_space Espace ou tabulation
- * @param token_newline \n
- * @param token_quote_single '
- * @param token_quote_double "
- * @param token_variable $VAR
- * @param token_escape Escape character
- * @param token_and &&
- * @param token_or ||
- * @param token_semicolon ;
- * @param token_paren_open (
- * @param token_paren_close )
- * @param token_bracket_open [
- * @param token_bracket_close ]
  */
 typedef enum token
 {
 	TOKEN_WORD,
+	TOKEN_PIPE,
 	TOKEN_REDIR_OUT,
 	TOKEN_REDIR_IN,
 	TOKEN_REDIR_APPEND,
-	TOKEN_HEREDOC,
-	TOKEN_PIPE,
-	TOKEN_SPACE,
-	TOKEN_NEWLINE,
-	TOKEN_QUOTE_SINGLE,
-	TOKEN_QUOTE_DOUBLE,
-	TOKEN_VARIABLE,
-	TOKEN_ESCAPE,
-	TOKEN_AND,
-	TOKEN_OR,
-	TOKEN_SEMICOLON,
-	TOKEN_PAREN_OPEN,
-	TOKEN_PAREN_CLOSE,
-	TOKEN_BRACKET_OPEN,
-	TOKEN_BRACKET_CLOSE
-}	t_token_type;
+	TOKEN_REDIR_HEREDOC,
+	TOKEN_ENV_VAR,
+}						t_token_type;
+
+typedef struct s_token
+{
+	int					lenght;
+	t_token_type		type;
+	char				*value;
+	struct s_token		*next;
+}						t_token;
+
+typedef struct s_ast_node
+{
+	t_token_type		type;
+	int					file_type;
+	char				**args;
+	struct s_ast_node	*left;
+	struct s_ast_node	*right;
+}						t_ast_node;
+
+// tokenization function
+t_token					*create_token(char *value, t_token_type type);
+t_token					add_token_to_list(t_token **head, t_token *new_token);
 
 #endif

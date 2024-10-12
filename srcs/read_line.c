@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 15:25:47 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/12 15:46:13 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exec_readline(t_data *data)
 
 	while (1)
 	{
-		setup_sig_parent();
+		set_signal_parent();
 		if (g_signal_received != 0)
 		{
 			g_signal_received = 0;

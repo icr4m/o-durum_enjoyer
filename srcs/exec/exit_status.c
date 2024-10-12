@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 02:46:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/05/14 11:43:12 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/08 10:59:26 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/08 11:00:10 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	exit_status(int status, t_data *data)
 {
-	write(fd, &c, 1);
+	if (WIFSIGNALED(status))
+		data->status_code = 128 + WTERMSIG(status);
+	else if (WIFEXITED(status))
+		data->status_code = WEXITSTATUS(status);
+	else if (WIFSTOPPED(status))
+		data->status_code = 128 + WSTOPSIG(status);
 }

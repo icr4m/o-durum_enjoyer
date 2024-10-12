@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 06:45:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 14:22:48 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/08 10:13:00 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,33 @@
 
 volatile sig_atomic_t	g_signal_received = 0;
 
-void	sigint_handler(int signum)
+void	set_signal_child(void)
 {
-	(void)signum;
-	g_signal_received = 1;
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGTSTP, SIG_IGN);
 }
 
-void	sigquit_handler(int signum)
+void	set_signal_parent_exec(void)
 {
-	(void)signum;
+	struct sigaction	sa;
+	struct sigaction	sb;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = handle_signal_parent;
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	ft_memset(&sb, 0, sizeof(sb));
+	sb.sa_handler = handle_signal_parent;
+	sb.sa_flags = SA_RESTART;
+	sigaction(SIGQUIT, &sb, NULL);
 }
 
-void	setup_sig_children(void)
-{
-	struct sigaction	sa_int;
-	struct sigaction	sa_quit;
-
-	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_handler = sigint_handler;
-	sa_int.sa_flags = SA_RESTART;
-	sigaction(SIGINT, &sa_int, NULL);
-	sigemptyset(&sa_quit.sa_mask);
-	sa_quit.sa_handler = sigquit_handler;
-	sa_quit.sa_flags = SA_RESTART;
-	sigaction(SIGQUIT, &sa_quit, NULL);
-}
-
-void	setup_sig_parent(void)
+void	set_signal_parent(void)
 {
 	struct sigaction	sa;
 
-	sigemptyset(&sa.sa_mask);
+	ft_memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = sigint_handler;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);

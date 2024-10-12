@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _signal.h                                          :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 09:04:37 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 16:18:17 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/02 16:18:37 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/02 16:43:35 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SIGNAL_H
-# define FT_SIGNAL_H
+#include "ft_printf.h"
 
-# include "minishell.h"
+int	ft_fprintf(int fd, char const *str, ...)
+{
+	size_t	count;
+	va_list	arg;
+	size_t	i;
 
-// SIGNAL HANDLER
-
-void	set_signal_child(void);
-void	set_signal_parent(void);
-void	set_signal_parent_exec(void);
-
-// SIGNAL UTILS
-
-void	sigint_handler(int signum);
-void	handle_signal_parent(int num);
-
-#endif
+	i = 0;
+	count = 0;
+	va_start(arg, str);
+	if (str == NULL)
+		return (-1);
+	while (str[i] != '\0')
+	{
+		if (str[i] == '%')
+		{
+			count += ft_r_type_fd(str[i + 1], arg, fd);
+			i += 2;
+		}
+		else
+		{
+			ft_putchar_fd(str[i], fd);
+			i++;
+			count++;
+		}
+	}
+	va_end(arg);
+	return (count);
+}

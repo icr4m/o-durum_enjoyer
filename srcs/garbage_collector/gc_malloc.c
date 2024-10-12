@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:19:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/23 00:56:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:03:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*gc_malloc(long int size)
 	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);
-	push_to_garbage(garbage, ptr);
+	push_to_garbage(garbage, ptr, size);
 	if (!garbage->total_alloc)
 		gc_free(garbage);
 	garbage->total_alloc++;
