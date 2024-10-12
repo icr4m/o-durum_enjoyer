@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_is_numeric.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:45:49 by ijaber            #+#    #+#             */
-/*   Updated: 2024/04/30 12:00:21 by ijaber           ###   ########.fr       */
+/*   Created: 2024/10/02 17:12:51 by ijaber            #+#    #+#             */
+/*   Updated: 2024/10/02 17:13:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	print_nb(unsigned int n, int fd)
+int	ft_is_numeric(char *str)
 {
-	if (n > 0)
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
 	{
-		print_nb(n / 10, fd);
-		ft_putchar_fd(n % 10 + '0', fd);
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
 	}
+	return (1);
 }
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	unsigned int	num;
-
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		num = -n;
-	}
-	else
-		num = n;
-	if (n == 0)
-		ft_putchar_fd('0', fd);
-	else
-		print_nb(num, fd);
-}
-
-/*
-int	main(void)
-{
-	ft_putnbr_fd(-2147483648, 1);
-}
-*/

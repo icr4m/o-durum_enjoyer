@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 15:25:42 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:25:14 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_readline(t_data *data)
 	(void)data;
 	while (1)
 	{
-		setup_sig_parent();
+		set_signal_parent();
 		if (g_signal_received != 0)
 		{
 			g_signal_received = 0;

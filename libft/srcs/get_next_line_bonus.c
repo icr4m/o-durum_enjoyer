@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:24:54 by ijaber            #+#    #+#             */
-/*   Updated: 2024/06/24 13:27:16 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:48:47 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,21 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-unsigned int	ft_strlcpy(char *dest, char *src, size_t size)
-{
-	unsigned int	i;
-	unsigned int	x;
+// unsigned int	ft_strlcpy(char *dest, char *src, size_t size)
+// {
+// 	unsigned int	i;
+// 	unsigned int	x;
 
-	x = ft_strlen(src);
-	i = 0;
-	if (size != 0)
-	{
-		while (src[i] != '\0' && i < size - 1)
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-	}
-	return (x);
-}
+// 	x = ft_strlen(src);
+// 	i = 0;
+// 	if (size != 0)
+// 	{
+// 		while (src[i] != '\0' && i < size - 1)
+// 		{
+// 			dest[i] = src[i];
+// 			i++;
+// 		}
+// 		dest[i] = '\0';
+// 	}
+// 	return (x);
+// }
