@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/12 17:51:18 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/13 17:18:46 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_directory(t_ast_node *node)
 		ft_fprintf(2, "minshell: %s: Permission denied\n", node->args[0]);
 		free_and_exit(126);
 	}
-	ft_fprintf(2, "minshell: %s: No such file or directory\n", node->args[0]);
+	ft_fprintf(2, "minishell: %s: No such file or directory\n", node->args[0]);
 	free_and_exit(127);
 }
 

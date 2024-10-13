@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/13 12:15:50 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/13 16:44:21 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	start_parsing(char *command_readed, t_data *data)
 
 	(void)data;
 	token = tokenization_input(command_readed);
-	display_tokens(token);
+	// display_tokens(token);
 	ast_root = parse_tokens(&token);
-	// execute_ast(ast_root, data);
+	execute_ast(ast_root, data);
 }
 
 void	exec_readline(t_data *data)

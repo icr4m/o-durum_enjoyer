@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/12 16:02:33 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/13 14:43:33 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 extern volatile sig_atomic_t	g_signal_received;
 
 // READ LINE
-
 void							exec_readline(t_data *data);
-char							*read_input(void);
-t_token							*parse_input(char *input);
 
 // EXIT
 
