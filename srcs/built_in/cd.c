@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 14:36:10 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/13 18:16:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ void	change_pwd_in_env(t_data *data)
 	t_env	*env;
 
 	old_pwd = ft_strdup(ft_getenv_content(data, "PWD"));
+	if (!old_pwd)
+		return ;
 	env = search_in_env(data, "PWD");
+	if (!env)
+		return ;
 	if (env)
 	{
 		new_pwd = ft_pwd(data, 0);

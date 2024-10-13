@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:46:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/03 12:18:18 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/13 18:07:52 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char	*ft_getenv_content(t_data *data, char *var_name)
 	t_env	*current;
 
 	current = data->env;
+	if (!current)
+		return (NULL);
 	while (current)
 	{
 		if (ft_strncmp(var_name, current->env_var, ft_strlen(var_name)) == 0)
