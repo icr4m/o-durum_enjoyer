@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/12 16:19:45 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:14:58 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,9 @@ void					fill_cmd_args(t_ast_node *cmd_node, t_token **token,
 							int arg_count);
 int						count_cmd_args(t_token *token);
 void					free_ast(t_ast_node *node);
+
+// DEBUG
+const char				*get_token_type_name(t_token_type type);
+void					display_tokens(t_token *tokens);
 
 #endif

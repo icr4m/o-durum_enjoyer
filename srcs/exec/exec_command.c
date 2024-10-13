@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/09 17:04:37 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/12 17:51:18 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,24 @@ void	exec_command_other(t_ast_node *node, t_data *data)
 {
 	char	*path;
 	char	**envp;
+	pid_t	pid;
+	int		status;
 
-	if (ft_strchr(node->args[0], '/'))
-		check_directory(node);
-	envp = env_list_to_array(data->env);
-	path = find_path(node->args[0], data);
-	if (!path)
+	pid = ft_fork(data);
+	if (pid == 0)
 	{
-		ft_fprintf(2, "minishell: %s: command not found\n", node->args[0]);
-		free_and_exit(127);
+		if (ft_strchr(node->args[0], '/'))
+			check_directory(node);
+		envp = env_list_to_array(data->env);
+		path = find_path(node->args[0], data);
+		if (!path)
+		{
+			ft_fprintf(2, "minishell: %s: command not found\n", node->args[0]);
+			free_and_exit(127);
+		}
+		execve(path, node->args, envp);
 	}
-	execve(path, node->args, envp);
-	ft_fprintf(2, "minishell: %s: Permission denied\n", node->args[0]);
-	free_and_exit(126);
+	(waitpid(pid, &status, 0), exit_status(status, data));
 }
 
 void	exec_command(t_ast_node *node, t_data *data)
