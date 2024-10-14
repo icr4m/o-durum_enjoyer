@@ -1,3 +1,7 @@
 digraph AST {
-"0x2422010" [label="CMD: clear"];
+"0x1101b10" [label="REDIR: "];
+"0x1101b10" -> "0x1101b70" [label="L"];
+"0x1101b70" [label="CMD: echo test"];
+"0x1101b10" -> "0x1101cc0" [label="R"];
+"0x1101cc0" [label="CMD: test"];
 }

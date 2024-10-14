@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/13 12:14:58 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 15:26:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param token_redir_out >
  * @param token_redir_in <
  * @param token_redir_append >>
- * @param TOKEN_REDIR_HEREDOC <<
  * @param TOKEN_REDIR_HEREDOC <<
  * @param token_pipe |
  */

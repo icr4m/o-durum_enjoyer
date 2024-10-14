@@ -36,7 +36,6 @@ typedef enum e_line_status
 #  define BUFFER_SIZE 300000
 # endif
 
-size_t	ft_strlen(const char *str);
 size_t	index_of(const char *str, const char c);
 char	*ft_strncpy(char *dest, char *src, size_t size);
 char	*strnjoin(char *s1, const char *s2, const size_t n);

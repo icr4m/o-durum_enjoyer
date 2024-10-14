@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/14 14:29:29 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:08:15 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,11 @@ t_ast_node	*create_file_node(t_token *token)
 	node->type = token->type;
 	node->args = malloc(sizeof(char *) * 2);
 	if (!node->args)
-	{
-		free(node);
 		return (NULL);
-	}
 	node->args[0] = token->value;
 	node->args[1] = NULL;
 	node->left = NULL;
 	node->right = NULL;
-	free(token);
 	return (node);
 }
 

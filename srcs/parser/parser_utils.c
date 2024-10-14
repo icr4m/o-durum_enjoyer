@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/14 14:44:41 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:06:51 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,29 +68,28 @@ void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 		}
 		tmp = *token;
 		*token = (*token)->next;
-		;
 		i++;
 	}
 	cmd_node->args[i] = NULL;
 }
 
-void	free_ast(t_ast_node *node)
-{
-	int	i;
+// void	free_ast(t_ast_node *node)
+// {
+// 	int	i;
 
-	if (!node)
-		return ;
-	if (node->args)
-	{
-		i = 0;
-		while (node->args[i])
-		{
-			gc_free(node->args[i]);
-			i++;
-		}
-		gc_free(node->args);
-	}
-	free_ast(node->left);
-	free_ast(node->right);
-	gc_free(node);
-}
+// 	if (!node)
+// 		return ;
+// 	if (node->args)
+// 	{
+// 		i = 0;
+// 		while (node->args[i])
+// 		{
+// 			gc_free(node->args[i]);
+// 			i++;
+// 		}
+// 		gc_free(node->args);
+// 	}
+// 	free_ast(node->left);
+// 	free_ast(node->right);
+// 	gc_free(node);
+// }

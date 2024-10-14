@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/09 16:46:21 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 00:06:38 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int		ft_fork(t_data *data);
 
 // HEREDOC
 
-void	handle_heredoc_in(t_ast_node *node, t_data *data);
-void	handle_heredoc_out(t_ast_node *node, t_data *data);
+int		handle_heredoc_in(t_ast_node *node, t_data *data);
+int		handle_heredoc_out(t_ast_node *node, t_data *data);
 
 // PIPEX EXEC
 

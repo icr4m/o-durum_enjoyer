@@ -6,21 +6,11 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 04:31:45 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/24 15:03:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:49:42 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len] != '\0')
-		++len;
-	return (len);
-}
 
 size_t	index_of(const char *str, const char c)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection_in.c                                   :+:      :+:    :+:   */
+/*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:32:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 13:13:05 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 15:04:24 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	handle_redirection_out(t_ast_node *node, t_data *data)
 	int		backup_stdout;
 	char	*filename;
 
-	filename = node->left->args[0];
+	filename = node->right->args[0];
 	fd = ft_open_outfile(filename, O_RDONLY, data);
 	if (fd == -1)
 		return (-1);
@@ -56,7 +56,7 @@ int	handle_redirection_out(t_ast_node *node, t_data *data)
 			free_and_exit(-1);
 		return (0);
 	}
-	execute_ast(node->right, data);
+	execute_ast(node->left, data);
 	dup2(backup_stdout, STDOUT_FILENO);
 	(close(fd), close(backup_stdout));
 	return (0);

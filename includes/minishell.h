@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/13 14:43:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 15:19:30 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void							handle_malloc_error(char *message,
 // UTILS
 
 char							**env_list_to_array(t_env *env_list);
+
+// DEBUG
+void							generate_ast_diagram(t_ast_node *root);
 
 #endif
