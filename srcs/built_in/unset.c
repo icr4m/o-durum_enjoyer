@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:08:19 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/06 16:24:13 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 15:02:26 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int	ft_unset(t_data *data, char **args)
 		len = ft_strlen(args[i]);
 		while (current)
 		{
-			if (ft_strncmp(args[i], current->env_var, len) == 0
-				&& (current->env_var[len] == '='))
+			if (ft_strncmp(args[i], current->env_var, len) == 0)
 			{
 				remove_env_var(&(data->env), prev, current);
 				break ;

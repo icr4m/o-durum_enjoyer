@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/09 18:41:53 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 15:01:47 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ static int	update_existing_env(t_data *data, char *var_name, char *new_env)
 	current = data->env;
 	while (current)
 	{
-		if (ft_strncmp(var_name, current->env_var, len_var) == 0
-			&& current->env_var[len_var] == '=')
+		if (ft_strncmp(var_name, current->env_var, len_var) == 0)
 		{
 			current->env_var = ft_strdup(new_env);
 			if (!current->env_var)

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:40:40 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/04 16:44:04 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/14 14:56:50 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,28 @@ int	ft_env(t_data *data, char **args)
 void	print_env(t_data *data, int cas)
 {
 	t_env	*current;
+	char	*equal_sign;
 
 	current = data->env;
 	while (current)
 	{
 		if (cas == 2)
-			printf("export ");
-		printf("%s\n", current->env_var);
+		{
+			equal_sign = ft_strchr(current->env_var, '=');
+			if (equal_sign)
+			{
+				write(1, "export ", 7);
+				write(1, current->env_var, equal_sign - current->env_var);
+				printf("=\"%s\"\n", equal_sign + 1);
+			}
+			else
+				printf("export %s\n", current->env_var);
+		}
+		else if (cas == 1)
+		{
+			if (ft_strchr(current->env_var, '='))
+				printf("%s\n", current->env_var);
+		}
 		current = current->next;
 	}
 }
