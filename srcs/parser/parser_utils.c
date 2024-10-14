@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/12 15:15:00 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:44:41 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,19 @@ t_ast_node	*create_and_link_redirection(t_token **tokens, t_token *tmp)
 	*tokens = (*tokens)->next->next;
 	redirect_node->left = parse_redirection(tokens);
 	redirect_node->right = create_file_node(tmp->next);
-	
 	return (redirect_node);
+}
+int	count_cmd_args(t_token *token)
+{
+	int	arg_count;
+
+	arg_count = 0;
+	while (token && token->type == TOKEN_WORD)
+	{
+		arg_count++;
+		token = token->next;
+	}
+	return (arg_count);
 }
 
 void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
@@ -50,10 +61,10 @@ void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 		if (!cmd_node->args[i])
 		{
 			while (i > 0)
-			// 	gc_free(cmd_node->args[--i]);
-			// gc_free(cmd_node->args);
-			// cmd_node->args = NULL;
-			return ;
+				// 	gc_free(cmd_node->args[--i]);
+				// gc_free(cmd_node->args);
+				// cmd_node->args = NULL;
+				return ;
 		}
 		tmp = *token;
 		*token = (*token)->next;
@@ -61,19 +72,6 @@ void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 		i++;
 	}
 	cmd_node->args[i] = NULL;
-}
-
-int	count_cmd_args(t_token *token)
-{
-	int	arg_count;
-
-	arg_count = 0;
-	while (token && token->type == TOKEN_WORD)
-	{
-		arg_count++;
-		token = token->next;
-	}
-	return (arg_count);
 }
 
 void	free_ast(t_ast_node *node)

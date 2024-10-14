@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/12 15:23:37 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:29:29 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,21 @@ t_ast_node	*create_file_node(t_token *token)
 {
 	t_ast_node	*node;
 
-	if (!token)
-		return (NULL);
-	node = create_ast_node(token->type);
+	node = malloc(sizeof(t_ast_node));
 	if (!node)
 		return (NULL);
-	node->args = gc_malloc(sizeof(char *) * 2);
+	node->type = token->type;
+	node->args = malloc(sizeof(char *) * 2);
 	if (!node->args)
 	{
+		free(node);
 		return (NULL);
 	}
-	node->args[0] = ft_strdup(token->value);
-	if (!node->args[0])
-	{
-		return (NULL);
-	}
+	node->args[0] = token->value;
 	node->args[1] = NULL;
+	node->left = NULL;
+	node->right = NULL;
+	free(token);
 	return (node);
 }
 
@@ -76,7 +75,7 @@ t_ast_node	*parse_redirection(t_token **tokens)
 			redirect_node = create_ast_node((*tokens)->next->type);
 			(*tokens)->next = next_token->next->next;
 			redirect_node->left = parse_redirection(&tmp);
-			redirect_node->right = create_ast_node((next_token->next->type));
+			redirect_node->right = create_file_node((next_token->next));
 			return (redirect_node);
 		}
 		*tokens = next_token;
