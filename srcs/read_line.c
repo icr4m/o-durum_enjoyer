@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 00:09:08 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 00:31:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	exec_readline(t_data *data)
 		command_readed = readline(full_prompt);
 		gc_free(full_prompt);
 		if (command_readed == NULL)
-			break ;
+			ft_exit(data, NULL);
 		if (ft_strlen(command_readed) > 0)
 			(add_history(command_readed), start_parsing(command_readed, data));
 		gc_free(command_readed);
