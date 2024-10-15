@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 00:06:04 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 11:50:28 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ char	*get_temp_filename(t_data *data)
 
 int	create_heredoc(char *delimiter, t_data *data)
 {
-	char	*filename;
-	int		fd;
-	char	*line;
+	const char	*real_delimiter = ft_strjoin(delimiter, "\n");
+	char		*filename;
+	int			fd;
+	char		*line;
 
 	filename = get_temp_filename(data);
 	if (!filename)
@@ -40,17 +41,13 @@ int	create_heredoc(char *delimiter, t_data *data)
 		return (-1);
 	while (1)
 	{
-		ft_putstr_fd("heredoc> ", 1);
+		ft_fprintf(STDERR_FILENO, "heredoc> ");
 		line = get_next_line(0);
-		if (!line || strcmp(line, delimiter) == 0)
-		{
-			free(line);
+		if (!line || strcmp(line, real_delimiter) == 0)
 			break ;
-		}
-		(write(fd, line, strlen(line)), write(fd, "\n", 1));
-		free(line);
+		write(fd, line, strlen(line));
+		// free(line);
 	}
-	close(fd);
 	fd = open(filename, O_RDONLY);
 	unlink(filename);
 	return (fd);

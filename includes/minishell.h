@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/14 15:19:30 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 12:18:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,12 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include "../includes/built_in.h"
 # include "../includes/exec.h"
 # include "../includes/ft_signal.h"
+# include "../includes/utils.h"
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line_bonus.h"
 # include "../libft/includes/libft.h"
 
 // VARIABLE GLOBALE
 extern volatile sig_atomic_t	g_signal_received;
-
-// READ LINE
-void							exec_readline(t_data *data);
-
-// EXIT
-
-void							free_and_exit(int code);
-void							handle_pipe_error(char *message, t_data *data);
-void							handle_malloc_error(char *message,
-									t_data *data);
-
-// UTILS
-
-char							**env_list_to_array(t_env *env_list);
-
-// DEBUG
-void							generate_ast_diagram(t_ast_node *root);
 
 #endif
