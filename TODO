@@ -1,0 +1,4 @@
+Syntax error
+expand
+heredoc le \n et message quand EOF
+close tous les fd

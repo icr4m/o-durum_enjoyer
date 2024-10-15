@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 11:50:28 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 12:44:18 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ int	create_heredoc(char *delimiter, t_data *data)
 		ft_fprintf(STDERR_FILENO, "heredoc> ");
 		line = get_next_line(0);
 		if (!line || strcmp(line, real_delimiter) == 0)
+		{
+			if (!line)
+				write(1, "\n", 1);
 			break ;
+		}
 		write(fd, line, strlen(line));
-		// free(line);
 	}
 	fd = open(filename, O_RDONLY);
 	unlink(filename);
@@ -95,6 +98,7 @@ int	handle_heredoc_out(t_ast_node *node, t_data *data)
 	}
 	execute_ast(node->left, data);
 	dup2(backup_stdout, STDOUT_FILENO);
+	printf("test\n");
 	(close(here_doc_fd), close(backup_stdout));
 	return (0);
 }
