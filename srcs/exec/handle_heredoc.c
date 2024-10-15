@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 16:10:47 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 18:20:03 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ char	*get_temp_filename(t_data *data)
 
 int	create_heredoc(char *delimiter, t_data *data)
 {
-	const char	*real_delimiter = ft_strjoin(delimiter, "\n");
-	char		*filename;
-	int			fd;
-	char		*line;
+	const char		*real_delimiter = ft_strjoin(delimiter, "\n");
+	static size_t	count_line;
+	char			*filename;
+	int				fd;
+	char			*line;
 
+	count_line = 1;
 	filename = get_temp_filename(data);
 	if (!filename)
 		return (-1);
@@ -46,10 +48,15 @@ int	create_heredoc(char *delimiter, t_data *data)
 		if (!line || strcmp(line, real_delimiter) == 0)
 		{
 			if (!line)
-				write(1, "\n", 1);
+				ft_fprintf(2,
+							"\nminishell: warning: here-document at line \
+%d delimited by end-of-file (wanted `%s')\n",
+							count_line,
+							delimiter);
 			break ;
 		}
 		write(fd, line, strlen(line));
+		count_line++;
 	}
 	close(fd);
 	fd = open(filename, O_RDONLY);
