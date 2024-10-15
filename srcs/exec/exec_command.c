@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/14 19:11:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 15:55:19 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void	exec_command_other(t_ast_node *node, t_data *data)
 			ft_fprintf(2, "minishell: %s: command not found\n", node->args[0]);
 			free_and_exit(127);
 		}
+		if (data->backup_stdout != -42)
+			close(data->backup_stdout);
+		if (data->backup_stdin != -42)
+			close(data->backup_stdin);
 		execve(path, node->args, envp);
 	}
 	(waitpid(pid, &status, 0), exit_status(status, data));

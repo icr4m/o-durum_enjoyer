@@ -1,3 +1,3 @@
 digraph AST {
-"0xd6dbb0" [label="CMD: git add ."];
+"0x4b7f7c0" [label="CMD: cat test"];
 }

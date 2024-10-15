@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:32:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/14 15:04:24 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 16:00:48 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,49 @@
 int	handle_redirection_in(t_ast_node *node, t_data *data)
 {
 	int		fd;
-	int		backup_stdin;
 	char	*filename;
 
 	filename = node->right->args[0];
 	fd = ft_open_infile(filename, O_RDONLY, data);
 	if (fd == -1)
 		return (-1);
-	backup_stdin = dup(STDIN_FILENO);
+	data->backup_stdin = dup(STDIN_FILENO);
 	if (dup2(fd, STDIN_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(close(fd), close(backup_stdin));
+		(close(fd), close(data->backup_stdin));
 		if (data->is_child == 1)
 			free_and_exit(-1);
 		return (0);
 	}
+	close(fd);
 	execute_ast(node->left, data);
-	dup2(backup_stdin, STDIN_FILENO);
-	(close(fd), close(backup_stdin));
+	dup2(data->backup_stdin, STDIN_FILENO);
+	close(data->backup_stdin);
 	return (0);
 }
 
 int	handle_redirection_out(t_ast_node *node, t_data *data)
 {
 	int		fd;
-	int		backup_stdout;
 	char	*filename;
 
 	filename = node->right->args[0];
-	fd = ft_open_outfile(filename, O_RDONLY, data);
+	fd = ft_open_outfile(filename, O_TRUNC, data);
 	if (fd == -1)
 		return (-1);
-	backup_stdout = dup(STDOUT_FILENO);
+	data->backup_stdout = dup(STDOUT_FILENO);
 	if (dup2(fd, STDOUT_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(close(fd), close(backup_stdout));
+		(close(fd), close(data->backup_stdout));
 		if (data->is_child == 1)
 			free_and_exit(-1);
 		return (0);
 	}
+	close(fd);
 	execute_ast(node->left, data);
-	dup2(backup_stdout, STDOUT_FILENO);
-	(close(fd), close(backup_stdout));
+	dup2(data->backup_stdout, STDOUT_FILENO);
+	close(data->backup_stdout);
 	return (0);
 }

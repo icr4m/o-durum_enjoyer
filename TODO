@@ -2,3 +2,4 @@ Syntax error
 expand
 heredoc le \n et message quand EOF
 close tous les fd
+structure d'exit en cas d'erreur/fail malloc/exit

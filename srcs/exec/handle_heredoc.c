@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 12:44:18 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 16:10:47 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	create_heredoc(char *delimiter, t_data *data)
 		}
 		write(fd, line, strlen(line));
 	}
+	close(fd);
 	fd = open(filename, O_RDONLY);
 	unlink(filename);
 	return (fd);
@@ -59,46 +60,45 @@ int	create_heredoc(char *delimiter, t_data *data)
 int	handle_heredoc_in(t_ast_node *node, t_data *data)
 {
 	int	here_doc_fd;
-	int	backup_stdin;
 
 	here_doc_fd = create_heredoc(node->right->args[0], data);
 	if (here_doc_fd == -1)
 		free_and_exit(-1);
-	backup_stdin = dup(STDIN_FILENO);
+	data->backup_stdin = dup(STDIN_FILENO);
 	if (dup2(here_doc_fd, STDIN_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(close(here_doc_fd), close(backup_stdin));
+		(close(here_doc_fd), close(data->backup_stdin));
 		if (data->is_child == 1)
 			free_and_exit(-1);
 		return (0);
 	}
+	close(here_doc_fd);
 	execute_ast(node->left, data);
-	dup2(backup_stdin, STDIN_FILENO);
-	(close(here_doc_fd), close(backup_stdin));
+	dup2(data->backup_stdin, STDIN_FILENO);
+	close(data->backup_stdin);
 	return (0);
 }
 
 int	handle_heredoc_out(t_ast_node *node, t_data *data)
 {
 	int	here_doc_fd;
-	int	backup_stdout;
 
 	here_doc_fd = ft_open_outfile(node->right->args[0], O_APPEND, data);
 	if (here_doc_fd == -1)
 		free_and_exit(-1);
-	backup_stdout = dup(STDOUT_FILENO);
+	data->backup_stdout = dup(STDOUT_FILENO);
 	if (dup2(here_doc_fd, STDOUT_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(close(here_doc_fd), close(backup_stdout));
+		(close(here_doc_fd), close(data->backup_stdout));
 		if (data->is_child == 1)
 			free_and_exit(-1);
 		return (0);
 	}
+	close(here_doc_fd);
 	execute_ast(node->left, data);
-	dup2(backup_stdout, STDOUT_FILENO);
-	printf("test\n");
-	(close(here_doc_fd), close(backup_stdout));
+	dup2(data->backup_stdout, STDOUT_FILENO);
+	close(data->backup_stdout);
 	return (0);
 }
