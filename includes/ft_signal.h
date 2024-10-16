@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:04:37 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/13 15:30:49 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/16 15:18:12 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 
 void	set_signal_child(void);
 void	set_signal_parent(void);
-void	set_signal_parent_exec(void);
+void	setup_heredoc_signals(void);
 
 // SIGNAL UTILS
 
 void	sigint_handler(int signum);
 void	handle_signal_parent(int num);
+void	heredoc_signal_handler(int signum);
+int		is_heredoc_interrupted(void);
 void	check_if_signal(t_data *data);
 
 #endif

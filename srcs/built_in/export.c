@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/14 15:01:47 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/16 16:10:03 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	update_existing_env(t_data *data, char *var_name, char *new_env)
 		{
 			current->env_var = ft_strdup(new_env);
 			if (!current->env_var)
-				return (0);
+				handle_malloc_error("export", data);
 			return (1);
 		}
 		current = current->next;
@@ -87,10 +87,10 @@ static t_env	*add_var_to_end(t_data *data, char *content)
 
 	new_node = gc_malloc(sizeof(t_env));
 	if (!new_node)
-		return (NULL);
+		handle_malloc_error("export", data);
 	new_node->env_var = ft_strdup(content);
 	if (!new_node->env_var)
-		return (NULL);
+		handle_malloc_error("export", data);
 	new_node->next = NULL;
 	if (!data->env)
 	{

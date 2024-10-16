@@ -2,6 +2,5 @@ Syntax error
 expand
 fix leak parsing
 
-!close pas here_doc quand ctrl c
-heredoc le \n et message quand EOF
+signaux heredoc
 structure d'exit en cas d'erreur/fail malloc/exit   

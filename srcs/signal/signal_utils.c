@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 09:46:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/13 15:30:08 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/16 15:41:53 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ void	check_if_signal(t_data *data)
 	if (data->status_code == 128 + SIGSEGV)
 		ft_putstr_fd("Segmentation fault (core dumped)\n", STDERR_FILENO);
 	g_signal_received = 0;
+}
+
+void	heredoc_signal_handler(int signum)
+{
+	if (signum == SIGINT)
+	{
+		g_signal_received = 1;
+		write(STDOUT_FILENO, "\n", 1);
+	}
 }

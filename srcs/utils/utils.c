@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:19:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 15:49:32 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/16 16:11:04 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	init_minishell(t_data *data, char **envp)
 	data->is_child = 0;
 	data->backup_stdin = -42;
 	data->backup_stdout = -42;
-	data->env = init_env(envp);
+	data->env = init_env(envp, data);
 	data->ast_node = NULL;
 }

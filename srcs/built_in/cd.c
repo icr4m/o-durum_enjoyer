@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/13 18:16:17 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/16 16:08:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	change_old_pwd_in_env(t_data *data, char *old_pwd)
 		if (env->env_var)
 			gc_free(env->env_var);
 		env->env_var = ft_strjoin("OLDPWD=", old_pwd);
+		if (!env->env_var)
+			handle_malloc_error("pwd", data);
 	}
 }
 
@@ -75,7 +77,7 @@ void	change_pwd_in_env(t_data *data)
 
 	old_pwd = ft_strdup(ft_getenv_content(data, "PWD"));
 	if (!old_pwd)
-		return ;
+		handle_malloc_error("pwd", data);
 	env = search_in_env(data, "PWD");
 	if (!env)
 		return ;
@@ -87,6 +89,8 @@ void	change_pwd_in_env(t_data *data)
 			if (env->env_var)
 				gc_free(env->env_var);
 			env->env_var = ft_strjoin("PWD=", new_pwd);
+			if (!env->env_var)
+				handle_malloc_error("PWD", data);
 			gc_free(new_pwd);
 		}
 	}

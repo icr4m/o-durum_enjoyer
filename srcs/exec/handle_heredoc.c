@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 18:20:03 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/16 16:20:36 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ char	*get_temp_filename(t_data *data)
 
 int	create_heredoc(char *delimiter, t_data *data)
 {
-	const char		*real_delimiter = ft_strjoin(delimiter, "\n");
 	static size_t	count_line;
+	const char		*real_delimiter = ft_strjoin(delimiter, "\n");
 	char			*filename;
 	int				fd;
 	char			*line;
 
 	count_line = 1;
 	filename = get_temp_filename(data);
+	if (!real_delimiter)
+		handle_malloc_error("heredoc", data);
 	if (!filename)
 		return (-1);
 	fd = ft_open_outfile(filename, O_APPEND, data);
@@ -43,11 +45,12 @@ int	create_heredoc(char *delimiter, t_data *data)
 		return (-1);
 	while (1)
 	{
+		setup_heredoc_signals();
 		ft_fprintf(STDERR_FILENO, "heredoc> ");
 		line = get_next_line(0);
-		if (!line || strcmp(line, real_delimiter) == 0)
+		if (!line || strcmp(line, real_delimiter) == 0 || g_signal_received)
 		{
-			if (!line)
+			if (!line && !g_signal_received)
 				ft_fprintf(2,
 							"\nminishell: warning: here-document at line \
 %d delimited by end-of-file (wanted `%s')\n",
@@ -58,7 +61,7 @@ int	create_heredoc(char *delimiter, t_data *data)
 		write(fd, line, strlen(line));
 		count_line++;
 	}
-	close(fd);
+	ft_close(fd);
 	fd = open(filename, O_RDONLY);
 	unlink(filename);
 	return (fd);
@@ -75,15 +78,15 @@ int	handle_heredoc_in(t_ast_node *node, t_data *data)
 	if (dup2(here_doc_fd, STDIN_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(close(here_doc_fd), close(data->backup_stdin));
+		(ft_close(here_doc_fd), ft_close(data->backup_stdin));
 		if (data->is_child == 1)
 			free_and_exit(-1);
 		return (0);
 	}
-	close(here_doc_fd);
+	ft_close(here_doc_fd);
 	execute_ast(node->left, data);
 	dup2(data->backup_stdin, STDIN_FILENO);
-	close(data->backup_stdin);
+	ft_close(data->backup_stdin);
 	return (0);
 }
 
@@ -98,14 +101,14 @@ int	handle_heredoc_out(t_ast_node *node, t_data *data)
 	if (dup2(here_doc_fd, STDOUT_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(close(here_doc_fd), close(data->backup_stdout));
+		(ft_close(here_doc_fd), ft_close(data->backup_stdout));
 		if (data->is_child == 1)
 			free_and_exit(-1);
 		return (0);
 	}
-	close(here_doc_fd);
+	ft_close(here_doc_fd);
 	execute_ast(node->left, data);
 	dup2(data->backup_stdout, STDOUT_FILENO);
-	close(data->backup_stdout);
+	ft_close(data->backup_stdout);
 	return (0);
 }
