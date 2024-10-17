@@ -1,3 +1,7 @@
 digraph AST {
-"0x2859210" [label="CMD: cear"];
+"0x1124940" [label="REDIR: "];
+"0x1124940" -> "0x11249a0" [label="L"];
+"0x11249a0" [label="CMD: echo oue"];
+"0x1124940" -> "0x1124af0" [label="R"];
+"0x1124af0" [label="CMD: test"];
 }

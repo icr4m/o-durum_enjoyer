@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/17 12:55:28 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 15:57:41 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	check_directory(t_ast_node *node)
 
 void	exec_command_other(t_ast_node *node, t_data *data)
 {
-	char	*path;
-	char	**envp;
 	pid_t	pid;
 	int		status;
+	char	*path;
+	char	**envp;
 
 	pid = ft_fork(data);
 	if (pid == 0)

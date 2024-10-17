@@ -6,13 +6,13 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:03:16 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/17 15:23:15 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 15:33:02 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	update_SHLVL(t_data *data)
+static void	update_shlvl(t_data *data)
 {
 	int		shlvl;
 	char	*str_shlvl;
@@ -63,7 +63,7 @@ void	init_minishell(t_data *data, char **envp)
 	data->backup_stdin = -42;
 	data->backup_stdout = -42;
 	data->env = init_env(envp, data);
-	update_SHLVL(data);
+	update_shlvl(data);
 	init_pwd(data);
 	init_underscore(data);
 	data->ast_node = NULL;

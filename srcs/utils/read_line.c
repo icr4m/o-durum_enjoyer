@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 18:11:08 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 16:24:51 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	exec_readline(t_data *data)
 			continue ;
 		}
 		prompt = getcwd(NULL, 0);
+		if (!prompt)
+			handle_malloc_error("readline", data);
 		full_prompt = ft_strjoin3(BBLUE "→ ", prompt,
 				BRED " minishell> " WHITE);
 		gc_free(prompt);

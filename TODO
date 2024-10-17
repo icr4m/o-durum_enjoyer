@@ -4,4 +4,3 @@ fix leak parsing
 
 signaux heredoc
 structure d'exit en cas d'erreur/fail malloc/exit
-INT && ./minishell
