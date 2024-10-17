@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 12:18:17 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/15 15:58:46 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ une directive qui permet d'accéder à un ensemble plus large et plus moderne
 # include "../includes/garbage_collector.h"
 # include "../includes/lexing.h"
 # include "../includes/struct.h"
+# include "../includes/syntax.h"
 //
 # include "../includes/built_in.h"
 # include "../includes/exec.h"

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   syntax.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 16:06:12 by erwfonta         ###   ########.fr       */
+/*   Created: 2024/10/15 15:31:44 by erwfonta          #+#    #+#             */
+/*   Updated: 2024/10/15 16:03:20 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef SYNTAX_H
+# define SYNTAX_H
 
-int	main(int ac, char **av, char **envp)
-{
-	// t_data	data;
-	(void)ac;
-	(void)envp;
-	// printf("%s", av[1]);
-	printf("%d", has_unclosed_quote(av[1]));
-	// init_minishell(&data, envp);
-	// exec_readline(&data);
-	// free_and_exit(data.status_code);
-}
+# include "minishell.h"
+
+// syntax function
+void	is_syntax_error(const char *command_readed);
+int		has_unclosed_quote(const char *command_readed);
+
+#endif
