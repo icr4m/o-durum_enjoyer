@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:21:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 16:26:33 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 12:55:28 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 void	check_directory(t_ast_node *node)
 {
-	int			stat_int;
 	struct stat	sa;
 
-	stat_int = stat(node->args[0], &sa);
-	if (stat_int == 0 && S_ISDIR(sa.st_mode))
+	if (stat(node->args[0], &sa) == 0)
 	{
-		ft_fprintf(2, "minishell: %s: Is a directory\n", node->args[0]);
-		free_and_exit(126);
+		if (S_ISDIR(sa.st_mode))
+		{
+			ft_fprintf(2, "minishell: %s: Is a directory\n", node->args[0]);
+			free_and_exit(126);
+		}
+		if (!(sa.st_mode & S_IXUSR))
+		{
+			ft_fprintf(2, "minishell: %s: Permission denied\n", node->args[0]);
+			free_and_exit(126);
+		}
 	}
-	if (!ft_access_stat(node->args[0]))
-		return ;
-	if (errno == EACCES)
+	else
 	{
-		ft_fprintf(2, "minshell: %s: Permission denied\n", node->args[0]);
-		free_and_exit(126);
+		ft_fprintf(2, "minishell: %s: No such file or directory\n",
+			node->args[0]);
+		free_and_exit(127);
 	}
-	ft_fprintf(2, "minishell: %s: No such file or directory\n", node->args[0]);
-	free_and_exit(127);
 }
 
 void	exec_command_other(t_ast_node *node, t_data *data)
@@ -44,22 +47,32 @@ void	exec_command_other(t_ast_node *node, t_data *data)
 	pid = ft_fork(data);
 	if (pid == 0)
 	{
+		envp = env_list_to_array(data->env, data);
 		if (ft_strchr(node->args[0], '/'))
-			check_directory(node);
-		envp = env_list_to_array(data->env);
-		path = find_path(node->args[0], data);
-		if (!path)
 		{
-			ft_fprintf(2, "minishell: %s: command not found\n", node->args[0]);
-			free_and_exit(127);
+			check_directory(node);
+			path = node->args[0];
+		}
+		else
+		{
+			path = find_path(node->args[0], data);
+			if (!path)
+			{
+				ft_fprintf(2, "minishell: %s: command not found\n",
+					node->args[0]);
+				free_and_exit(127);
+			}
 		}
 		if (data->backup_stdout != -42)
 			close(data->backup_stdout);
 		if (data->backup_stdin != -42)
 			close(data->backup_stdin);
 		execve(path, node->args, envp);
+		perror("execve");
+		free_and_exit(126);
 	}
-	(waitpid(pid, &status, 0), exit_status(status, data));
+	waitpid(pid, &status, 0);
+	exit_status(status, data);
 }
 
 void	exec_command(t_ast_node *node, t_data *data)

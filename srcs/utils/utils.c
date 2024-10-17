@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:19:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 16:11:04 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 15:03:37 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	count_env_list(t_env *env_list)
 	return (count);
 }
 
-char	**env_list_to_array(t_env *env_list)
+char	**env_list_to_array(t_env *env_list, t_data *data)
 {
 	t_env	*current;
 	char	**env_array;
@@ -36,7 +36,7 @@ char	**env_list_to_array(t_env *env_list)
 	env_array = (char **)gc_malloc(sizeof(char *) * (count_env_list(env_list)
 				+ 1));
 	if (!env_array)
-		return (NULL);
+		handle_malloc_error("env", data);
 	current = env_list;
 	i = 0;
 	while (current)
@@ -54,14 +54,4 @@ char	**env_list_to_array(t_env *env_list)
 	}
 	env_array[i] = NULL;
 	return (env_array);
-}
-
-void	init_minishell(t_data *data, char **envp)
-{
-	data->status_code = 0;
-	data->is_child = 0;
-	data->backup_stdin = -42;
-	data->backup_stdout = -42;
-	data->env = init_env(envp, data);
-	data->ast_node = NULL;
 }

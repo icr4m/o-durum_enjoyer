@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:49:56 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 16:11:29 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 13:05:22 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		ft_env(t_data *data, char **args);
 
 // EXPORT
 
+t_env	*add_var_to_end(t_data *data, char *content);
+int		update_existing_env(t_data *data, char *var_name, char *new_env);
 int		ft_export(t_data *data, char **args);
 
 // ECHO

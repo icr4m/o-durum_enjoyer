@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:39:12 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 16:10:03 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/17 13:05:17 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	is_a_good_variable(char *var)
 	return (1);
 }
 
-static int	update_existing_env(t_data *data, char *var_name, char *new_env)
+int	update_existing_env(t_data *data, char *var_name, char *new_env)
 {
 	t_env	*current;
 	size_t	len_var;
@@ -80,7 +80,7 @@ static int	update_existing_env(t_data *data, char *var_name, char *new_env)
 	return (0);
 }
 
-static t_env	*add_var_to_end(t_data *data, char *content)
+t_env	*add_var_to_end(t_data *data, char *content)
 {
 	t_env	*new_node;
 	t_env	*current;
