@@ -1,25 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   syntax_checker_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 00:15:04 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 16:06:12 by erwfonta         ###   ########.fr       */
+/*   Created: 2024/10/14 15:04:09 by erwfonta          #+#    #+#             */
+/*   Updated: 2024/10/15 15:10:01 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
-{
-	// t_data	data;
-	(void)ac;
-	(void)envp;
-	// printf("%s", av[1]);
-	printf("%d", has_unclosed_quote(av[1]));
-	// init_minishell(&data, envp);
-	// exec_readline(&data);
-	// free_and_exit(data.status_code);
-}
