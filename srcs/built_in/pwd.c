@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:48:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/09/25 19:07:00 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/20 21:53:30 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char	*ft_pwd(t_data *data, int get_or_print)
 	else if (get_or_print == 0)
 		return (temp);
 	free(temp);
+	data->status_code = 0;
 	return (NULL);
 }

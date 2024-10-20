@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:27:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/17 16:24:51 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/20 21:59:43 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	start_parsing(char *command_readed, t_data *data)
 	ast_root = parse_tokens(&token);
 	generate_ast_diagram(ast_root);
 	execute_ast(ast_root, data);
-	printf("code: %d\n", data->status_code);
+	// printf("code: %d\n", data->status_code);
 }
 
 void	exec_readline(t_data *data)

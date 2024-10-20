@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:40:40 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/14 14:56:50 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/20 21:51:31 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_env(t_data *data, char **args)
 	if (args[1] != NULL)
 	{
 		ft_fprintf(2, "minishell: %s: No such file or directory\n", args[1]);
-		return (EXIT_FAILURE);
+		return (data->status_code = 127);
 	}
 	print_env(data, 1);
-	return (EXIT_SUCCESS);
+	return (data->status_code = 0);
 }
 
 void	print_env(t_data *data, int cas)
