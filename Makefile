@@ -40,7 +40,7 @@ ALL_SRCS += $(SRCS_PARSING)
 ALL_SRCS += $(SRCS_SYNTAX)
 ALL_SRCS +=	$(MAIN)
 
-INCS = $(addprefix includes/, syntax.h lexing.h built_in.h exec.h ft_signal.h garbage_collector.h minishell.h struct.h utils.h)
+INCS = $(addprefix includes/, lexing.h built_in.h  exec.h ft_signal.h garbage_collector.h minishell.h struct.h utils.h)
 INCS_LIBFT = $(addprefix libft/includes/, ft_printf.h get_next_line_bonus.h libft.h)
 
 ALL_INCS += $(INCS)

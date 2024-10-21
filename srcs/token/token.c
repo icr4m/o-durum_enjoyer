@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-t_token	*tokenization_input(char *input)
+t_token	*tokenization_input(char *input, t_data *data)
 {
 	t_token	*head;
 	char	*current;
@@ -27,7 +27,7 @@ t_token	*tokenization_input(char *input)
 		else if (*current == '>' || *current == '<')
 			current = handle_redir(&head, current);
 		else if (*current == '$')
-			current = handle_env_var(&head, current);
+			current = handle_env_var(&head, current, data);
 		else if (*current)
 			current = handle_word(&head, current);
 	}

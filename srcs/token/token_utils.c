@@ -69,7 +69,7 @@ char	*handle_word(t_token **head, char *str)
 	}
 	len = str - start;
 	if (len > 0)
-		add_token_to_list(head, create_token(ft_strndup(start, len),
+		add_token_to_list(head, create_token(ft_strndup(start + 1, len - 2),
 				TOKEN_WORD));
 	return (str);
 }

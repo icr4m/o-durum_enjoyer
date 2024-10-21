@@ -18,8 +18,8 @@ void	start_parsing(char *command_readed, t_data *data)
 	t_ast_node	*ast_root;
 
 	(void)data;
-	token = tokenization_input(command_readed);
-	// display_tokens(token);
+	token = tokenization_input(command_readed, data);
+	display_tokens(token);
 	ast_root = parse_tokens(&token);
 	// generate_ast_diagram(ast_root);
 	check_here_doc(ast_root, data);

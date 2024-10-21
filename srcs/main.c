@@ -14,12 +14,11 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	// t_data	data;
+	t_data	data;
+
 	(void)ac;
-	(void)envp;
-	// printf("%s", av[1]);
-	printf("%d", has_unclosed_quote(av[1]));
-	// init_minishell(&data, envp);
-	// exec_readline(&data);
-	// free_and_exit(data.status_code);
+	(void)av;
+	init_minishell(&data, envp);
+	exec_readline(&data);
+	free_and_exit(data.status_code);
 }
