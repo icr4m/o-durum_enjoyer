@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:18:20 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/08 11:21:30 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/21 11:33:00 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	pipe_exec(t_ast_node *node, t_data *data)
 		(execute_ast(node->right, data), free_and_exit(data->status_code));
 	}
 	(ft_close(fd[0]), ft_close(fd[1]));
-	(waitpid(pid[0], &status, 0), exit_status(status, data));
+	waitpid(pid[0], &status, 0);
 	(waitpid(pid[1], &status, 0), exit_status(status, data));
 }
