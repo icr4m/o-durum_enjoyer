@@ -1,5 +1,3 @@
 Syntax error
 expand
 fix leak parsing
-
-"quit core dumped" quand ctrl+\ dans plusieurs enfants
