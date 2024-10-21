@@ -15,6 +15,7 @@
 
 # include "minishell.h"
 # include "stddef.h"
+# include "struct.h"
 
 /**
  * @brief token for each possible case
@@ -57,13 +58,14 @@ t_token					*create_token(char *value, t_token_type type);
 void					add_token_to_list(t_token **head, t_token *new_token);
 
 // tokenizer
-t_token					*tokenization_input(char *input);
+t_token					*tokenization_input(char *input, t_data *data);
 
 // token utils
 char					*skip_spaces(char *str);
 char					*handle_pipe(t_token **head, char *str);
 char					*handle_redir(t_token **head, char *str);
-char					*handle_env_var(t_token **head, char *str);
+char					*handle_env_var(t_token **head, char *str,
+							t_data *data);
 char					*handle_word(t_token **head, char *str);
 void					quote_status(char c, int *in_quote, char *quote_char);
 char					*ft_strndup(const char *s1, size_t n);

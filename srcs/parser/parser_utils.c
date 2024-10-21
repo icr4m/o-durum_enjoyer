@@ -52,7 +52,7 @@ int	count_cmd_args(t_token *token)
 void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 {
 	int		i;
-	t_token	*tmp;
+	// t_token	*tmp;
 
 	i = 0;
 	while (i < arg_count && *token)
@@ -66,7 +66,7 @@ void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 				// cmd_node->args = NULL;
 				return ;
 		}
-		tmp = *token;
+		// tmp = *token;
 		*token = (*token)->next;
 		i++;
 	}

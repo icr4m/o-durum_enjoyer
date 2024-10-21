@@ -14,9 +14,15 @@
 # define SYNTAX_H
 
 # include "minishell.h"
+# include "struct.h"
 
 // syntax function
-void	is_syntax_error(const char *command_readed);
-int		has_unclosed_quote(const char *command_readed);
+void	is_syntax_error(char *command_readed);
+int		has_unclosed_quote(char *command_readed);
+
+// syntax utils
+int		ft_isspace(int c);
+void	update_quote_counts(char c, int *d_quote, int *s_quote);
+int		has_logical_operator(char *command_readed);
 
 #endif

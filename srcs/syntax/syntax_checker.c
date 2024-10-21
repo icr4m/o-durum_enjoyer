@@ -20,7 +20,7 @@
 - has logical operator -> check if && or || is there
 */
 
-int	has_unclosed_quote(const char *command_readed)
+int	has_unclosed_quote(char *command_readed)
 {
 	int		in_quote_status;
 	char	in_quote_char;
@@ -46,7 +46,21 @@ int	has_unclosed_quote(const char *command_readed)
 	return (in_quote_status);
 }
 
-int	has_invalid_redirect(const char *command_readed)
+int	is_invalid_arg_redirect(char *input)
+{
+	char	*start;
+
+	start = input;
+	input++;
+	if (start == input)
+		input++;
+	input = skip_spaces(input);
+	if (*input == '\0' || *input == '|' || *input == '>' || *input == '<')
+		return (1);
+	return (0);
+}
+
+int	has_invalid_redirect(char *command_readed)
 {
 	int	d_quote;
 	int	s_quote;
@@ -56,47 +70,53 @@ int	has_invalid_redirect(const char *command_readed)
 	while (*command_readed)
 	{
 		update_quote_counts(*command_readed, &d_quote, &s_quote);
+		if (!(d_quote % 2) && !(s_quote % 2) && ((*command_readed == '<')
+				|| (*command_readed == '>')))
+			if (is_invalid_arg_redirect(command_readed))
+			{
+				return (1);
+			}
+		command_readed++;
 	}
-}
-
-int	is_invalid_arg_redirect(void)
-{
-	
-}
-
-void	update_quote_counts(char c, int *d_quote, int *s_quote)
-{
-	if (c == '"')
-		(*d_quote)++;
-	else if (c == '\'')
-		(*s_quote)++;
+	return (0);
 }
 
 int	has_misplaced_operator(char *command_readed)
 {
-}
+	int	expect_next;
+	int	d_quote;
+	int	s_quote;
 
-int	has_logical_operator(char *command_readed)
-{
+	d_quote = 0;
+	s_quote = 0;
+	expect_next = 0;
+	if (*command_readed == '|')
+		return (1);
 	while (*command_readed)
 	{
-		if (*command_readed == '&' || (*command_readed == '|'
-				&& *(command_readed + 1) == '|'))
+		update_quote_counts(*command_readed, &d_quote, &s_quote);
+		if (*command_readed == '|' && !(s_quote % 2) && !(d_quote % 2))
 		{
-			return (1);
+			if (expect_next)
+				return (1);
+			expect_next = 1;
 		}
+		else if (!ft_isspace(*command_readed))
+			expect_next = 0;
 		command_readed++;
 	}
-	return (1);
+	if (expect_next)
+		return (1);
+	return (0);
 }
 
-void	is_syntax_error(const char *command_readed)
+void	is_syntax_error(char *command_readed)
 {
 	if (has_unclosed_quote(command_readed))
 	{
 		printf("ERROR QUOTE");
 	}
-	else_if(has_invalid_redirect(command_readed))
+	else if (has_invalid_redirect(command_readed))
 	{
 		printf("INVALID REDIRECT");
 	}
@@ -104,7 +124,7 @@ void	is_syntax_error(const char *command_readed)
 	{
 		printf("MISPLACED OPERATOR");
 	}
-	else if (has_logical_operator)
+	else if (has_logical_operator(command_readed))
 	{
 		printf("Logical operator not supported");
 	}
