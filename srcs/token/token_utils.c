@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:08 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/08 18:09:44 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:48:10 by rsk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ char	*handle_word(t_token **head, char *str)
 	while (*str)
 	{
 		quote_status(*str, &in_quote, &quote_char);
-		if (!in_quote && ft_strchr(" \t<>|$", *str))
+		if (!in_quote && ft_strchr(" \t<>|", *str))
 			break ;
 		str++;
 	}
 	len = str - start;
 	if (len > 0)
-		add_token_to_list(head, create_token(ft_strndup(start + 1, len - 2),
-				TOKEN_WORD));
+		add_token_to_list(head, create_token(ft_strndup(start, len),
+					TOKEN_WORD));
 	return (str);
 }
 

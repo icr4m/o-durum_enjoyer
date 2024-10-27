@@ -1,3 +1,3 @@
 digraph AST {
-"0x6101488141f0" [label="CMD: i d "];
+"0x560a86181220" [label="CMD: echo '/home/rsk'"];
 }
