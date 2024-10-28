@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:49:52 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/14 15:08:15 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:46:46 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ t_ast_node	*create_file_node(t_token *token)
 {
 	t_ast_node	*node;
 
-	node = malloc(sizeof(t_ast_node));
+	node = gc_malloc(sizeof(t_ast_node));
 	if (!node)
 		return (NULL);
 	node->type = token->type;
-	node->args = malloc(sizeof(char *) * 2);
+	node->args = gc_malloc(sizeof(char *) * 2);
 	if (!node->args)
 		return (NULL);
 	node->args[0] = token->value;

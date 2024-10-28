@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/10/28 15:21:48 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:31:21 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	start_parsing(char *command_readed, t_data *data)
 	t_ast_node	*ast_root;
 
 	(void)data;
-	if (is_syntax_error(command_readed, data))
-	{
-		free_and_exit(data->status_code);
-	}
+	// if (is_syntax_error(command_readed, data))
+	// {
+	// 	free_and_exit(data->status_code);
+	// }
 	token = tokenization_input(command_readed);
 	// display_tokens(token);
 	ast_root = parse_tokens(&token);
+	expand_variables_in_node(ast_root, data);
 	// generate_ast_diagram(ast_root);
 	check_here_doc(ast_root, data);
 	execute_ast(ast_root, data);

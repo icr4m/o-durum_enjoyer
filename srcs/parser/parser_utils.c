@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/28 13:54:00 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:43:42 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	count_cmd_args(t_token *token)
 
 void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 {
-	int		i;
-	// t_token	*tmp;
+	int	i;
 
 	i = 0;
 	while (i < arg_count && *token)
@@ -62,35 +61,13 @@ void	fill_cmd_args(t_ast_node *cmd_node, t_token **token, int arg_count)
 		if (!cmd_node->args[i])
 		{
 			while (i > 0)
-				// 	gc_free(cmd_node->args[--i]);
-				// gc_free(cmd_node->args);
-				// cmd_node->args = NULL;
-				return ;
+				gc_free(cmd_node->args[--i]);
+			gc_free(cmd_node->args);
+			cmd_node->args = NULL;
+			return ;
 		}
-		// tmp = *token;
 		*token = (*token)->next;
 		i++;
 	}
 	cmd_node->args[i] = NULL;
 }
-
-// void	free_ast(t_ast_node *node)
-// {
-// 	int	i;
-
-// 	if (!node)
-// 		return ;
-// 	if (node->args)
-// 	{
-// 		i = 0;
-// 		while (node->args[i])
-// 		{
-// 			gc_free(node->args[i]);
-// 			i++;
-// 		}
-// 		gc_free(node->args);
-// 	}
-// 	free_ast(node->left);
-// 	free_ast(node->right);
-// 	gc_free(node);
-// }

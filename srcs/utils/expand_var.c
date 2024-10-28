@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 10:59:05 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/27 11:00:44 by rsk              ###   ########.fr       */
+/*   Updated: 2024/10/28 15:44:35 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static char	*get_var_value(char *str, int start, int i, t_data *data)
 	var_value = ft_getenv_content(data, var_name);
 	if (!var_value)
 		var_value = "";
-	free(var_name);
 	return (var_value);
 }
 
@@ -46,7 +45,6 @@ static char	*expand_var(char *str, int start, int *end, t_data *data)
 	if (!var_value)
 		return (NULL);
 	result = ft_strjoin3(ft_substr(str, 0, start), var_value, str + *end);
-	free(str);
 	return (result);
 }
 
@@ -71,7 +69,6 @@ static char	*remove_quotes(char *str)
 			result[j++] = str[i++];
 	}
 	result[j] = '\0';
-	free(str);
 	return (result);
 }
 
