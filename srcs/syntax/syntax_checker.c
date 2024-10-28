@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:03:57 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/28 15:22:13 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:59:07 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ int	has_unclosed_quote(char *command_readed)
 	in_quote_char = '\0';
 	while (*command_readed)
 	{
-		if (*command_readed == '"' || *command_readed == '\'')
+		if ((*command_readed == '"' || *command_readed == '\'')
+				&& !in_quote_status)
 		{
 			in_quote_status = 1;
 			in_quote_char = *command_readed;
-			command_readed++;
 		}
-		if (in_quote_status == 1 && *command_readed == in_quote_char
-			&& (*command_readed == '"' || *command_readed == '\''))
+		else if (in_quote_status && *command_readed == in_quote_char)
 		{
 			in_quote_status = 0;
 			in_quote_char = '\0';
@@ -106,6 +105,7 @@ int	is_syntax_error(char *command_readed, t_data *data)
 {
 	if (has_unclosed_quote(command_readed))
 	{
+		printf("%d", has_unclosed_quote(command_readed));
 		data->status_code = 2;
 		ft_fprintf(2, "ERROR QUOTE");
 		return (1);
