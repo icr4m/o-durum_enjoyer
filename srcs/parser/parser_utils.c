@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/14 15:06:51 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/28 13:54:00 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_ast_node	*create_ast_node(t_token_type type)
 	node = gc_malloc(sizeof(t_ast_node));
 	if (!node)
 		return (NULL);
+	node->heredoc_fd = -1;
 	node->type = type;
 	node->args = NULL;
 	node->left = NULL;

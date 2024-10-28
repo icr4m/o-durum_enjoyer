@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/14 15:26:29 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/28 13:45:54 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_token
 
 typedef struct s_ast_node
 {
+	int					heredoc_fd;
 	t_token_type		type;
 	char				**args;
 	struct s_ast_node	*left;

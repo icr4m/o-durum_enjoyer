@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 00:06:38 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/28 14:11:11 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	exit_status(int status, t_data *data);
 int		ft_fork(t_data *data);
 
 // HEREDOC
-
-int		handle_heredoc_in(t_ast_node *node, t_data *data);
+char	*get_temp_filename(t_data *data);
+int		create_heredoc(char *delimiter, t_data *data);
 int		handle_heredoc_out(t_ast_node *node, t_data *data);
 
 // PIPEX EXEC
@@ -54,5 +54,8 @@ void	pipe_exec(t_ast_node *node, t_data *data);
 
 int		handle_redirection_in(t_ast_node *node, t_data *data);
 int		handle_redirection_out(t_ast_node *node, t_data *data);
+
+// CHECK HERE DOC
+void	check_here_doc(t_ast_node *node, t_data *data);
 
 #endif
