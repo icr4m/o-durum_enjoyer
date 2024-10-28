@@ -1,3 +1,11 @@
 digraph AST {
-"0x560a86181220" [label="CMD: echo '/home/rsk'"];
+"0x55d2afb91220" [label="|"];
+"0x55d2afb91220" -> "0x55d2afb91280" [label="L"];
+"0x55d2afb91280" [label="CMD: echo test"];
+"0x55d2afb91220" -> "0x55d2afb913d0" [label="R"];
+"0x55d2afb913d0" [label="REDIR: "];
+"0x55d2afb913d0" -> "0x55d2afb91430" [label="L"];
+"0x55d2afb91430" [label="CMD: cat"];
+"0x55d2afb913d0" -> "0x55d2afb91530" [label="R"];
+"0x55d2afb91530" [label="CMD: lim"];
 }
