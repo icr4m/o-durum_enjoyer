@@ -6,7 +6,7 @@ SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.
 SRCS_SIG = $(addprefix srcs/signal/, signal_handler.c signal_utils.c)
 SRCS_TOKEN = $(addprefix srcs/token/, token.c token_list.c token_utils.c token_utils2.c debug_token.c)
 SRCS_PARSING = $(addprefix srcs/parser/, parser.c parser_utils.c)
-SRCS_UTILS = $(addprefix srcs/utils/, ast_diagram.c exit.c read_line.c utils.c init_minishell.c)
+SRCS_UTILS = $(addprefix srcs/utils/, ast_diagram.c exit.c read_line.c utils.c init_minishell.c expand_var.c expand_var_utils.c)
 SRCS_SYNTAX = $(addprefix srcs/syntax/, syntax_checker.c syntax_checker_utils.c)
 MAIN = $(addprefix srcs/, main.c)
 

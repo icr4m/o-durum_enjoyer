@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:12:32 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/17 15:04:25 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/28 13:52:33 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 // INIT MINISHELL
 
 void	init_minishell(t_data *data, char **envp);
+
+// EXPAND VAR
+void	expand_variables_in_node(t_ast_node *node, t_data *data);
+int		is_valid_var_char(char c);
+char	*process_quotes(char *result, char *str, int *i, int *j);
+void	handle_quote(char c, char *quote);
 
 // READ LINE
 void	exec_readline(t_data *data);

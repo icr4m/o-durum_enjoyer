@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsk <rsk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 11:00:07 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/27 11:00:51 by rsk              ###   ########.fr       */
+/*   Updated: 2024/10/28 13:53:00 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 int	is_valid_var_char(char c)
 {
