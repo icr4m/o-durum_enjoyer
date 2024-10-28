@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:31:44 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/15 16:03:20 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:21:57 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "struct.h"
 
 // syntax function
-void	is_syntax_error(char *command_readed);
+int		is_syntax_error(char *command_readed, t_data *data);
 int		has_unclosed_quote(char *command_readed);
 
 // syntax utils

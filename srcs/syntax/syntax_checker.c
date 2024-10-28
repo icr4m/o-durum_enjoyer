@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:03:57 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/28 14:47:07 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:22:13 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,26 +102,31 @@ int	has_misplaced_operator(char *command_readed)
 	return (0);
 }
 
-void	is_syntax_error(char *command_readed, t_data *data)
+int	is_syntax_error(char *command_readed, t_data *data)
 {
 	if (has_unclosed_quote(command_readed))
 	{
 		data->status_code = 2;
-		printf("ERROR QUOTE");
+		ft_fprintf(2, "ERROR QUOTE");
+		return (1);
 	}
 	else if (has_invalid_redirect(command_readed))
 	{
 		data->status_code = 2;
-		printf("INVALID REDIRECT");
+		ft_fprintf(2, "INVALID REDIRECT");
+		return (1);
 	}
 	else if (has_misplaced_operator(command_readed))
 	{
 		data->status_code = 2;
-		printf("MISPLACED OPERATOR");
+		ft_fprintf(2, "MISPLACED OPERATOR");
+		return (1);
 	}
 	else if (has_logical_operator(command_readed))
 	{
 		data->status_code = 2;
-		printf("Logical operator not supported");
+		ft_fprintf(2, "Logical operator not supported");
+		return (1);
 	}
+	return (0);
 }
