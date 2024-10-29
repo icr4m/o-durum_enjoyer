@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/10/28 15:57:01 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:59:10 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	start_parsing(char *command_readed, t_data *data)
 	(void)data;
 	if (is_syntax_error(command_readed, data))
 	{
-		free_and_exit(data->status_code);
+		return ;
 	}
 	token = tokenization_input(command_readed);
 	// display_tokens(token);
