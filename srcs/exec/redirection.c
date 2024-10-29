@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:32:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 16:15:30 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/29 12:09:50 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	handle_redirection_in(t_ast_node *node, t_data *data)
 	filename = node->right->args[0];
 	fd = ft_open_infile(filename, O_RDONLY, data);
 	if (fd == -1)
+	{
+		ft_fprintf(2, "minishell: %s: No such file or directory\n", filename);
 		return (-1);
+	}
 	data->backup_stdin = dup(STDIN_FILENO);
 	if (dup2(fd, STDIN_FILENO) == -1)
 	{
