@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/28 18:36:12 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/29 16:13:07 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ static int	read_heredoc_content(int fd, const char *real_delimiter,
 		if (!line || strcmp(line, real_delimiter) == 0 || g_signal_received)
 		{
 			if (!line && !g_signal_received)
-				ft_fprintf(2,
-							"\nminishell: warning: here-document at line \
-%d delimited by end-of-file (wanted `%s')\n",
-							count_line,
-							delimiter);
+				ft_fprintf(2, "\nminishell: warning: here-document at line \
+					%d delimited by end-of-file (wanted `%s')\n", count_line,
+					delimiter);
 			return (0);
 		}
 		write(fd, line, strlen(line));
@@ -58,6 +56,7 @@ int	create_heredoc(char *delimiter, t_data *data)
 	const char	*real_delimiter;
 	char		*filename;
 	int			fd;
+	int			temp_fd;
 
 	real_delimiter = ft_strjoin(delimiter, "\n");
 	filename = get_temp_filename(data);
@@ -70,9 +69,13 @@ int	create_heredoc(char *delimiter, t_data *data)
 		return (-1);
 	read_heredoc_content(fd, real_delimiter, delimiter);
 	ft_close(fd);
-	fd = open(filename, O_RDONLY);
-	unlink(filename);
-	return (fd);
+	temp_fd = open(filename, O_RDONLY);
+	if (unlink(filename) == -1)
+	{
+		ft_close(temp_fd);
+		return (-1);
+	}
+	return (temp_fd);
 }
 
 int	handle_heredoc_out(t_ast_node *node, t_data *data)

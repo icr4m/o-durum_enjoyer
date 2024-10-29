@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:46:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/17 17:58:12 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/10/29 19:06:08 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,16 @@ t_env	*search_in_env(t_data *data, const char *name)
 char	*ft_getenv_content(t_data *data, char *var_name)
 {
 	t_env	*current;
+	size_t	name_len;
 
 	current = data->env;
 	if (!current)
 		return (NULL);
+	name_len = ft_strlen(var_name);
 	while (current)
 	{
-		if (ft_strncmp(var_name, current->env_var, ft_strlen(var_name)) == 0)
+		if (ft_strncmp(var_name, current->env_var, ft_strlen(var_name)) == 0
+			&& current->env_var[name_len] == '=')
 			break ;
 		current = current->next;
 	}
