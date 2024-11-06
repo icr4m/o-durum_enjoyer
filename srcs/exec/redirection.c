@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:32:09 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/29 12:09:50 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:56:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,31 @@ int	handle_redirection_in(t_ast_node *node, t_data *data)
 		ft_fprintf(2, "minishell: %s: No such file or directory\n", filename);
 		return (-1);
 	}
-	data->backup_stdin = dup(STDIN_FILENO);
+	if (data->backup_stdin == -42)
+	{
+		data->backup_stdin = dup(STDIN_FILENO);
+		if (data->backup_stdin == -1)
+		{
+			ft_close(fd);
+			ft_fprintf(2, "minishell: Error when trying to backup stdin\n");
+			return (-1);
+		}
+	}
 	if (dup2(fd, STDIN_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(ft_close(fd), ft_close(data->backup_stdin));
-		if (data->is_child == 1)
-			free_and_exit(-1);
-		return (0);
+		ft_close(fd);
+		return (-1);
 	}
 	ft_close(fd);
 	execute_ast(node->left, data);
-	dup2(data->backup_stdin, STDIN_FILENO);
-	ft_close(data->backup_stdin);
+	if (data->backup_stdin != -42)
+	{
+		if (dup2(data->backup_stdin, STDIN_FILENO) == -1)
+			ft_fprintf(2, "minishell: Error when trying to restore stdin\n");
+		ft_close(data->backup_stdin);
+		data->backup_stdin = -42;
+	}
 	return (0);
 }
 
