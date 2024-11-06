@@ -6,74 +6,60 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 10:59:05 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/28 18:13:30 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:31:21 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   expand_var.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 10:59:05 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/28 18:06:35 by erwfonta         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "minishell.h"
-
-static int	find_var_end(char *str, int start)
+static char	*handle_quotes(char *str, int start, int *end)
 {
-	int	i;
+	char	*prefix;
+	char	*suffix;
+	char	*result;
 
-	i = start;
-	if (str[i] == '?')
-		return (i + 1);
-	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
-		i++;
-	return (i);
+	if (str[start + 1] != '\"' && str[start + 1] != '\'')
+		return (NULL);
+	prefix = ft_substr(str, 0, start);
+	suffix = ft_strdup(str + start + 1);
+	result = ft_strjoin(prefix, suffix);
+	*end = start + ft_strlen(result);
+	return (result);
 }
 
-static char	*get_var_name(char *str, int start, int end)
-{
-	return (ft_substr(str, start, end - start));
-}
-
-static char	*expand_single_var(char *str, int start, int *end, t_data *data)
+static char	*handle_var_expansion(char *str, int start, int end, t_data *data)
 {
 	char	*var_name;
 	char	*var_value;
-	char	*result;
 	char	*prefix;
 	char	*suffix;
+	char	*result;
 
-	if (str[start + 1] == '\0' || str[start + 1] == '\"' || str[start
-		+ 1] == '\'')
-	{
-		*end = start + 1;
-		return (ft_strdup(str));
-	}
-	*end = find_var_end(str, start + 1);
-	if (str[start + 1] == '?')
-	{
-		var_value = ft_itoa(data->status_code);
-		prefix = ft_substr(str, 0, start);
-		suffix = ft_strdup(str + *end);
-		result = ft_strjoin3(prefix, var_value, suffix);
-		return (result);
-	}
-	var_name = get_var_name(str, start + 1, *end);
+	var_name = get_var_name(str, start + 1, end);
 	var_value = ft_getenv_content(data, var_name);
 	if (!var_value)
 		var_value = "";
 	prefix = ft_substr(str, 0, start);
-	suffix = ft_strdup(str + *end);
+	suffix = ft_strdup(str + end);
 	result = ft_strjoin3(prefix, var_value, suffix);
 	return (result);
+}
+
+static char	*expand_single_var(char *str, int start, int *end, t_data *data)
+{
+	char	*result;
+
+	result = handle_empty_or_null(str, start, end);
+	if (result)
+		return (result);
+	*end = find_var_end(str, start + 1);
+	result = handle_question_mark(str, start, end, data);
+	if (result)
+		return (result);
+	result = handle_quotes(str, start, end);
+	if (result)
+		return (result);
+	return (handle_var_expansion(str, start, *end, data));
 }
 
 static char	*process_string(char *str, t_data *data)
@@ -105,9 +91,9 @@ static char	*process_string(char *str, t_data *data)
 
 void	expand_variables_in_node(t_ast_node *node, t_data *data)
 {
-	int i;
-	char *expanded;
-	char *unquoted;
+	int		i;
+	char	*expanded;
+	char	*unquoted;
 
 	if (!node || !node->args)
 		return ;
