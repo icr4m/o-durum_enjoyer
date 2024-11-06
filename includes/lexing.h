@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 23:57:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/28 15:14:09 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:15:03 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ t_ast_node				*parse_tokens(t_token **tokens);
 
 // Parser Utils
 t_ast_node				*create_ast_node(t_token_type type);
-t_ast_node	*create_and_link_redirection(t_token **tokens,
-										t_token *tmp);
+t_ast_node				*create_and_link_redirection(t_token **tokens,
+							t_token *tmp);
 void					fill_cmd_args(t_ast_node *cmd_node, t_token **token,
 							int arg_count);
 int						count_cmd_args(t_token *token);
