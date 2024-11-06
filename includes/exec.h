@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/28 14:11:11 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:21:38 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ int		handle_heredoc_out(t_ast_node *node, t_data *data);
 
 // PIPEX EXEC
 
+/*
+** @brief Execute les commandes autour d'un pipe
+** @param node Noeud de l'AST contenant les commandes à pipe
+** @param data Structure contenant les données globales du shell
+** @return None, exit en cas d'erreur
+*/
 void	pipe_exec(t_ast_node *node, t_data *data);
 
 // REDIRECTION
