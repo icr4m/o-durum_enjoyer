@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:40:14 by rsk               #+#    #+#             */
-/*   Updated: 2024/10/28 15:43:42 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/06 18:27:32 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_ast_node	*create_and_link_redirection(t_token **tokens, t_token *tmp)
 	redirect_node->right = create_file_node(tmp->next);
 	return (redirect_node);
 }
+
 int	count_cmd_args(t_token *token)
 {
 	int	arg_count;
