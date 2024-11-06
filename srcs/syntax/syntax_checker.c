@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:03:57 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/29 16:21:49 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/06 18:48:31 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ int	has_unclosed_quote(char *command_readed)
 
 int	is_invalid_arg_redirect(char *input)
 {
-	char	*start;
-
-	start = input;
-	input++;
-	if (start == input)
+	if (*input == '>' && *(input + 1) == '>')
 		input++;
+	else if (*input == '<' && *(input + 1) == '<')
+		input++;
+	input++;
 	input = skip_spaces(input);
 	if (*input == '\0' || *input == '|' || *input == '>' || *input == '<')
 		return (1);
@@ -61,12 +60,12 @@ int	has_invalid_redirect(char *command_readed)
 	while (*command_readed)
 	{
 		update_quote_counts(*command_readed, &d_quote, &s_quote);
-		if (!(d_quote % 2) && !(s_quote % 2) && ((*command_readed == '<')
-				|| (*command_readed == '>')))
-			if (is_invalid_arg_redirect(command_readed))
-			{
+		if (!(d_quote % 2) && !(s_quote % 2))
+		{
+			if ((*command_readed == '<' || *command_readed == '>')
+				&& is_invalid_arg_redirect(command_readed))
 				return (1);
-			}
+		}
 		command_readed++;
 	}
 	return (0);
@@ -106,25 +105,25 @@ int	is_syntax_error(char *command_readed, t_data *data)
 	if (has_unclosed_quote(command_readed))
 	{
 		data->status_code = 2;
-		ft_fprintf(2, "ERROR QUOTE\n");
+		ft_fprintf(2, "syntax error near unexpected token\n");
 		return (1);
 	}
 	else if (has_invalid_redirect(command_readed))
 	{
 		data->status_code = 2;
-		ft_fprintf(2, "INVALID REDIRECT\n");
+		ft_fprintf(2, "syntax error near unexpected token\n");
 		return (1);
 	}
 	else if (has_misplaced_operator(command_readed))
 	{
 		data->status_code = 2;
-		ft_fprintf(2, "MISPLACED OPERATOR\n");
+		ft_fprintf(2, "syntax error near unexpected token\n");
 		return (1);
 	}
 	else if (has_logical_operator(command_readed))
 	{
 		data->status_code = 2;
-		ft_fprintf(2, "Logical operator not supported\n");
+		ft_fprintf(2, "syntax error near unexpected token\n");
 		return (1);
 	}
 	return (0);
