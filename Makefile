@@ -105,7 +105,7 @@ norm:
 	-@norminette -R CheckDefine $(INCS)
 
 val: all
-	valgrind --leak-check=full --show-below-main=no --show-leak-kinds=all --track-fds=yes --trace-children=yes --suppressions=.supp.supp ./minishell
+	valgrind --leak-check=full --show-leak-kinds=definite --track-fds=yes --trace-children=yes --errors-for-leak-kinds=none --suppressions=.supp.supp -q ./minishell
 
 clean:
 	@rm -rf $(ALL_OBJS)
