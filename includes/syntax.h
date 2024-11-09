@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:31:44 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/10/28 15:21:57 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:46:23 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int		has_unclosed_quote(char *command_readed);
 // syntax utils
 int		ft_isspace(int c);
 void	update_quote_counts(char c, int *d_quote, int *s_quote);
-int		has_logical_operator(char *command_readed);
+char	has_logical_operator(char *command_readed);
 
 #endif
