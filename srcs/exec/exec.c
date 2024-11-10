@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:22:14 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 00:07:12 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 00:35:25 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	close_heredocs(t_ast_node *root)
 	if (root->type == TOKEN_REDIR_HEREDOC)
 	{
 		if (root->heredoc_fd != -1)
+		{
 			ft_close(root->heredoc_fd);
+			root->heredoc_fd = -1;
+		}
 	}
 	close_heredocs(root->left);
 	close_heredocs(root->right);

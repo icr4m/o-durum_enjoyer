@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/06 16:21:38 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 00:21:15 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ int		handle_redirection_out(t_ast_node *node, t_data *data);
 
 // CHECK HERE DOC
 void	check_here_doc(t_ast_node *node, t_data *data);
+
+void	close_heredocs(t_ast_node *root);
 
 #endif
