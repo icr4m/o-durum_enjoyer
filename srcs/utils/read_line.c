@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/06 18:41:38 by ijaber           ###   ########.fr       */
+/*   Created: 2024/11/10 18:03:07 by ijaber            #+#    #+#             */
+/*   Updated: 2024/11/10 20:47:07 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,60 @@ void	start_parsing(char *command_readed, t_data *data)
 	if (is_syntax_error(command_readed, data))
 		return ;
 	token = tokenization_input(command_readed);
-	// display_tokens(token);
 	ast_root = parse_tokens(&token);
 	expand_variables_in_node(ast_root, data);
-	// generate_ast_diagram(ast_root);
 	check_here_doc(ast_root, data);
 	execute_ast(ast_root, data);
-	// printf("code: %d\n", data->status_code);
+}
+
+static char	*get_prompt(t_data *data)
+{
+	char	*prompt;
+	char	*full_prompt;
+
+	prompt = getcwd(NULL, 0);
+	if (!prompt)
+		handle_malloc_error("readline", data);
+	full_prompt = ft_strjoin3(BBLUE "→ ", prompt, BRED " minishell> " WHITE);
+	gc_free(prompt);
+	return (full_prompt);
+}
+
+char	*ft_readline(t_data *data)
+{
+	char	*prompt;
+	char	*command_readed;
+
+	while (1)
+	{
+		prompt = get_prompt(data);
+		command_readed = readline(prompt);
+		gc_free(prompt);
+		if (g_signal_received != 0)
+		{
+			set_info_signal(data);
+			continue ;
+		}
+		if (!command_readed)
+			ft_exit(data, NULL);
+		else if (ft_strcmp(command_readed, "") == 0)
+			gc_free(command_readed);
+		else
+			break ;
+	}
+	prompt = ft_strdup(command_readed);
+	return (gc_free(command_readed), prompt);
 }
 
 void	exec_readline(t_data *data)
 {
-	char	*command_readed;
-	char	*prompt;
-	char	*full_prompt;
+	char	*command_read;
 
 	while (1)
 	{
 		set_signal_parent();
-		if (g_signal_received != 0)
-		{
-			g_signal_received = 0;
-			continue ;
-		}
-		prompt = getcwd(NULL, 0);
-		if (!prompt)
-			handle_malloc_error("readline", data);
-		full_prompt = ft_strjoin3(BBLUE "→ ", prompt,
-				BRED " minishell> " WHITE);
-		gc_free(prompt);
-		command_readed = readline(full_prompt);
-		gc_free(full_prompt);
-		if (command_readed == NULL)
-			ft_exit(data, NULL);
-		if (ft_strlen(command_readed) > 0)
-			(add_history(command_readed), start_parsing(command_readed, data));
-		gc_free(command_readed);
+		command_read = ft_readline(data);
+		start_parsing(command_read, data);
+		add_history(command_read);
 	}
 }

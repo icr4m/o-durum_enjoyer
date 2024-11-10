@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:22:14 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/30 14:45:46 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/10 20:50:15 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ void	execute_ast(t_ast_node *node, t_data *data)
 		ft_close(data->backup_stdin);
 		data->backup_stdin = -42;
 	}
+	check_if_signal();
 }

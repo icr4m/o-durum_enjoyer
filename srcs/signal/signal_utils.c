@@ -6,27 +6,26 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 09:46:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/21 11:10:50 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/10 21:02:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sigint_handler(int signum)
+int	sig_event(void)
 {
-	(void)signum;
-	g_signal_received = 128 + signum;
-	write(1, "\n", 1);
-	if (waitpid(-1, NULL, WNOHANG) == 0)
-		return ;
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	return (0);
 }
 
-void	handle_signal_parent(int num)
+void	sigint_handler(int signum)
 {
-	g_signal_received = num + 128;
+	g_signal_received = 128 + signum;
+	rl_done = 1;
+}
+
+void	handle_signal_parent(int signum)
+{
+	g_signal_received = signum + 128;
 }
 
 void	heredoc_signal_handler(int signum)
@@ -36,4 +35,19 @@ void	heredoc_signal_handler(int signum)
 		g_signal_received = 1;
 		write(STDOUT_FILENO, "\n", 1);
 	}
+}
+
+void	set_info_signal(t_data *data)
+{
+	data->status_code = g_signal_received;
+	g_signal_received = 0;
+}
+
+void	check_if_signal(void)
+{
+	if (g_signal_received == 128 + SIGQUIT)
+		ft_putstr_fd("Quit (core dumped)\n", 2);
+	if (g_signal_received == 128 + SIGINT)
+		write(STDERR_FILENO, "\n", 1);
+	g_signal_received = 0;
 }
