@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:03:07 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/10 20:47:07 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 00:07:00 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	start_parsing(char *command_readed, t_data *data)
 		return ;
 	token = tokenization_input(command_readed);
 	ast_root = parse_tokens(&token);
+	data->root = ast_root;
 	expand_variables_in_node(ast_root, data);
 	check_here_doc(ast_root, data);
-	execute_ast(ast_root, data);
+	if (!g_signal_received)
+		execute_ast(ast_root, data);
 }
 
 static char	*get_prompt(t_data *data)
@@ -73,6 +75,11 @@ void	exec_readline(t_data *data)
 	while (1)
 	{
 		set_signal_parent();
+		if (g_signal_received != 0)
+		{
+			set_info_signal(data);
+			continue ;
+		}
 		command_read = ft_readline(data);
 		start_parsing(command_read, data);
 		add_history(command_read);

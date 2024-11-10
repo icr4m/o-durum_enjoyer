@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 09:46:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/10 21:02:29 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/10 22:59:16 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	heredoc_signal_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		g_signal_received = 1;
+		g_signal_received = 130;
 		write(STDOUT_FILENO, "\n", 1);
 	}
 }

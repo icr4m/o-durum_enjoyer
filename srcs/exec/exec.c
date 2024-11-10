@@ -6,17 +6,32 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:22:14 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/10 20:50:15 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 00:07:12 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	close_heredocs(t_ast_node *root)
+{
+	if (!root)
+		return ;
+	if (root->type == TOKEN_REDIR_HEREDOC)
+	{
+		if (root->heredoc_fd != -1)
+			ft_close(root->heredoc_fd);
+	}
+	close_heredocs(root->left);
+	close_heredocs(root->right);
+}
 
 void	check_here_doc(t_ast_node *node, t_data *data)
 {
 	int	fd;
 
 	if (node == NULL)
+		return ;
+	if (g_signal_received)
 		return ;
 	if (node->type == TOKEN_REDIR_HEREDOC)
 	{
@@ -25,6 +40,8 @@ void	check_here_doc(t_ast_node *node, t_data *data)
 			free_and_exit(-1);
 		node->heredoc_fd = fd;
 	}
+	if (g_signal_received)
+		close_heredocs(data->root);
 	check_here_doc(node->left, data);
 	check_here_doc(node->right, data);
 }
