@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/10 22:56:40 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:11:36 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,49 @@ int	create_heredoc(char *delimiter, t_data *data)
 	return (fd);
 }
 
-int	handle_heredoc_out(t_ast_node *node, t_data *data)
+void	check_here_doc(t_ast_node *node, t_data *data)
 {
-	int	here_doc_fd;
+	int	fd;
 
-	here_doc_fd = ft_open_outfile(node->right->args[0], O_APPEND, data);
-	if (here_doc_fd == -1)
-		free_and_exit(-1);
-	data->backup_stdout = dup(STDOUT_FILENO);
-	if (dup2(here_doc_fd, STDOUT_FILENO) == -1)
+	if (node == NULL)
+		return ;
+	if (g_signal_received)
+		return ;
+	if (node->type == TOKEN_REDIR_HEREDOC)
+	{
+		fd = create_heredoc(node->right->args[0], data);
+		if (fd == -1)
+			free_and_exit(-1);
+		node->heredoc_fd = fd;
+	}
+	if (g_signal_received)
+		close_heredocs(data->root);
+	check_here_doc(node->left, data);
+	check_here_doc(node->right, data);
+}
+
+void	execute_heredoc_redirection(t_ast_node *node, t_data *data)
+{
+	int	old_stdin;
+
+	if (data->backup_stdin == -42)
+	{
+		old_stdin = dup(STDIN_FILENO);
+		if (old_stdin == -1)
+		{
+			ft_fprintf(2, "minishell: Error when trying to dup stdin\n");
+			return ;
+		}
+		data->backup_stdin = old_stdin;
+	}
+	if (dup2(node->heredoc_fd, STDIN_FILENO) == -1)
 	{
 		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		(ft_close(here_doc_fd), ft_close(data->backup_stdout));
+		ft_close(node->heredoc_fd);
 		if (data->is_child == 1)
 			free_and_exit(-1);
-		return (0);
+		return ;
 	}
-	ft_close(here_doc_fd);
+	ft_close(node->heredoc_fd);
 	execute_ast(node->left, data);
-	dup2(data->backup_stdout, STDOUT_FILENO);
-	ft_close(data->backup_stdout);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 00:21:15 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:13:18 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ void	ft_close(int fd);
 char	*find_path(char *command, t_data *data);
 int		ft_access_stat(char *path);
 
-// EXEC
+// APPEND
+int		handle_heredoc_out(t_ast_node *node, t_data *data);
 
+// EXEC
+void	close_heredocs(t_ast_node *root);
 void	execute_ast(t_ast_node *node, t_data *data);
 
 // EXIT STATUS
@@ -44,7 +47,8 @@ int		ft_fork(t_data *data);
 // HEREDOC
 char	*get_temp_filename(t_data *data);
 int		create_heredoc(char *delimiter, t_data *data);
-int		handle_heredoc_out(t_ast_node *node, t_data *data);
+void	check_here_doc(t_ast_node *node, t_data *data);
+void	execute_heredoc_redirection(t_ast_node *node, t_data *data);
 
 // PIPEX EXEC
 
@@ -60,10 +64,5 @@ void	pipe_exec(t_ast_node *node, t_data *data);
 
 int		handle_redirection_in(t_ast_node *node, t_data *data);
 int		handle_redirection_out(t_ast_node *node, t_data *data);
-
-// CHECK HERE DOC
-void	check_here_doc(t_ast_node *node, t_data *data);
-
-void	close_heredocs(t_ast_node *root);
 
 #endif

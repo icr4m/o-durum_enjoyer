@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:22:14 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 00:35:25 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:08:49 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,53 +26,6 @@ void	close_heredocs(t_ast_node *root)
 	}
 	close_heredocs(root->left);
 	close_heredocs(root->right);
-}
-
-void	check_here_doc(t_ast_node *node, t_data *data)
-{
-	int	fd;
-
-	if (node == NULL)
-		return ;
-	if (g_signal_received)
-		return ;
-	if (node->type == TOKEN_REDIR_HEREDOC)
-	{
-		fd = create_heredoc(node->right->args[0], data);
-		if (fd == -1)
-			free_and_exit(-1);
-		node->heredoc_fd = fd;
-	}
-	if (g_signal_received)
-		close_heredocs(data->root);
-	check_here_doc(node->left, data);
-	check_here_doc(node->right, data);
-}
-
-static void	execute_heredoc_redirection(t_ast_node *node, t_data *data)
-{
-	int	old_stdin;
-
-	if (data->backup_stdin == -42)
-	{
-		old_stdin = dup(STDIN_FILENO);
-		if (old_stdin == -1)
-		{
-			ft_fprintf(2, "minishell: Error when trying to dup stdin\n");
-			return ;
-		}
-		data->backup_stdin = old_stdin;
-	}
-	if (dup2(node->heredoc_fd, STDIN_FILENO) == -1)
-	{
-		ft_fprintf(2, "minishell: Error when trying to dup2\n");
-		ft_close(node->heredoc_fd);
-		if (data->is_child == 1)
-			free_and_exit(-1);
-		return ;
-	}
-	ft_close(node->heredoc_fd);
-	execute_ast(node->left, data);
 }
 
 void	execute_ast(t_ast_node *node, t_data *data)
