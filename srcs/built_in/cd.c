@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 02:40:07 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:27:42 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ int	ft_cd(t_data *data, char **args)
 	}
 	change_pwd_in_env(data, old_pwd);
 	change_old_pwd_in_env(data, old_pwd);
+	gc_free(old_pwd);
 	return (data->status_code = 0);
 }
