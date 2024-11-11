@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/15 15:58:46 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:15:45 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define WHITE "\033[0;37m"
+# define WHITE "\001\033[0;37m\002"
 # define GREEN "\033[0;32m"
 # define RED "\033[0;31m"
 # define PURPLE "\033[0;35m"
-# define BBLUE "\033[1;34m"
+# define BBLUE "\001\033[1;34m\002"
 # define IRED "\033[0;91m"
-# define BRED "\033[1;31m"
+# define BRED "\001\033[1;31m\002"
+# define BGREEN "\001\033[1;32m\002"
+# define BPurple "\001\033[1;35m\002"
 
 # define EXPORT_STR "export"
 # define CD_STR "cd"

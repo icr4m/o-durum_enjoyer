@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:12:32 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/07 18:47:09 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:33:12 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ char	*handle_empty_or_null(char *str, int start, int *end);
 char	*handle_question_mark(char *str, int start, int *end, t_data *data);
 char	*handle_quotes(char *str, int start, int *end);
 char	*process_string(char *str, t_data *data);
+
+// PROMPT
+char	*get_classic_prompt(t_data *data);
+char	*get_prompt(t_data *data);
 
 // READ LINE
 void	exec_readline(t_data *data);

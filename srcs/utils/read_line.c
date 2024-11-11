@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:03:07 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 00:07:00 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 16:33:06 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,6 @@ void	start_parsing(char *command_readed, t_data *data)
 	check_here_doc(ast_root, data);
 	if (!g_signal_received)
 		execute_ast(ast_root, data);
-}
-
-static char	*get_prompt(t_data *data)
-{
-	char	*prompt;
-	char	*full_prompt;
-
-	prompt = getcwd(NULL, 0);
-	if (!prompt)
-		handle_malloc_error("readline", data);
-	full_prompt = ft_strjoin3(BBLUE "→ ", prompt, BRED " minishell> " WHITE);
-	gc_free(prompt);
-	return (full_prompt);
 }
 
 char	*ft_readline(t_data *data)
