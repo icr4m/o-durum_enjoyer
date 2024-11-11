@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 01:41:10 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 02:40:07 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,27 @@ void	change_old_pwd_in_env(t_data *data, char *old_pwd)
 	if (env)
 	{
 		if (env->env_var)
+		{
 			gc_free(env->env_var);
-		env->env_var = ft_strjoin("OLDPWD=", old_pwd);
-		if (!env->env_var)
-			handle_malloc_error("pwd", data);
+			env->env_var = ft_strjoin("OLDPWD=", old_pwd);
+			if (!env->env_var)
+				handle_malloc_error("pwd", data);
+		}
+		else
+		{
+			env->env_var = ft_strjoin("OLDPWD=", old_pwd);
+			if (!env->env_var)
+				handle_malloc_error("pwd", data);
+		}
 	}
 }
 
-void	change_pwd_in_env(t_data *data)
+void	change_pwd_in_env(t_data *data, char *old_pwd)
 {
-	char	*old_pwd;
 	char	*new_pwd;
 	t_env	*env;
 
-	old_pwd = NULL;
-	old_pwd = ft_strdup(ft_getenv_content(data, "PWD"));
-	if (!old_pwd)
-		return ;
 	env = search_in_env(data, "PWD");
-	if (!env)
-		return ;
 	if (env)
 	{
 		new_pwd = ft_pwd(data, 0);
@@ -93,23 +94,26 @@ void	change_pwd_in_env(t_data *data)
 			if (!env->env_var)
 				handle_malloc_error("PWD", data);
 			gc_free(new_pwd);
+			change_old_pwd_in_env(data, old_pwd);
 		}
 	}
+	else
+		change_old_pwd_in_env(data, old_pwd);
 }
 
 int	ft_cd(t_data *data, char **args)
 {
 	char	*old_pwd;
 
-	old_pwd = ft_pwd(NULL, 0);
-	if (args[2])
+	old_pwd = ft_pwd(data, 0);
+	if (!args[1] || (ft_strcmp(args[1], "~") == 0) || (ft_strcmp(args[1],
+				"--") == 0))
+		go_to_home(data);
+	else if (args[2])
 	{
 		ft_fprintf(2, "bash: cd: too many arguments\n");
 		return (data->status_code = 1);
 	}
-	else if (!args[1] || (ft_strcmp(args[1], "~") == 0) || (ft_strcmp(args[1],
-				"--") == 0))
-		go_to_home(data);
 	else if ((ft_strcmp(args[1], "-") == 0) && args[1])
 	{
 		if (go_to_old(data))
@@ -120,7 +124,7 @@ int	ft_cd(t_data *data, char **args)
 		ft_fprintf(2, "cd: no such file or directory: %s\n", args[1]);
 		return (data->status_code = 1);
 	}
-	change_pwd_in_env(data);
+	change_pwd_in_env(data, old_pwd);
 	change_old_pwd_in_env(data, old_pwd);
 	return (data->status_code = 0);
 }
