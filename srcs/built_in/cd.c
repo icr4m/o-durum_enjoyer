@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/16 16:08:06 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 01:41:10 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ void	change_pwd_in_env(t_data *data)
 	char	*new_pwd;
 	t_env	*env;
 
+	old_pwd = NULL;
 	old_pwd = ft_strdup(ft_getenv_content(data, "PWD"));
 	if (!old_pwd)
-		handle_malloc_error("pwd", data);
+		return ;
 	env = search_in_env(data, "PWD");
 	if (!env)
 		return ;
@@ -94,11 +95,13 @@ void	change_pwd_in_env(t_data *data)
 			gc_free(new_pwd);
 		}
 	}
-	change_old_pwd_in_env(data, old_pwd);
 }
 
 int	ft_cd(t_data *data, char **args)
 {
+	char	*old_pwd;
+
+	old_pwd = ft_pwd(NULL, 0);
 	if (args[2])
 	{
 		ft_fprintf(2, "bash: cd: too many arguments\n");
@@ -118,5 +121,6 @@ int	ft_cd(t_data *data, char **args)
 		return (data->status_code = 1);
 	}
 	change_pwd_in_env(data);
+	change_old_pwd_in_env(data, old_pwd);
 	return (data->status_code = 0);
 }
