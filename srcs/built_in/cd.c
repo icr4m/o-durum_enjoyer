@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:37:25 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 11:27:42 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 14:52:58 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,17 @@ int	ft_cd(t_data *data, char **args)
 	else if (args[2])
 	{
 		ft_fprintf(2, "bash: cd: too many arguments\n");
-		return (data->status_code = 1);
+		return (gc_free(old_pwd), data->status_code = 1);
 	}
 	else if ((ft_strcmp(args[1], "-") == 0) && args[1])
 	{
 		if (go_to_old(data))
-			return (data->status_code = 1);
+			return (gc_free(old_pwd), data->status_code = 1);
 	}
 	else if (chdir(args[1]) == -1)
 	{
 		ft_fprintf(2, "cd: no such file or directory: %s\n", args[1]);
-		return (data->status_code = 1);
+		return (gc_free(old_pwd), data->status_code = 1);
 	}
 	change_pwd_in_env(data, old_pwd);
 	change_old_pwd_in_env(data, old_pwd);
