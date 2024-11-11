@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 10:14:26 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 12:13:18 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:24:30 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	pipe_exec(t_ast_node *node, t_data *data);
 
 // REDIRECTION
 
+int		handle_multiple_redirections(t_ast_node *node, t_data *data);
 int		handle_redirection_in(t_ast_node *node, t_data *data);
 int		handle_redirection_out(t_ast_node *node, t_data *data);
 
