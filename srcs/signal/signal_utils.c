@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 09:46:21 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/10 22:59:16 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 17:38:28 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	sigint_handler(int signum)
 {
 	g_signal_received = 128 + signum;
 	rl_done = 1;
-}
-
-void	handle_signal_parent(int signum)
-{
-	g_signal_received = signum + 128;
 }
 
 void	heredoc_signal_handler(int signum)

@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:33:10 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 12:11:36 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 17:04:29 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ static int	read_heredoc_content(int fd, const char *real_delimiter,
 		if (!line || strcmp(line, real_delimiter) == 0 || g_signal_received)
 		{
 			if (!line && !g_signal_received)
-				ft_fprintf(2,
-							"\nminishell: warning: here-document at line \
-%d delimited by end-of-file (wanted `%s')\n",
-							count_line,
-							delimiter);
+				ft_fprintf(2, "\nminishell: warning: here-document at line \
+%d delimited by end-of-file (wanted `%s')\n", count_line, delimiter);
 			return (0);
 		}
 		write(fd, line, strlen(line));

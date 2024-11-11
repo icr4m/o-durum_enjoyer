@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:23:59 by ijaber            #+#    #+#             */
-/*   Updated: 2024/10/02 20:04:01 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 17:35:42 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ size_t	ft_r_type_fd(char c, va_list arg, int fd)
 		return (ft_print_nb_fd(va_arg(arg, int), fd));
 	if (c == 'x')
 		return (ft_putnbr_base_fd((unsigned int)(va_arg(arg, int)), HEXA_LOWER,
-				fd));
+			fd));
 	if (c == 'X')
 		return (ft_putnbr_base_fd((unsigned int)(va_arg(arg, int)), HEXA_UPPER,
-				fd));
+			fd));
 	if (c == '%')
 		return (ft_putchar_fd('%', fd));
 	return (0);
