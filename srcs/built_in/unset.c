@@ -6,7 +6,7 @@
 /*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:08:19 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 17:37:31 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/11 17:52:01 by ijaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_unset(t_data *data, char **args)
 	size_t	len;
 
 	i = 1;
-	while (args[i++] != NULL)
+	while (args[i] != NULL)
 	{
 		prev = NULL;
 		current = data->env;
@@ -46,6 +46,7 @@ int	ft_unset(t_data *data, char **args)
 			prev = current;
 			current = current->next;
 		}
+		i++;
 	}
 	data->status_code = 0;
 	return (0);
