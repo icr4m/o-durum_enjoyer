@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:51:30 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/11/12 16:42:15 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:45:06 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static char	handle_quotes(char current_char, char quote)
 	if ((current_char == '\'' || current_char == '\"') && !quote)
 		return (current_char);
 	else if ((current_char == '\'' || current_char == '\"')
-		&& quote == current_char)
+			&& quote == current_char)
 		return (0);
 	return (quote);
 }
 
-static char	*init_result(const char *str, int *i, int *quote)
+static char	*init_result(const char *str, int *i, char *quote)
 {
 	*i = 0;
 	*quote = 0;
@@ -48,6 +48,7 @@ char	*process_string(char *str, t_data *data)
 	char	*result;
 	size_t	len;
 
+	quote = 0;
 	result = init_result(str, &i, &quote);
 	if (!result)
 		return (NULL);
