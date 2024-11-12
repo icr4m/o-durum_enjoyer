@@ -6,7 +6,7 @@ SRCS_GC = $(addprefix srcs/garbage_collector/, gc_destroy.c gc_init.c gc_malloc.
 SRCS_SIG = $(addprefix srcs/signal/, signal_handler.c signal_utils.c)
 SRCS_TOKEN = $(addprefix srcs/token/, token.c token_list.c token_utils.c token_utils2.c debug_token.c)
 SRCS_PARSING = $(addprefix srcs/parser/, parser.c parser_utils.c)
-SRCS_UTILS = $(addprefix srcs/utils/, exit.c read_line.c utils.c init_minishell.c prompt_utils.c expand_var.c expand_var_utils.c expand_var_utils2.c expand_var_utils3.c)
+SRCS_UTILS = $(addprefix srcs/utils/, exit.c read_line.c utils.c init_minishell.c prompt_utils.c expand_var.c expand_var_utils.c expand_var_utils2.c)
 SRCS_SYNTAX = $(addprefix srcs/syntax/, syntax_checker.c syntax_checker_utils.c)
 MAIN = $(addprefix srcs/, main.c)
 
@@ -71,7 +71,7 @@ BRed='\033[1;31m'         # Red
 BGreen='\033[1;32m'       # Green
 BYellow='\033[1;33m'      # Yellow
 BBlue='\033[1;34m'        # Blue
-BPurple='\033[1;35m'      # Purple
+BPURPLE='\033[1;35m'      # Purple
 BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
 

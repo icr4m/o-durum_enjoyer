@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 21:52:39 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 16:15:45 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/12 19:12:20 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define IRED "\033[0;91m"
 # define BRED "\001\033[1;31m\002"
 # define BGREEN "\001\033[1;32m\002"
-# define BPurple "\001\033[1;35m\002"
+# define BPURPLE "\001\033[1;35m\002"
 
 # define EXPORT_STR "export"
 # define CD_STR "cd"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:26:46 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 18:03:59 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/12 19:12:20 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_classic_prompt(t_data *data)
 		handle_malloc_error("readline", data);
 	prompt = ft_strjoin3("[", pwd, "]");
 	gc_free(pwd);
-	full_prompt = ft_strjoin3(BPurple "→ " BBLUE, prompt,
+	full_prompt = ft_strjoin3(BPURPLE "→ " BBLUE, prompt,
 			BRED " minishell> " WHITE);
 	gc_free(prompt);
 	return (full_prompt);
@@ -44,7 +44,7 @@ char	*get_prompt(t_data *data)
 		return (gc_free(pwd), get_classic_prompt(data));
 	if (ft_strncmp(pwd, home, ft_strlen(home)) == 0
 		&& pwd[ft_strlen(home)] == '/')
-		full_prompt = ft_strjoin3(BPurple "→ 🏠︎" BBLUE, pwd + ft_strlen(home),
+		full_prompt = ft_strjoin3(BPURPLE "→ 🏠︎" BBLUE, pwd + ft_strlen(home),
 				BRED " minishell> " WHITE);
 	else
 		return (gc_free(pwd), get_classic_prompt(data));
