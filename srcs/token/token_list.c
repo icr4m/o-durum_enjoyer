@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:34:44 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/09/25 19:19:18 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:41:49 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,3 @@ void	add_token_to_list(t_token **head, t_token *new_token)
 		current = current->next;
 	current->next = new_token;
 }
-
-

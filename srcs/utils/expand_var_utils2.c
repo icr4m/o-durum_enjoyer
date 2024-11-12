@@ -6,13 +6,13 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:21:40 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/11/07 19:00:04 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:39:39 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*handle_quotes(char *str, int start, int *end)
+static char	*handle_quotes(char *str, int start, int *end)
 {
 	char	*prefix;
 	char	*suffix;
@@ -45,7 +45,7 @@ static char	*handle_var_expansion(char *str, int start, int end, t_data *data)
 	return (result);
 }
 
-static char	*expand_single_var(char *str, int start, int *end, t_data *data)
+char	*expand_single_var(char *str, int start, int *end, t_data *data)
 {
 	char	*result;
 
@@ -60,44 +60,4 @@ static char	*expand_single_var(char *str, int start, int *end, t_data *data)
 	if (result)
 		return (result);
 	return (handle_var_expansion(str, start, *end, data));
-}
-
-char	*process_string(char *str, t_data *data)
-{
-	int		i;
-	char	quote;
-	char	*result;
-	char	*old_result;
-	size_t	len;
-
-	i = 0;
-	quote = 0;
-	if (!str)
-		return (NULL);
-	result = ft_strdup(str);
-	if (!result)
-		return (NULL);
-	while (1)
-	{
-		len = ft_strlen(result);
-		if (i >= (int)len)
-			break ;
-		if (!result[i])
-			break ;
-		if ((result[i] == '\'' || result[i] == '\"') && !quote)
-			quote = result[i];
-		else if ((result[i] == '\'' || result[i] == '\"') && quote == result[i])
-			quote = 0;
-		else if (result[i] == '$' && quote != '\'')
-		{
-			old_result = result;
-			result = expand_single_var(result, i, &i, data);
-			gc_free(old_result);
-			if (!result)
-				return (NULL);
-			continue ;
-		}
-		i++;
-	}
-	return (result);
 }

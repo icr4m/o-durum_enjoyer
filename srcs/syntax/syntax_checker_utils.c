@@ -6,7 +6,7 @@
 /*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:04:09 by erwfonta          #+#    #+#             */
-/*   Updated: 2024/11/07 17:49:27 by erwfonta         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:40:59 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	has_unclosed_quote(char *command_readed)
 	while (*command_readed)
 	{
 		if ((*command_readed == '"' || *command_readed == '\'')
-				&& !in_quote_status)
+			&& !in_quote_status)
 		{
 			in_quote_status = 1;
 			in_quote_char = *command_readed;

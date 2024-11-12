@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaber <ijaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: erwfonta <erwfonta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:12:32 by ijaber            #+#    #+#             */
-/*   Updated: 2024/11/11 16:33:12 by ijaber           ###   ########.fr       */
+/*   Updated: 2024/11/12 14:53:57 by erwfonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		find_var_end(char *str, int start);
 char	*get_var_name(char *str, int start, int end);
 char	*handle_empty_or_null(char *str, int start, int *end);
 char	*handle_question_mark(char *str, int start, int *end, t_data *data);
-char	*handle_quotes(char *str, int start, int *end);
+char	*expand_single_var(char *str, int start, int *end, t_data *data);
 char	*process_string(char *str, t_data *data);
 
 // PROMPT
